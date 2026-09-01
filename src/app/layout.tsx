@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -31,6 +32,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className="scroll-smooth dark">
+      <head>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3923504098703524"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+      </head>
       <body className={`${inter.className} bg-[#07090e] text-[#f1f5f9] antialiased selection:bg-[#10b981]/25 selection:text-[#10b981]`}>
         {children}
       </body>
