@@ -17,6 +17,12 @@ import {
   Sliders,
   Monitor,
   BadgeCheck,
+  GraduationCap,
+  Bot,
+  Terminal,
+  Rocket,
+  Coins,
+  Gamepad2,
 } from "lucide-react";
 
 export default function HomePage() {
@@ -52,6 +58,9 @@ export default function HomePage() {
             <a href="#hardware" className="hover:text-[#06b6d4] transition-colors flex items-center gap-1">
               <span>Hardware &amp; Tech</span>
               <span className="text-[10px] px-1.5 py-0.2 rounded bg-[#06b6d4]/15 text-[#06b6d4] font-semibold border border-[#06b6d4]/30">Bientôt</span>
+            </a>
+            <a href="#parcours" className="hover:text-[#a855f7] transition-colors">
+              Parcours
             </a>
             <a href="#philosophie" className="hover:text-white transition-colors">
               Philosophie
@@ -90,8 +99,8 @@ export default function HomePage() {
         </h1>
 
         <p className="text-base sm:text-xl text-[#94a3b8] max-w-2xl mx-auto leading-relaxed mb-10">
-          Développeur indépendant concevant des applications gratuites, légères et directes.
-          Pas d&apos;inscription forcée, pas d&apos;interfaces surchargées : juste des calculs précis et des outils qui résolvent de vrais besoins.
+          Développeur indépendant diplômé en informatique et passionné d&apos;automatisation logicielle.
+          De la création de bots et scripts haute performance au développement d&apos;outils web ouverts : des applications directes qui résolvent de vrais besoins.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -120,16 +129,16 @@ export default function HomePage() {
             <div className="text-xs text-[#94a3b8] mt-1.5 font-medium">Suite extérieure complète en ligne</div>
           </div>
           <div className="glass-card rounded-2xl p-5 border border-white/[0.08] transition-colors">
-            <div className="text-2xl sm:text-3xl font-black text-white">7 Outils + 35 Guides</div>
-            <div className="text-xs text-[#94a3b8] mt-1.5 font-medium">Gravier, béton, gazon, clôture, etc.</div>
+            <div className="text-2xl sm:text-3xl font-black text-white">4 Ans Automatisation</div>
+            <div className="text-xs text-[#94a3b8] mt-1.5 font-medium">Botting Java &amp; AutoHotkey (2021-2025)</div>
           </div>
           <div className="glass-card rounded-2xl p-5 border border-white/[0.08] transition-colors">
             <div className="text-2xl sm:text-3xl font-black text-[#06b6d4]">&lt; 50 ms</div>
             <div className="text-xs text-[#94a3b8] mt-1.5 font-medium">Calcul local instantané sans rechargement</div>
           </div>
           <div className="glass-card rounded-2xl p-5 border border-white/[0.08] transition-colors">
-            <div className="text-2xl sm:text-3xl font-black text-[#a855f7]">Hardware</div>
-            <div className="text-xs text-[#94a3b8] mt-1.5 font-medium">Prochain projet tech en développement</div>
+            <div className="text-2xl sm:text-3xl font-black text-[#a855f7]">Hardware Lab</div>
+            <div className="text-xs text-[#94a3b8] mt-1.5 font-medium">Prochain comparateur tech en R&amp;D</div>
           </div>
         </div>
       </section>
@@ -346,6 +355,190 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Background / Parcours Section */}
+      <section id="parcours" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 scroll-mt-20 border-t border-white/[0.08]">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
+          <div>
+            <div className="inline-flex items-center gap-2 text-xs font-bold text-[#a855f7] uppercase tracking-wider mb-2">
+              <Terminal className="w-4 h-4 text-[#a855f7]" />
+              <span>Mon Parcours &amp; ADN Technique</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white">
+              De l&apos;automatisation poussée à l&apos;édition d&apos;outils web
+            </h2>
+          </div>
+          <p className="text-sm text-[#94a3b8] max-w-md">
+            Un profil d&apos;ingénierie forgé par 4 ans de théorie universitaire puis 4 ans de programmation de bots et d&apos;automatisation sur les marchés virtuels mondiaux.
+          </p>
+        </div>
+
+        {/* Chronological Timeline Cards */}
+        <div className="space-y-8">
+          {/* Card 1: 2017 - 2021 (Licence Blois) */}
+          <div className="relative rounded-3xl bg-gradient-to-br from-white/[0.05] to-white/[0.01] border border-white/10 p-6 sm:p-8 hover:border-[#8b5cf6]/40 transition-colors">
+            <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-[#8b5cf6]/15 text-[#a855f7] flex items-center justify-center shrink-0 border border-[#8b5cf6]/30">
+                  <GraduationCap className="w-6 h-6" />
+                </div>
+                <div className="space-y-2">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#8b5cf6]/20 text-[#c084fc] border border-[#8b5cf6]/40 font-mono">
+                      2017 — 2021
+                    </span>
+                    <span className="text-xs text-[#94a3b8] font-medium">
+                      Université / Antenne de Blois
+                    </span>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white">
+                    Licence Informatique — Fondations &amp; Rigueur Algorithmique
+                  </h3>
+                  <p className="text-sm text-[#94a3b8] leading-relaxed max-w-3xl">
+                    Quatre années d&apos;apprentissage des fondamentaux de l&apos;informatique moderne : conception algorithmique pure, structures de données avancées, programmation système (C/C++), programmation orientée objet (Java), modélisation relationnelle SQL et architectures réseaux.
+                    Ce socle universitaire m&apos;a apporté la rigueur nécessaire pour modéliser des problèmes mathématiques et physiques sans approximation.
+                  </p>
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    <span className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-white/5 text-[#cbd5e1] border border-white/10">Licence Informatique (Blois)</span>
+                    <span className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-white/5 text-[#cbd5e1] border border-white/10">Algorithmique &amp; Complexité</span>
+                    <span className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-white/5 text-[#cbd5e1] border border-white/10">Java / C / C++</span>
+                    <span className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-white/5 text-[#cbd5e1] border border-white/10">Bases de Données SQL</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2: 2021 - 2025 (Eldorado.gg, Botting Tarkov & OSRS) */}
+          <div className="relative rounded-3xl bg-gradient-to-br from-[#06b6d4]/10 via-white/[0.03] to-amber-500/5 border border-[#06b6d4]/30 p-6 sm:p-8 hover:border-[#06b6d4]/60 transition-colors shadow-xl">
+            <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-[#06b6d4]/15 text-[#22d3ee] flex items-center justify-center shrink-0 border border-[#06b6d4]/30">
+                  <Bot className="w-6 h-6" />
+                </div>
+                <div className="space-y-3">
+                  <div className="flex flex-wrap items-center gap-2.5">
+                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#06b6d4]/20 text-[#22d3ee] border border-[#06b6d4]/40 font-mono">
+                      2021 — 2025
+                    </span>
+                    <span className="text-xs text-[#94a3b8] font-medium">
+                      Économie Numérique &amp; Systèmes 24/7
+                    </span>
+                    <a
+                      href="https://www.eldorado.gg/users/Stygmar"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-xs font-bold text-amber-400 transition-colors"
+                      title="Consulter le profil marchand certifié Stygmar sur Eldorado.gg"
+                    >
+                      <Coins className="w-3.5 h-3.5" />
+                      <span>Profil Vendeur @Stygmar sur Eldorado.gg ↗</span>
+                    </a>
+                  </div>
+
+                  <h3 className="text-xl sm:text-2xl font-bold text-white">
+                    Ingénierie d&apos;Automatisation, Botting &amp; Revente Numérique à Grande Échelle
+                  </h3>
+
+                  <p className="text-sm text-[#94a3b8] leading-relaxed max-w-3xl">
+                    Professionnalisation à temps plein dans l&apos;économie numérique des jeux vidéo : génération automatisée et revente de monnaies virtuelles et de comptes sur les places de marché internationales.
+                    Pendant 4 ans, j&apos;ai conçu et maintenu des infrastructures logicielles autonomes reposant sur deux spécialisations majeures :
+                  </p>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+                    <div className="p-4 rounded-2xl bg-black/40 border border-white/10 space-y-1.5">
+                      <div className="flex items-center gap-2 text-white font-bold text-sm">
+                        <Gamepad2 className="w-4 h-4 text-[#06b6d4]" />
+                        <span>Escape from Tarkov (EFT) — AutoHotkey</span>
+                      </div>
+                      <p className="text-xs text-[#94a3b8] leading-relaxed">
+                        Scripts AutoHotkey (AHK) avancés pour automatiser les interactions complexes d&apos;inventaire, de marché (Flea Market) et de transactions en millisecondes avec contournement des latences.
+                      </p>
+                    </div>
+
+                    <div className="p-4 rounded-2xl bg-black/40 border border-white/10 space-y-1.5">
+                      <div className="flex items-center gap-2 text-white font-bold text-sm">
+                        <Terminal className="w-4 h-4 text-[#a855f7]" />
+                        <span>Old School RuneScape (OSRS) — Java</span>
+                      </div>
+                      <p className="text-xs text-[#94a3b8] leading-relaxed">
+                        Développement de bots complets en Java : reverse-engineering du client, logique décisionnelle événementielle et parcs multi-instances tournant 24/7 de façon résiliente.
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-[#cbd5e1] bg-white/[0.02] border border-white/[0.08] p-3.5 rounded-xl leading-relaxed">
+                    <strong>Ce que cette école de terrain m&apos;a apporté :</strong> Une maîtrise absolue de l&apos;automatisation logicielle. Quand une erreur de code, une fuite de mémoire ou une désynchronisation réseau entraîne une perte d&apos;argent réelle et immédiate, la tolérance aux bugs est nulle : le code doit être irréprochable, optimisé à la milliseconde et conçu pour tourner sans surveillance.
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    <span className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-[#06b6d4]/10 text-[#22d3ee] border border-[#06b6d4]/30">AutoHotkey (AHK)</span>
+                    <span className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-[#06b6d4]/10 text-[#22d3ee] border border-[#06b6d4]/30">Java Botting &amp; Reverse</span>
+                    <span className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-white/5 text-[#cbd5e1] border border-white/10">Multi-Threading 24/7</span>
+                    <span className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-amber-500/10 text-amber-300 border border-amber-500/30">Eldorado.gg Marketplace</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 3: 2026 - Aujourd'hui (JardinCalcul & Projets Web) */}
+          <div className="relative rounded-3xl bg-gradient-to-br from-[#10b981]/10 via-white/[0.03] to-transparent border border-[#10b981]/30 p-6 sm:p-8 hover:border-[#10b981]/60 transition-colors">
+            <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-2xl bg-[#10b981]/15 text-[#34d399] flex items-center justify-center shrink-0 border border-[#10b981]/30">
+                  <Rocket className="w-6 h-6" />
+                </div>
+                <div className="space-y-2">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#10b981]/20 text-[#34d399] border border-[#10b981]/40 font-mono">
+                      2026 — Aujourd&apos;hui
+                    </span>
+                    <span className="text-xs text-[#94a3b8] font-medium">
+                      Édition Web Indépendante &amp; Outils Utiles
+                    </span>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white">
+                    Création d&apos;Écosystèmes Numériques Ouverts, Sans Friction &amp; Performants
+                  </h3>
+                  <p className="text-sm text-[#94a3b8] leading-relaxed max-w-3xl">
+                    Mettre cette obsession de l&apos;automatisation, de la fiabilité et de la performance au service du web grand public :
+                  </p>
+                  <ul className="text-xs sm:text-sm text-[#cbd5e1] space-y-2 pt-1">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#34d399] shrink-0 mt-0.5" />
+                      <span><strong>JardinCalcul.fr :</strong> 7 calculateurs d&apos;aménagement extérieur, 35 fiches repères et 50 pages statiques avec calculs physiques locaux instantanés (&lt; 50 ms).</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#06b6d4] shrink-0 mt-0.5" />
+                      <span><strong>Projet Hardware &amp; Tech (En cours) :</strong> Application directe des techniques de scraping et d&apos;automatisation pour concevoir un comparateur de composants PC et détecteur de faux deals 100 % neutre.</span>
+                    </li>
+                  </ul>
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    <span className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-[#10b981]/10 text-[#34d399] border border-[#10b981]/30">Next.js 16</span>
+                    <span className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-[#10b981]/10 text-[#34d399] border border-[#10b981]/30">React 19</span>
+                    <span className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-[#10b981]/10 text-[#34d399] border border-[#10b981]/30">TypeScript</span>
+                    <span className="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-white/5 text-[#cbd5e1] border border-white/10">Full-Stack Solo</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Automation Competency Highlight Box */}
+        <div className="mt-10 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#06b6d4]/10 via-purple-500/10 to-[#10b981]/10 border border-white/10 space-y-3">
+          <div className="flex items-center gap-3">
+            <Zap className="w-6 h-6 text-[#22d3ee]" />
+            <h4 className="text-base sm:text-lg font-bold text-white">
+              Pourquoi l&apos;expertise en automatisation fait la différence
+            </h4>
+          </div>
+          <p className="text-xs sm:text-sm text-[#94a3b8] leading-relaxed">
+            Avoir programmé des bots et des systèmes temps réel pendant des années façonne une manière singulière de concevoir le web : <strong>zéro gaspillage de ressources, exécution locale instantanée, automatisation intégrale des tests et du déploiement, et tolérance zéro pour les interfaces lentes ou encombrées</strong>.
+          </p>
+        </div>
+      </section>
+
       {/* Philosophy Section */}
       <section id="philosophie" className="border-t border-white/[0.08] bg-white/[0.01] py-20 scroll-mt-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -445,6 +638,14 @@ export default function HomePage() {
               className="hover:text-[#34d399] transition-colors font-medium text-white/80"
             >
               JardinCalcul.fr ↗
+            </a>
+            <a
+              href="https://www.eldorado.gg/users/Stygmar"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-amber-400 transition-colors"
+            >
+              Eldorado.gg
             </a>
             <a
               href="https://github.com/Stygmar"
