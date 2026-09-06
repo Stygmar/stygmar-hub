@@ -1149,15 +1149,59 @@ export default function HomePage() {
                     <ul className="space-y-1.5 text-xs text-[#cbd5e1]">
                       <li className="flex items-start gap-2">
                         <span className="text-[#a855f7] font-bold shrink-0">🤖</span>
-                        <span><strong>Scripts Java &amp; DreamBot</strong> : développement de bots événementiels sur <a href="https://dreambot.org" target="_blank" rel="noopener noreferrer" className="text-[#c084fc] underline">dreambot.org</a> via EternalFarm.</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-[#a855f7] font-bold shrink-0">✉️</span>
-                        <span><strong>Serveur Mailbox VPS</strong> : infrastructure auto-hébergée pour création de comptes en masse.</span>
+                        <span>
+                          {isEn ? (
+                            <>
+                              <strong>DreamBot API &amp; EternalFarm</strong> : Java scripts developed directly on the <a href="https://dreambot.org" target="_blank" rel="noopener noreferrer" className="text-[#c084fc] underline">dreambot.org</a> client API, with EternalFarm as the orchestration engine automating the entire farm.
+                            </>
+                          ) : (
+                            <>
+                              <strong>Client DreamBot &amp; EternalFarm</strong> : développement de scripts Java sur l&apos;API du client <a href="https://dreambot.org" target="_blank" rel="noopener noreferrer" className="text-[#c084fc] underline">dreambot.org</a>, tandis qu&apos;EternalFarm gère et orchestre l&apos;automatisation de toute la ferme.
+                            </>
+                          )}
+                        </span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-[#a855f7] font-bold shrink-0">📈</span>
-                        <span><strong>Progression autonome</strong> : montée à haut niveau 24h/24 et 7j/7 sans surveillance.</span>
+                        <span>
+                          {isEn ? (
+                            <>
+                              <strong>24/7 Autonomous Leveling &amp; Gold Farming</strong> : accounts fully automated around the clock to level up skills and continuously generate in-game gold currency without human supervision.
+                            </>
+                          ) : (
+                            <>
+                              <strong>Leveling &amp; Génération de Gold 24/7</strong> : comptes entièrement automatisés pour monter en niveau et générer les pièces d&apos;or du jeu 24h/24 et 7j/7 sans surveillance.
+                            </>
+                          )}
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-[#a855f7] font-bold shrink-0">💰</span>
+                        <span>
+                          {isEn ? (
+                            <>
+                              <strong>Automated Mule System (Workers &amp; Mules)</strong> : distributed architecture where &quot;worker&quot; accounts level up and farm, automatically transferring and securing all gold onto dedicated &quot;mule&quot; accounts holding the wealth.
+                            </>
+                          ) : (
+                            <>
+                              <strong>Système de Mules Automatisé (Workers &amp; Mules)</strong> : architecture distribuée où des comptes « workers » montent et farment, puis transfèrent automatiquement tout le gold vers des comptes « mules » sécurisés qui centralisent la trésorerie.
+                            </>
+                          )}
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-[#a855f7] font-bold shrink-0">✉️</span>
+                        <span>
+                          {isEn ? (
+                            <>
+                              <strong>Self-Hosted VPS Mailbox</strong> : custom mail server on Linux VPS for automated mass account creation and verification.
+                            </>
+                          ) : (
+                            <>
+                              <strong>Serveur Mailbox VPS</strong> : infrastructure auto-hébergée pour la création et la validation de comptes en masse.
+                            </>
+                          )}
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -1464,14 +1508,17 @@ export default function HomePage() {
                 <div className="space-y-1">
                   <div className="text-[#64748b]">
                     {isEn
-                      ? "// 2021-2025: DreamBot Java Scripting & EternalFarm 24/7 Farm Orchestration"
-                      : "// 2021-2025: Scripting Java DreamBot & orchestration de ferme via EternalFarm (24/7)"}
+                      ? "// 2021-2025: DreamBot API, EternalFarm Orchestration & Worker/Mule Gold Automation"
+                      : "// 2021-2025: API DreamBot, orchestration EternalFarm & architecture Workers/Mules (Gold)"}
                   </div>
                   <div>
-                    <span className="text-[#a855f7]">public class</span> <span className="text-[#22d3ee]">HighLevelWorkerScript</span> <span className="text-[#a855f7]">extends</span> AbstractScript &#123;
+                    <span className="text-[#a855f7]">public class</span> <span className="text-[#22d3ee]">GoldWorkerScript</span> <span className="text-[#a855f7]">extends</span> AbstractScript &#123;
                   </div>
                   <div className="pl-4">
                     <span className="text-[#a855f7]">private final</span> VPSMailboxService mailbox = <span className="text-[#a855f7]">new</span> VPSMailboxService(&quot;vps.mail.node&quot;);
+                  </div>
+                  <div className="pl-4">
+                    <span className="text-[#a855f7]">private final</span> MuleDispatcher muleClient = <span className="text-[#a855f7]">new</span> MuleDispatcher(&quot;mule.cluster.node&quot;);
                   </div>
                   <div className="pl-4">
                     <span className="text-[#a855f7]">public void</span> <span className="text-amber-400">onStart</span>() &#123;
@@ -1481,10 +1528,10 @@ export default function HomePage() {
                   </div>
                   <div className="pl-12">
                     Account acc = mailbox.createAndVerifyNewAccount();{" "}
-                    <span className="text-[#64748b] font-italic">{isEn ? "// VPS mailbox validation" : "// Création & validation VPS"}</span>
+                    <span className="text-[#64748b] font-italic">{isEn ? "// VPS mailbox account creation" : "// Création & validation VPS"}</span>
                   </div>
                   <div className="pl-12">
-                    EternalFarm.registerNode(acc.getId(), FarmProfile.HIGH_LEVEL);
+                    EternalFarm.registerNode(acc.getId(), FarmProfile.GOLD_WORKER);
                   </div>
                   <div className="pl-8">&#125;</div>
                   <div className="pl-4">&#125;</div>
@@ -1492,8 +1539,16 @@ export default function HomePage() {
                     <span className="text-[#a855f7]">public int</span> <span className="text-amber-400">onLoop</span>() &#123;
                   </div>
                   <div className="pl-8">
-                    <span className="text-[#34d399]">return</span> HighLevelSkillTrainer.executeNextAction();{" "}
-                    <span className="text-[#64748b] font-italic">{isEn ? "// Autonomous 24/7 leveling" : "// Montée haut niveau 24/7"}</span>
+                    <span className="text-[#34d399]">if</span> (Inventory.getGold() &gt;= 10_000_000) &#123;
+                  </div>
+                  <div className="pl-12">
+                    <span className="text-[#34d399]">return</span> muleClient.dispatchGoldToMule();{" "}
+                    <span className="text-[#64748b] font-italic">{isEn ? "// Worker -> Mule transfer" : "// Transfert sécurisé worker -> mule"}</span>
+                  </div>
+                  <div className="pl-8">&#125;</div>
+                  <div className="pl-8">
+                    <span className="text-[#34d399]">return</span> SkillTrainer.executeLevelingAndFarming();{" "}
+                    <span className="text-[#64748b] font-italic">{isEn ? "// 24/7 autonomous leveling & gold" : "// Leveling & farming de gold 24/7"}</span>
                   </div>
                   <div className="pl-4">&#125;</div>
                   <div>&#125;</div>
