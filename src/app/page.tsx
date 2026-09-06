@@ -33,18 +33,22 @@ import {
   Sliders,
   Monitor,
   Workflow,
+  Server,
+  Clock,
 } from "lucide-react";
 
 type Language = "fr" | "en";
 type TimelineTab = "blois" | "botting" | "web";
 type ProjectTab = "jardin" | "hardware";
 type CodeSnippetTab = "jardin" | "tarkov" | "osrs";
+type DemoCalc = "dalles" | "gravier" | "beton";
 
 export default function HomePage() {
   const [lang, setLang] = useState<Language>("fr");
   const [timelineTab, setTimelineTab] = useState<TimelineTab>("botting");
   const [projectTab, setProjectTab] = useState<ProjectTab>("jardin");
   const [codeTab, setCodeTab] = useState<CodeSnippetTab>("jardin");
+  const [demoCalc, setDemoCalc] = useState<DemoCalc>("dalles");
   const [copiedEmail, setCopiedEmail] = useState(false);
 
   useEffect(() => {
@@ -265,7 +269,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 02 — PROJETS : JARDINCALCUL (MIS EN AVANT) & HARDWARE LAB (R&D) */}
+      {/* 02 — PROJETS : JARDINCALCUL EN VEDETTE INTERACTIVE & HARDWARE LAB */}
       <section id="projets" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 scroll-mt-20 border-t border-white/[0.08]">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
@@ -274,7 +278,7 @@ export default function HomePage() {
               <span>{isEn ? "02 — PROJECTS & PRODUCTIONS" : "02 — PROJETS & RÉALISATIONS"}</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white">
-              {isEn ? "What I've Built & What I'm Exploring" : "Ce Que J'ai Construit & Ce Qui M'intéresse"}
+              {isEn ? "Featured Production & R&D Lab" : "Projet Phare & Espace R&D"}
             </h2>
           </div>
 
@@ -288,7 +292,7 @@ export default function HomePage() {
               }`}
             >
               <Sprout className="w-3.5 h-3.5" />
-              <span>JardinCalcul.fr ({isEn ? "Live" : "En Ligne"})</span>
+              <span>JardinCalcul.fr ({isEn ? "Live Product" : "Produit Live"})</span>
             </button>
             <button
               type="button"
@@ -303,9 +307,9 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Project 1: JardinCalcul.fr (Highlighted Flagship) */}
+        {/* Project 1: JardinCalcul.fr (Spectaculaire avec Simulateur Interactif Multi-Calculateurs) */}
         {projectTab === "jardin" && (
-          <div className="glass-card rounded-3xl border border-[#10b981]/30 p-6 sm:p-10 shadow-2xl relative overflow-hidden animate-in fade-in duration-300">
+          <div className="glass-card rounded-3xl border border-[#10b981]/40 p-6 sm:p-10 shadow-2xl relative overflow-hidden animate-in fade-in duration-300">
             {/* Top badges & stats strip */}
             <div className="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/10">
               <div className="flex flex-wrap items-center gap-2.5">
@@ -314,7 +318,10 @@ export default function HomePage() {
                   {isEn ? "LIVE IN PRODUCTION" : "EN LIGNE & ACTIF"}
                 </span>
                 <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-white/90 border border-white/10">
-                  {isEn ? "Exterior Materials & DIY" : "Aménagement Extérieur & BTP"}
+                  {isEn ? "Exterior Materials Suite" : "Suite d'Outils Aménagement & BTP"}
+                </span>
+                <span className="px-3 py-1 rounded-full text-xs font-mono bg-white/5 text-[#94a3b8] border border-white/10">
+                  50 {isEn ? "Pre-rendered Pages" : "Pages Statiques SSG"}
                 </span>
               </div>
 
@@ -339,13 +346,13 @@ export default function HomePage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-8 items-center">
               <div className="lg:col-span-5 space-y-6">
                 <div>
-                  <h3 className="text-2xl font-extrabold text-white mb-3">
+                  <h3 className="text-2xl sm:text-3xl font-black text-white mb-3">
                     JardinCalcul.fr — {isEn ? "The Exterior Material Estimation Suite" : "La suite d'estimation de matériaux d'extérieur"}
                   </h3>
-                  <p className="text-sm text-[#94a3b8] leading-relaxed">
+                  <p className="text-sm text-[#cbd5e1] leading-relaxed">
                     {isEn
-                      ? "A complete suite of tools empowering homeowners and DIYers to estimate their exterior materials, budget, and generated purchase lists with zero friction. Calculations happen 100% client-side in under 50ms without server delays."
-                      : "Une suite d'outils permettant aux particuliers d'estimer leurs matériaux, leur budget et leur liste d'achat pour des travaux extérieurs. Les calculs tournent 100% côté client en moins de 50ms sans délai serveur."}
+                      ? "A complete suite of tools empowering homeowners and DIYers to estimate their exterior materials, budget, and generated purchase lists with zero friction. All physical calculations execute client-side in under 50ms."
+                      : "Une suite d'outils permettant aux particuliers d'estimer leurs matériaux, leur budget et leur liste d'achat pour des travaux extérieurs. Tous les calculs physiques tournent 100% côté client en moins de 50ms sans délai serveur."}
                   </p>
                 </div>
 
@@ -383,9 +390,9 @@ export default function HomePage() {
                   <div className="flex items-start gap-2.5 p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
                     <CheckCircle2 className="w-4 h-4 text-[#34d399] shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-white block font-semibold">{isEn ? "35 Technical Guides:" : "35 Guides Pratiques :"}</strong>
+                      <strong className="text-white block font-semibold">{isEn ? "35 Technical Guides & DTU Standards:" : "35 Guides Pratiques & Normes DTU :"}</strong>
                       <span className="text-[#94a3b8] text-xs">
-                        {isEn ? "DTU building standards, bucket/shovel conversion recipes, zero ads." : "Normes DTU, dosages au seau/pelle, aucune pub intrusive."}
+                        {isEn ? "DTU building standards, bucket/shovel conversion recipes, zero ads." : "Normes DTU 43.1 / 52.1, dosages au seau/pelle, aucune pub intrusive."}
                       </span>
                     </div>
                   </div>
@@ -402,29 +409,35 @@ export default function HomePage() {
                     <ExternalLink className="w-4 h-4" />
                   </a>
                   <span className="text-xs text-[#94a3b8] text-center sm:text-left">
-                    {isEn ? "Free · Zero popups · Sub-50ms" : "100% Gratuit · Sans pub intrusive · < 50ms"}
+                    {isEn ? "100% Free · Sub-50ms · Zero ads" : "100% Gratuit · < 50ms · Sans pub"}
                   </span>
                 </div>
               </div>
 
-              {/* Right Column: Visual Browser Preview Mockup */}
+              {/* Right Column: Visual Interactive Live Browser Mockup (Multi-Calculators) */}
               <div className="lg:col-span-7">
-                <div className="rounded-2xl bg-[#090d16] border border-[#10b981]/30 shadow-2xl overflow-hidden">
+                <div className="rounded-2xl bg-[#090d16] border border-[#10b981]/35 shadow-2xl overflow-hidden">
+                  {/* Browser Top Bar */}
                   <div className="px-4 py-3 bg-white/[0.04] border-b border-white/10 flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="w-3 h-3 rounded-full bg-red-500/80" />
                       <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                       <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                      <span className="ml-2 px-3 py-1 rounded-lg bg-black/40 border border-white/10 text-[11px] font-mono text-[#34d399] flex items-center gap-1.5">
+                      <span className="ml-2 px-3 py-1 rounded-lg bg-black/50 border border-white/10 text-[11px] font-mono text-[#34d399] flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-[#10b981]" />
-                        https://www.jardincalcul.fr/calculateur-dalles-terrasse
+                        https://www.jardincalcul.fr/
+                        {demoCalc === "dalles" && "calculateur-dalles-terrasse"}
+                        {demoCalc === "gravier" && "calculateur-gravier"}
+                        {demoCalc === "beton" && "calculateur-beton"}
                       </span>
                     </div>
                     <span className="text-[10px] font-mono text-[#94a3b8] hidden sm:inline">React 19 Engine</span>
                   </div>
 
-                  <div className="p-5 sm:p-6 space-y-5 bg-gradient-to-b from-[#090d16] to-[#04060a]">
-                    <div className="flex items-center justify-between pb-3 border-b border-white/10">
+                  {/* Browser Viewport with Interactive Switcher */}
+                  <div className="p-5 sm:p-6 space-y-5 bg-gradient-to-b from-[#090d16] via-[#05080e] to-[#030508]">
+                    {/* Live Calculator Tab Switcher Inside Browser */}
+                    <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-white/10">
                       <div className="flex items-center gap-2">
                         <div className="w-7 h-7 rounded-lg bg-[#10b981] flex items-center justify-center text-white">
                           <Sprout className="w-4 h-4" />
@@ -432,87 +445,249 @@ export default function HomePage() {
                         <span className="font-extrabold text-sm text-white">JardinCalcul</span>
                         <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/10 text-[#94a3b8]">v2.4</span>
                       </div>
-                      <div className="text-xs text-[#94a3b8] flex items-center gap-3">
-                        <span className="text-[#34d399] font-medium">Terrasse sur plots</span>
-                        <span className="hidden sm:inline">Gravier</span>
-                        <span className="hidden sm:inline">Béton</span>
+
+                      {/* Interactive Mini-Demo Buttons */}
+                      <div className="flex items-center p-1 rounded-lg bg-white/5 border border-white/10 text-xs">
+                        <button
+                          type="button"
+                          onClick={() => setDemoCalc("dalles")}
+                          className={`px-2.5 py-1 rounded-md font-bold transition-all cursor-pointer ${
+                            demoCalc === "dalles" ? "bg-[#10b981] text-white shadow-sm" : "text-[#94a3b8] hover:text-white"
+                          }`}
+                        >
+                          {isEn ? "Tiles / Pedestals" : "Dalles Plots"}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setDemoCalc("gravier")}
+                          className={`px-2.5 py-1 rounded-md font-bold transition-all cursor-pointer ${
+                            demoCalc === "gravier" ? "bg-[#06b6d4] text-black shadow-sm font-extrabold" : "text-[#94a3b8] hover:text-white"
+                          }`}
+                        >
+                          {isEn ? "Gravel" : "Gravier"}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setDemoCalc("beton")}
+                          className={`px-2.5 py-1 rounded-md font-bold transition-all cursor-pointer ${
+                            demoCalc === "beton" ? "bg-amber-400 text-black shadow-sm font-extrabold" : "text-[#94a3b8] hover:text-white"
+                          }`}
+                        >
+                          {isEn ? "Concrete" : "Béton"}
+                        </button>
                       </div>
                     </div>
 
+                    {/* Dynamic Simulation Based on Active Demo Tab */}
                     <div className="grid grid-cols-1 sm:grid-cols-12 gap-4">
+                      {/* INPUTS SIMULATION */}
                       <div className="sm:col-span-6 p-4 rounded-xl bg-white/[0.02] border border-white/10 space-y-3">
-                        <div className="text-xs font-bold text-[#94a3b8] uppercase tracking-wider">
-                          {isEn ? "Project Parameters" : "Paramètres du Projet"}
-                        </div>
-                        <div className="grid grid-cols-2 gap-2 text-xs">
-                          <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
-                            <span className="text-[#94a3b8] block text-[10px]">{isEn ? "Length" : "Longueur"}</span>
-                            <span className="font-mono font-bold text-white text-sm">6.00 m</span>
-                          </div>
-                          <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
-                            <span className="text-[#94a3b8] block text-[10px]">{isEn ? "Width" : "Largeur"}</span>
-                            <span className="font-mono font-bold text-white text-sm">4.00 m</span>
-                          </div>
-                          <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
-                            <span className="text-[#94a3b8] block text-[10px]">{isEn ? "Tile Format" : "Format Dalle"}</span>
-                            <span className="font-mono font-bold text-white text-sm">50 × 50 cm</span>
-                          </div>
-                          <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
-                            <span className="text-[#94a3b8] block text-[10px]">{isEn ? "Substrate" : "Support"}</span>
-                            <span className="font-mono font-bold text-white text-sm">{isEn ? "Stabilized" : "Stabilisé"}</span>
-                          </div>
+                        <div className="flex items-center justify-between text-xs font-bold text-[#94a3b8] uppercase tracking-wider">
+                          <span>{isEn ? "Input Parameters" : "Paramètres Chantier"}</span>
+                          <span className="text-[10px] text-[#34d399] font-mono lowercase">live sync</span>
                         </div>
 
+                        {demoCalc === "dalles" && (
+                          <div className="grid grid-cols-2 gap-2 text-xs">
+                            <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
+                              <span className="text-[#94a3b8] block text-[10px]">{isEn ? "Length" : "Longueur"}</span>
+                              <span className="font-mono font-bold text-white text-sm">6.00 m</span>
+                            </div>
+                            <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
+                              <span className="text-[#94a3b8] block text-[10px]">{isEn ? "Width" : "Largeur"}</span>
+                              <span className="font-mono font-bold text-white text-sm">4.00 m</span>
+                            </div>
+                            <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
+                              <span className="text-[#94a3b8] block text-[10px]">{isEn ? "Tile Format" : "Format Dalle"}</span>
+                              <span className="font-mono font-bold text-white text-sm">50 × 50 cm</span>
+                            </div>
+                            <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
+                              <span className="text-[#94a3b8] block text-[10px]">{isEn ? "Substrate" : "Support"}</span>
+                              <span className="font-mono font-bold text-white text-sm">{isEn ? "Stabilized" : "Stabilisé"}</span>
+                            </div>
+                          </div>
+                        )}
+
+                        {demoCalc === "gravier" && (
+                          <div className="grid grid-cols-2 gap-2 text-xs">
+                            <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
+                              <span className="text-[#94a3b8] block text-[10px]">{isEn ? "Driveway Length" : "Longueur Allée"}</span>
+                              <span className="font-mono font-bold text-white text-sm">10.00 m</span>
+                            </div>
+                            <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
+                              <span className="text-[#94a3b8] block text-[10px]">{isEn ? "Width" : "Largeur"}</span>
+                              <span className="font-mono font-bold text-white text-sm">3.00 m</span>
+                            </div>
+                            <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
+                              <span className="text-[#94a3b8] block text-[10px]">{isEn ? "Depth" : "Épaisseur"}</span>
+                              <span className="font-mono font-bold text-white text-sm">5 cm</span>
+                            </div>
+                            <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
+                              <span className="text-[#94a3b8] block text-[10px]">{isEn ? "Grade" : "Calibre"}</span>
+                              <span className="font-mono font-bold text-white text-sm">6/14 mm</span>
+                            </div>
+                          </div>
+                        )}
+
+                        {demoCalc === "beton" && (
+                          <div className="grid grid-cols-2 gap-2 text-xs">
+                            <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
+                              <span className="text-[#94a3b8] block text-[10px]">{isEn ? "Slab Length" : "Longueur Dalle"}</span>
+                              <span className="font-mono font-bold text-white text-sm">4.00 m</span>
+                            </div>
+                            <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
+                              <span className="text-[#94a3b8] block text-[10px]">{isEn ? "Width" : "Largeur"}</span>
+                              <span className="font-mono font-bold text-white text-sm">3.00 m</span>
+                            </div>
+                            <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
+                              <span className="text-[#94a3b8] block text-[10px]">{isEn ? "Thickness" : "Épaisseur"}</span>
+                              <span className="font-mono font-bold text-white text-sm">12 cm</span>
+                            </div>
+                            <div className="p-2.5 rounded-lg bg-black/40 border border-white/5">
+                              <span className="text-[#94a3b8] block text-[10px]">{isEn ? "Dosage" : "Dosage"}</span>
+                              <span className="font-mono font-bold text-white text-sm">350 kg/m³</span>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* DYNAMIC 2D CROSS SECTION */}
                         <div className="p-3 rounded-lg bg-black/60 border border-white/5 space-y-1.5">
                           <div className="flex items-center justify-between text-[10px] text-[#94a3b8]">
                             <span>{isEn ? "Interactive 2D Cross-Section" : "Coupe Technique 2D"}</span>
-                            <span className="text-[#34d399] font-mono">24.00 m²</span>
+                            <span className="text-[#34d399] font-mono">
+                              {demoCalc === "dalles" && "24.00 m²"}
+                              {demoCalc === "gravier" && "30.00 m²"}
+                              {demoCalc === "beton" && "12.00 m² (1.44 m³)"}
+                            </span>
                           </div>
-                          <div className="h-14 rounded bg-gradient-to-b from-[#10b981]/20 via-[#06b6d4]/15 to-amber-900/40 border border-white/10 flex flex-col justify-between p-1.5 text-[9px] font-mono">
-                            <div className="flex justify-between text-white/90">
-                              <span>▲ Dalles Céramique 20mm</span>
-                              <span>96 unités</span>
-                            </div>
-                            <div className="flex justify-between text-[#34d399]">
-                              <span>■ Plots Réglables (40-65mm)</span>
-                              <span>120 plots</span>
-                            </div>
-                            <div className="flex justify-between text-amber-300/80">
-                              <span>▼ Géotextile 100g/m²</span>
-                              <span>24 m²</span>
-                            </div>
+                          <div className="h-16 rounded bg-gradient-to-b from-[#10b981]/20 via-[#06b6d4]/15 to-amber-900/40 border border-white/10 flex flex-col justify-between p-2 text-[9px] font-mono">
+                            {demoCalc === "dalles" && (
+                              <>
+                                <div className="flex justify-between text-white/90">
+                                  <span>▲ Dalles Céramique 20mm</span>
+                                  <span>96 dalles</span>
+                                </div>
+                                <div className="flex justify-between text-[#34d399]">
+                                  <span>■ Plots Réglables (40-65mm)</span>
+                                  <span>120 plots</span>
+                                </div>
+                                <div className="flex justify-between text-amber-300/80">
+                                  <span>▼ Géotextile 100g/m²</span>
+                                  <span>24 m²</span>
+                                </div>
+                              </>
+                            )}
+                            {demoCalc === "gravier" && (
+                              <>
+                                <div className="flex justify-between text-white/90">
+                                  <span>▲ Gravier Concassé 6/14 (5 cm)</span>
+                                  <span>2.48 t</span>
+                                </div>
+                                <div className="flex justify-between text-[#06b6d4]">
+                                  <span>■ Dalles Alvéolaires (Optionnel)</span>
+                                  <span>30 m²</span>
+                                </div>
+                                <div className="flex justify-between text-amber-300/80">
+                                  <span>▼ Géotextile 100g/m² anti-repousse</span>
+                                  <span>30 m²</span>
+                                </div>
+                              </>
+                            )}
+                            {demoCalc === "beton" && (
+                              <>
+                                <div className="flex justify-between text-white/90">
+                                  <span>▲ Béton C25/30 Dosé à 350 kg/m³</span>
+                                  <span>12 cm</span>
+                                </div>
+                                <div className="flex justify-between text-amber-400">
+                                  <span>■ Treillis Soudé ST25C + Polyane</span>
+                                  <span>12 m²</span>
+                                </div>
+                                <div className="flex justify-between text-amber-300/80">
+                                  <span>▼ Hérisson de tout-venant damé</span>
+                                  <span>15 cm</span>
+                                </div>
+                              </>
+                            )}
                           </div>
                         </div>
                       </div>
 
+                      {/* INSTANT COMPUTATION RESULTS */}
                       <div className="sm:col-span-6 p-4 rounded-xl bg-gradient-to-br from-[#10b981]/15 via-black/40 to-black/60 border border-[#10b981]/40 flex flex-col justify-between space-y-3">
                         <div>
                           <div className="flex items-center justify-between">
                             <span className="text-xs font-bold text-[#34d399] uppercase tracking-wider">
-                              {isEn ? "Instant Computation" : "Résultats Instantanés"}
+                              {isEn ? "Instant Results" : "Résultats Instantanés"}
                             </span>
-                            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#10b981]/20 text-[#34d399]">
+                            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#10b981]/20 text-[#34d399] flex items-center gap-1">
+                              <Clock className="w-2.5 h-2.5" />
                               &lt; 15 ms
                             </span>
                           </div>
-                          <div className="mt-3 space-y-2">
-                            <div className="flex items-baseline justify-between">
-                              <span className="text-xs text-[#cbd5e1]">{isEn ? "Total Area:" : "Surface Totale :"}</span>
-                              <span className="text-base font-black font-mono text-white">24.00 m²</span>
+
+                          {demoCalc === "dalles" && (
+                            <div className="mt-3 space-y-2">
+                              <div className="flex items-baseline justify-between">
+                                <span className="text-xs text-[#cbd5e1]">{isEn ? "Surface Area:" : "Surface Totale :"}</span>
+                                <span className="text-base font-black font-mono text-white">24.00 m²</span>
+                              </div>
+                              <div className="flex items-baseline justify-between">
+                                <span className="text-xs text-[#cbd5e1]">{isEn ? "Adjustable Pedestals:" : "Plots Réglables :"}</span>
+                                <span className="text-lg font-black font-mono text-[#34d399]">120 plots</span>
+                              </div>
+                              <div className="flex items-baseline justify-between">
+                                <span className="text-xs text-[#cbd5e1]">{isEn ? "50x50 Tiles Needed:" : "Dalles 50x50 cm :"}</span>
+                                <span className="text-base font-black font-mono text-white">96 dalles (+5% marge)</span>
+                              </div>
+                              <div className="flex items-baseline justify-between">
+                                <span className="text-xs text-[#cbd5e1]">{isEn ? "Estimated Budget:" : "Budget Moyen Estimé :"}</span>
+                                <span className="text-base font-black font-mono text-amber-400">920 € – 1 450 €</span>
+                              </div>
                             </div>
-                            <div className="flex items-baseline justify-between">
-                              <span className="text-xs text-[#cbd5e1]">{isEn ? "Adjustable Pedestals:" : "Plots Réglables :"}</span>
-                              <span className="text-lg font-black font-mono text-[#34d399]">120 plots</span>
+                          )}
+
+                          {demoCalc === "gravier" && (
+                            <div className="mt-3 space-y-2">
+                              <div className="flex items-baseline justify-between">
+                                <span className="text-xs text-[#cbd5e1]">{isEn ? "Compact Volume:" : "Volume Compacté :"}</span>
+                                <span className="text-base font-black font-mono text-white">1.65 m³ (+10%)</span>
+                              </div>
+                              <div className="flex items-baseline justify-between">
+                                <span className="text-xs text-[#cbd5e1]">{isEn ? "Total Tonnage:" : "Tonnage Total :"}</span>
+                                <span className="text-lg font-black font-mono text-[#06b6d4]">2.48 tonnes</span>
+                              </div>
+                              <div className="flex items-baseline justify-between">
+                                <span className="text-xs text-[#cbd5e1]">{isEn ? "25kg Bags Needed:" : "Nombre de Sacs 25 kg :"}</span>
+                                <span className="text-base font-black font-mono text-white">100 sacs (ou 2 Big Bags)</span>
+                              </div>
+                              <div className="flex items-baseline justify-between">
+                                <span className="text-xs text-[#cbd5e1]">{isEn ? "Estimated Budget:" : "Budget Moyen Estimé :"}</span>
+                                <span className="text-base font-black font-mono text-amber-400">220 € – 380 €</span>
+                              </div>
                             </div>
-                            <div className="flex items-baseline justify-between">
-                              <span className="text-xs text-[#cbd5e1]">{isEn ? "50x50 Tiles Needed:" : "Dalles 50x50 cm :"}</span>
-                              <span className="text-base font-black font-mono text-white">96 dalles (+5% marge)</span>
+                          )}
+
+                          {demoCalc === "beton" && (
+                            <div className="mt-3 space-y-2">
+                              <div className="flex items-baseline justify-between">
+                                <span className="text-xs text-[#cbd5e1]">{isEn ? "Total Concrete Volume:" : "Volume de Béton :"}</span>
+                                <span className="text-base font-black font-mono text-white">1.44 m³</span>
+                              </div>
+                              <div className="flex items-baseline justify-between">
+                                <span className="text-xs text-[#cbd5e1]">{isEn ? "Cement Bags (35kg):" : "Sacs de Ciment 35 kg :"}</span>
+                                <span className="text-lg font-black font-mono text-amber-400">15 sacs (504 kg)</span>
+                              </div>
+                              <div className="flex items-baseline justify-between">
+                                <span className="text-xs text-[#cbd5e1]">{isEn ? "Sand + Gravel Recipe:" : "Dosage Sable / Gravier :"}</span>
+                                <span className="text-xs font-mono text-white">144 pelles sable + 192 pelles gravier</span>
+                              </div>
+                              <div className="flex items-baseline justify-between">
+                                <span className="text-xs text-[#cbd5e1]">{isEn ? "Estimated Budget:" : "Budget Moyen Estimé :"}</span>
+                                <span className="text-base font-black font-mono text-amber-400">210 € – 320 €</span>
+                              </div>
                             </div>
-                            <div className="flex items-baseline justify-between">
-                              <span className="text-xs text-[#cbd5e1]">{isEn ? "Estimated Budget:" : "Budget Moyen Estimé :"}</span>
-                              <span className="text-base font-black font-mono text-amber-400">920 € – 1 450 €</span>
-                            </div>
-                          </div>
+                          )}
                         </div>
 
                         <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[11px]">
@@ -523,7 +698,7 @@ export default function HomePage() {
                             rel="noopener noreferrer"
                             className="font-bold text-[#34d399] hover:underline flex items-center gap-1"
                           >
-                            <span>{isEn ? "Open full app" : "Ouvrir l'application"}</span>
+                            <span>{isEn ? "Open in JardinCalcul.fr" : "Ouvrir l'application"}</span>
                             <ExternalLink className="w-3 h-3" />
                           </a>
                         </div>
@@ -631,7 +806,7 @@ export default function HomePage() {
         )}
       </section>
 
-      {/* 03 — PARCOURS CHRONOLOGIQUE & SAVOIR-FAIRE (AVEC HISTORIQUE COMPLET BOTTING & ELDORADO) */}
+      {/* 03 — PARCOURS CHRONOLOGIQUE & SAVOIR-FAIRE */}
       <section id="parcours" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 scroll-mt-20 border-t border-white/[0.08]">
         <div className="glass-card rounded-3xl p-6 sm:p-10 border border-white/15 relative overflow-hidden shadow-2xl">
           {/* Header of Timeline */}
@@ -844,8 +1019,8 @@ export default function HomePage() {
 
                 <p className="text-sm sm:text-base text-[#cbd5e1] leading-relaxed">
                   {isEn
-                    ? "Four years dedicated to scientific foundations and rigorous software engineering. This is where I built mathematical discipline, algorithmic analysis, and deep comprehension of hardware and operating system fundamentals:"
-                    : "Quatre années d'immersion dans les fondamentaux scientifiques et l'ingénierie logicielle. C'est ici que j'ai forgé ma rigueur algorithmique et ma compréhension profonde des architectures machines :"}
+                    ? "Four years dedicated to scientific foundations and software engineering discipline. Algorithmic analysis, memory management, and system architectures:"
+                    : "Quatre années d'immersion dans les fondamentaux scientifiques et l'ingénierie logicielle. Rigueur algorithmique, gestion bas niveau de la mémoire et architectures machines :"}
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
@@ -855,8 +1030,8 @@ export default function HomePage() {
                     </strong>
                     <p className="text-xs text-[#94a3b8] leading-relaxed">
                       {isEn
-                        ? "Data structures (trees, graphs, hash maps), Big-O time/space complexity optimization, and computational modeling."
-                        : "Structures de données (arbres, graphes, tables de hachage), complexité spatio-temporelle et résolution rigoureuse de problèmes."}
+                        ? "Data structures (trees, graphs, hash maps), Big-O optimization, and rigorous problem solving."
+                        : "Structures de données (arbres, graphes, tables de hachage), complexité spatio-temporelle et résolution de problèmes."}
                     </p>
                   </div>
                   <div className="p-4 rounded-xl bg-white/[0.02] border border-white/10 space-y-1">
@@ -865,8 +1040,8 @@ export default function HomePage() {
                     </strong>
                     <p className="text-xs text-[#94a3b8] leading-relaxed">
                       {isEn
-                        ? "C and C++ for manual memory management and pointers, Java for strictly typed modular object-oriented design."
-                        : "C et C++ pour la maîtrise bas niveau de la mémoire et des pointeurs, Java pour la conception modulaire et orientée objet."}
+                        ? "C and C++ for manual memory control and pointers, Java for strictly typed object-oriented modular design."
+                        : "C et C++ pour la maîtrise de la mémoire et des pointeurs, Java pour la conception modulaire et orientée objet."}
                     </p>
                   </div>
                   <div className="p-4 rounded-xl bg-white/[0.02] border border-white/10 space-y-1">
@@ -875,8 +1050,8 @@ export default function HomePage() {
                     </strong>
                     <p className="text-xs text-[#94a3b8] leading-relaxed">
                       {isEn
-                        ? "Relational database schema normalization, indexing strategies, and multi-table transactional queries."
-                        : "Modélisation relationnelle, normalisation des données, indexation et requêtes d'agrégation complexes."}
+                        ? "Schema normalization, indexing strategies, and transactional queries."
+                        : "Modélisation relationnelle, normalisation des données, indexation et requêtes d'agrégation."}
                     </p>
                   </div>
                   <div className="p-4 rounded-xl bg-white/[0.02] border border-white/10 space-y-1">
@@ -895,7 +1070,7 @@ export default function HomePage() {
                   <span className="text-[#94a3b8]">
                     {isEn
                       ? "Key takeaway: Theoretical discipline applied without approximation to real software."
-                      : "Ce que ça m'a apporté : la discipline nécessaire pour modéliser des formules physiques et logiques sans approximation."}
+                      : "Ce que ça m'a apporté : la discipline nécessaire pour modéliser des formules physiques sans approximation."}
                   </span>
                   <button
                     type="button"
@@ -908,89 +1083,129 @@ export default function HomePage() {
               </div>
             )}
 
-            {/* TAB 2: BOTTING & AUTOMATION (AUTHENTIQUE, DÉTAILLÉ ET PROFESSIONNEL) */}
+            {/* TAB 2: BOTTING & AUTOMATION (CONDENSÉ, VISUEL ET STRUCTURÉ EN 4 BLOCS) */}
             {timelineTab === "botting" && (
-              <div className="space-y-4 animate-in fade-in duration-300">
-                <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="space-y-5 animate-in fade-in duration-300">
+                <div className="flex flex-wrap items-center justify-between gap-3 pb-2 border-b border-white/10">
                   <div className="flex items-center gap-2.5">
                     <span className="w-2.5 h-2.5 rounded-full bg-[#06b6d4] animate-ping" />
                     <h3 className="text-xl font-bold text-white">
                       {isEn
                         ? "High-Volume Automation, Botting & Marketplace Merchant (2021 — 2025)"
-                        : "Ingénierie d'Automatisation, Botting & Activité Marchande (2021 — 2025)"}
+                        : "Automatisation à Grande Échelle, Botting & Activité Marchande (2021 — 2025)"}
                     </h3>
                   </div>
                   <a
                     href="https://www.eldorado.gg/users/Stygmar"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-xs font-bold text-amber-400 transition-colors"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-xs font-bold text-amber-400 transition-colors"
                   >
                     <Coins className="w-3.5 h-3.5" />
-                    <span>Eldorado.gg : +9 400 Avis (99,99%) ↗</span>
+                    <span>Eldorado : +9 400 Avis (99,99%) ↗</span>
                   </a>
                 </div>
 
-                <p className="text-sm sm:text-base text-[#cbd5e1] leading-relaxed">
-                  {isEn
-                    ? "For 4 years, I operated across global digital marketplaces, architecting autonomous bots and scripts to farm, trade, and distribute virtual assets at high volume, while directly serving thousands of clients worldwide."
-                    : "Pendant 4 ans, j'ai opéré sur les marchés virtuels internationaux en concevant des bots et des scripts pour automatiser la gestion d'inventaires, l'échange d'actifs numériques et la distribution à fort volume, tout en gérant en direct la relation avec des milliers d'acheteurs."}
-                </p>
-
-                {/* 2 Projets Clés : Tarkov & OSRS */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-                  <div className="p-5 rounded-2xl bg-black/60 border border-[#06b6d4]/30 space-y-2">
-                    <div className="flex items-center gap-2 text-[#22d3ee] font-bold text-sm">
-                      <Gamepad2 className="w-4 h-4" />
-                      <span>Escape from Tarkov (EFT) — AutoHotkey</span>
+                {/* 4 Blocs Modulaires Visuels & Punchy */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Block 1: Tarkov */}
+                  <div className="p-4 rounded-2xl bg-black/60 border border-[#06b6d4]/30 space-y-2.5 hover:border-[#06b6d4]/60 transition-colors">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-[#22d3ee] font-bold text-sm">
+                        <Gamepad2 className="w-4 h-4" />
+                        <span>Escape from Tarkov</span>
+                      </div>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#06b6d4]/20 text-[#22d3ee] border border-[#06b6d4]/30">
+                        AutoHotkey · &lt; 15 ms
+                      </span>
                     </div>
-                    <p className="text-xs text-[#94a3b8] leading-relaxed">
-                      {isEn
-                        ? "Advanced AutoHotkey (AHK) engineering: surgical UI automation of nested inventories, sub-15ms Flea Market sniping, visual pixel detection, latency compensation, and continuous event dispatching."
-                        : "Ingénierie avancée sous AutoHotkey (AHK) : automatisation chirurgicale d'inventaires touffus, sniping sur le Flea Market sous la barre des 15 ms, reconnaissance visuelle de pixels et compensation fine de la latence réseau."}
-                    </p>
-                    <div className="text-[11px] font-mono text-[#06b6d4] pt-1">
-                      → {isEn ? "Sub-15ms event loops, pixel recognition & zero latency" : "Boucles d'événements sub-15ms, analyse de pixels & zéro latence"}
-                    </div>
+                    <ul className="space-y-1.5 text-xs text-[#cbd5e1]">
+                      <li className="flex items-start gap-2">
+                        <span className="text-[#06b6d4] font-bold shrink-0">⚡</span>
+                        <span><strong>Sniping Flea Market</strong> : détection visuelle de pixels et validation d&apos;achat en microsecondes.</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-[#06b6d4] font-bold shrink-0">🎒</span>
+                        <span><strong>Inventaires imbriqués</strong> : manipulation chirurgicale d&apos;interfaces touffues et tri automatisé.</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-[#06b6d4] font-bold shrink-0">🌐</span>
+                        <span><strong>Zéro latence</strong> : compensation fine de la latence réseau et timings millimétrés.</span>
+                      </li>
+                    </ul>
                   </div>
 
-                  <div className="p-5 rounded-2xl bg-black/60 border border-[#8b5cf6]/30 space-y-2">
-                    <div className="flex items-center gap-2 text-[#c084fc] font-bold text-sm">
-                      <Terminal className="w-4 h-4" />
-                      <span>Old School RuneScape (OSRS) — Java &amp; DreamBot</span>
+                  {/* Block 2: OSRS */}
+                  <div className="p-4 rounded-2xl bg-black/60 border border-[#8b5cf6]/30 space-y-2.5 hover:border-[#8b5cf6]/60 transition-colors">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-[#c084fc] font-bold text-sm">
+                        <Terminal className="w-4 h-4" />
+                        <span>Old School RuneScape</span>
+                      </div>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#8b5cf6]/20 text-[#c084fc] border border-[#8b5cf6]/30">
+                        Java · dreambot.org · 24/7
+                      </span>
                     </div>
-                    <p className="text-xs text-[#94a3b8] leading-relaxed">
-                      {isEn ? (
-                        <>
-                          Development of complex Java scripts on the{" "}
-                          <a
-                            href="https://dreambot.org"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-[#c084fc] hover:underline font-semibold"
-                          >
-                            dreambot.org
-                          </a>{" "}
-                          client paired with automation software like EternalFarm. End-to-end infrastructure: mass account creation (custom VPS self-hosted mailbox server) all the way to autonomous high-level character leveling running 24/7 unattended.
-                        </>
-                      ) : (
-                        <>
-                          Développement de scripts Java complexes sur le client{" "}
-                          <a
-                            href="https://dreambot.org"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-[#c084fc] hover:underline font-semibold"
-                          >
-                            dreambot.org
-                          </a>{" "}
-                          couplé à des outils comme EternalFarm. Automatisation de bout en bout : de la création de comptes en masse (serveur de mailbox auto-hébergé sur VPS) jusqu&apos;à la montée autonome à haut niveau 24h/24 et 7j/7 sans surveillance.
-                        </>
-                      )}
-                    </p>
-                    <div className="text-[11px] font-mono text-[#a855f7] pt-1">
-                      → {isEn ? "DreamBot API, EternalFarm farm management & VPS mailbox" : "API DreamBot, gestion de ferme EternalFarm & mailbox VPS"}
+                    <ul className="space-y-1.5 text-xs text-[#cbd5e1]">
+                      <li className="flex items-start gap-2">
+                        <span className="text-[#a855f7] font-bold shrink-0">🤖</span>
+                        <span><strong>Scripts Java &amp; DreamBot</strong> : développement de bots événementiels sur <a href="https://dreambot.org" target="_blank" rel="noopener noreferrer" className="text-[#c084fc] underline">dreambot.org</a> via EternalFarm.</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-[#a855f7] font-bold shrink-0">✉️</span>
+                        <span><strong>Serveur Mailbox VPS</strong> : infrastructure auto-hébergée pour création de comptes en masse.</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-[#a855f7] font-bold shrink-0">📈</span>
+                        <span><strong>Progression autonome</strong> : montée à haut niveau 24h/24 et 7j/7 sans surveillance.</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Block 3: Infrastructure VPS */}
+                  <div className="p-4 rounded-2xl bg-black/60 border border-white/10 space-y-2.5 hover:border-white/20 transition-colors">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-white font-bold text-sm">
+                        <Server className="w-4 h-4 text-[#34d399]" />
+                        <span>{isEn ? "VPS Infrastructure & Concurrency" : "Infrastructure VPS & Systèmes"}</span>
+                      </div>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/10 text-[#cbd5e1]">
+                        Linux · Multi-Sessions
+                      </span>
                     </div>
+                    <ul className="space-y-1.5 text-xs text-[#94a3b8]">
+                      <li className="flex items-start gap-2">
+                        <span className="text-[#34d399] font-bold shrink-0">🖥️</span>
+                        <span>Orchestration de clusters VPS dédiés Linux avec proxy routing et rotation d&apos;IPs.</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-[#34d399] font-bold shrink-0">📊</span>
+                        <span>Télémétrie centralisée, monitoring de santé des nœuds et zero memory leak.</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Block 4: Eldorado Merchant Trust */}
+                  <div className="p-4 rounded-2xl bg-black/60 border border-amber-500/25 space-y-2.5 hover:border-amber-500/50 transition-colors">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-amber-400 font-bold text-sm">
+                        <Coins className="w-4 h-4" />
+                        <span>{isEn ? "Eldorado Merchant Operations" : "Activité Marchande Eldorado"}</span>
+                      </div>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-400/20 text-amber-300 border border-amber-400/40">
+                        +9 400 Avis · 99,99%
+                      </span>
+                    </div>
+                    <ul className="space-y-1.5 text-xs text-[#94a3b8]">
+                      <li className="flex items-start gap-2">
+                        <span className="text-amber-400 font-bold shrink-0">🌍</span>
+                        <span>Service client réactif 24/7 multilingue auprès de milliers d&apos;acheteurs internationaux.</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-amber-400 font-bold shrink-0">🛡️</span>
+                        <span>Scripts de livraison instantanée, traçabilité de chaque échange et zéro litige.</span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
 
@@ -1003,7 +1218,7 @@ export default function HomePage() {
                 </div>
 
                 {/* Step navigation */}
-                <div className="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
+                <div className="pt-2 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
                   <button
                     type="button"
                     onClick={() => setTimelineTab("blois")}
@@ -1023,14 +1238,14 @@ export default function HomePage() {
               </div>
             )}
 
-            {/* TAB 3: WEB STUDIO */}
+            {/* TAB 3: WEB STUDIO (SPECTACULAIRE AVEC VRAI STATUT PRODUIT JARDINCALCUL) */}
             {timelineTab === "web" && (
-              <div className="space-y-4 animate-in fade-in duration-300">
-                <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="space-y-5 animate-in fade-in duration-300">
+                <div className="flex flex-wrap items-center justify-between gap-3 pb-2 border-b border-white/10">
                   <div className="flex items-center gap-2.5">
                     <span className="w-2.5 h-2.5 rounded-full bg-[#10b981]" />
                     <h3 className="text-xl font-bold text-white">
-                      {isEn ? "Building Open, Fast & Frictionless Web Products" : "Édition d'Outils Web Utiles, Neutres & Instantanés"}
+                      {isEn ? "Building Open, Fast & Useful Web Products" : "Édition d'Outils Web Utiles, Neutres & Instantanés"}
                     </h3>
                   </div>
                   <span className="text-xs font-mono px-3 py-1 rounded-full bg-[#10b981]/15 text-[#34d399] border border-[#10b981]/30">
@@ -1044,48 +1259,78 @@ export default function HomePage() {
                     : "Mettre ces 9 années d'exigence algorithmique, de télémétrie et d'automatisation au service d'outils web grand public utiles, transparents et instantanés :"}
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-                  <div className="p-5 rounded-2xl bg-black/60 border border-[#10b981]/30 space-y-2">
-                    <div className="flex items-center gap-2 text-[#34d399] font-bold text-sm">
-                      <Sprout className="w-4 h-4" />
-                      <span>{isEn ? "JardinCalcul.fr (Live in Production)" : "JardinCalcul.fr (En Production)"}</span>
+                {/* Hero Showcase Card for JardinCalcul */}
+                <div className="p-6 rounded-2xl bg-gradient-to-br from-[#10b981]/15 via-black/60 to-black/80 border border-[#10b981]/40 space-y-4">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-8 h-8 rounded-xl bg-[#10b981] text-white flex items-center justify-center font-bold">
+                        <Sprout className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <h4 className="font-extrabold text-white text-base">JardinCalcul.fr — {isEn ? "Live Product" : "En Production"}</h4>
+                        <span className="text-xs text-[#34d399] font-mono">Next.js 16 · React 19 · TypeScript · Tailwind CSS</span>
+                      </div>
                     </div>
-                    <p className="text-xs text-[#94a3b8] leading-relaxed">
-                      {isEn
-                        ? "7 physical material calculators (pedestal tiles, gravel, concrete, lawn, soil, fences), 35 technical guides, and 50 pre-rendered static pages. 100% local client-side computation in < 50ms."
-                        : "7 calculateurs physiques (dalles sur plots, gravier, béton, gazon, terreau, clôtures, paillage), 35 guides chantiers et 50 pages statiques. Exécution 100% client-side en moins de 50ms."}
-                    </p>
-                    <a href="https://www.jardincalcul.fr" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs font-bold text-[#34d399] hover:underline pt-1">
-                      <span>{isEn ? "Visit official website →" : "Visiter le site officiel →"}</span>
+
+                    <a
+                      href="https://www.jardincalcul.fr"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#10b981] hover:bg-[#059669] text-white font-bold text-xs transition-all shadow-md shadow-[#10b981]/25 hover:scale-105 active:scale-95"
+                    >
+                      <span>{isEn ? "Launch official site ↗" : "Accéder au site officiel ↗"}</span>
                     </a>
                   </div>
 
-                  <div className="p-5 rounded-2xl bg-black/60 border border-[#06b6d4]/30 space-y-2">
+                  <p className="text-xs sm:text-sm text-[#cbd5e1] leading-relaxed">
+                    {isEn
+                      ? "7 specialized physics calculators (pedestal tiles, gravel, concrete, lawn, soil, fences, mulch), 35 technical guides, and 50 pre-rendered static pages. 100% client-side computation in < 50ms, validated with 65 unit tests."
+                      : "7 calculateurs physiques spécialisés (dalles sur plots, gravier, béton, gazon, terreau, clôtures, paillage), 35 guides chantiers et 50 pages statiques pré-générées. Exécution 100% client-side en moins de 50ms validée par 65 tests unitaires."}
+                  </p>
+
+                  {/* 7 Calculator Chips */}
+                  <div className="pt-2 border-t border-white/10">
+                    <div className="text-[11px] font-mono text-[#94a3b8] mb-2">{isEn ? "7 Active calculators:" : "7 calculateurs en production :"}</div>
+                    <div className="flex flex-wrap gap-1.5 text-[11px]">
+                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Terrasse Dalles Plots</span>
+                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Gravier Allées &amp; Cours</span>
+                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Dalle Béton &amp; Fondations</span>
+                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Gazon &amp; Semis</span>
+                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Terreau &amp; Bacs</span>
+                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Clôture Rigide</span>
+                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Paillage Minéral</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Companion Card: Hardware Lab R&D */}
+                <div className="p-5 rounded-2xl bg-black/60 border border-[#06b6d4]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="space-y-1">
                     <div className="flex items-center gap-2 text-[#22d3ee] font-bold text-sm">
                       <Cpu className="w-4 h-4" />
-                      <span>{isEn ? "Hardware Lab (In Conception)" : "Hardware Lab (En Conception)"}</span>
+                      <span>Hardware Lab — {isEn ? "Comparator in R&D" : "Comparateur en Conception"}</span>
                     </div>
-                    <p className="text-xs text-[#94a3b8] leading-relaxed">
+                    <p className="text-xs text-[#94a3b8]">
                       {isEn
                         ? "Unbiased GPU/CPU comparator (FPS/$/Watt), price tracker, and physical clearance checker."
                         : "Comparateur neutre GPU/CPU (FPS/€/Watt), agrégateur de cours et vérificateur physique de compatibilité de boîtier."}
                     </p>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setProjectTab("hardware");
-                        const el = document.getElementById("projets");
-                        el?.scrollIntoView({ behavior: "smooth" });
-                      }}
-                      className="inline-flex items-center gap-1 text-xs font-bold text-[#22d3ee] hover:underline pt-1 cursor-pointer"
-                    >
-                      <span>{isEn ? "View R&D concept →" : "Voir le concept R&D →"}</span>
-                    </button>
                   </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setProjectTab("hardware");
+                      const el = document.getElementById("projets");
+                      el?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#06b6d4]/15 hover:bg-[#06b6d4]/25 border border-[#06b6d4]/30 text-xs font-bold text-[#22d3ee] transition-all shrink-0 cursor-pointer"
+                  >
+                    <span>{isEn ? "View R&D concept ↑" : "Voir le concept R&D ↑"}</span>
+                  </button>
                 </div>
 
                 {/* Step navigation */}
-                <div className="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
+                <div className="pt-2 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
                   <button
                     type="button"
                     onClick={() => setTimelineTab("botting")}
