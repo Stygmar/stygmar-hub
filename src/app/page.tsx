@@ -92,7 +92,7 @@ export default function HomePage() {
               </span>
               <div className="flex items-center gap-1.5 text-[11px] font-medium text-[#94a3b8] -mt-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse" />
-                <span>{isEn ? "Alexandre · Software Engineer & Maker" : "Alexandre · Développeur & Maker"}</span>
+                <span>{isEn ? "Florian · Software Engineer & Maker" : "Florian · Développeur & Maker"}</span>
               </div>
             </div>
           </Link>
@@ -166,7 +166,7 @@ export default function HomePage() {
         </div>
 
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white max-w-4xl mx-auto leading-[1.1] mb-6">
-          Alexandre (Stygmar).{" "}
+          Florian (Stygmar).{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34d399] via-[#06b6d4] to-[#a855f7]">
             {isEn ? "Software engineer & automation specialist." : "Ingénieur logiciel & expert en automatisation."}
           </span>
@@ -174,8 +174,8 @@ export default function HomePage() {
 
         <p className="text-base sm:text-xl text-[#94a3b8] max-w-2xl mx-auto leading-relaxed mb-8">
           {isEn
-            ? "9 years of code: 4 years studying Computer Science in Blois, 4 years architecting 24/7 high-uptime gaming automation & botting systems on Eldorado.gg, leading in 2026 to building frictionless, lightning-fast web tools like JardinCalcul.fr."
-            : "9 ans de code : 4 ans de licence informatique à Blois, 4 ans d'ingénierie d'automatisation et de botting gaming 24/7 sur Eldorado.gg, puis la création en 2026 d'outils web ouverts, utiles et ultra-rapides comme JardinCalcul.fr."}
+            ? "9 years of code: 4 years studying Computer Science in Blois, 4 years architecting 24/7 gaming automation & operating as an Eldorado.gg merchant (+9,400 reviews, 99.99% positive), leading in 2026 to building frictionless, lightning-fast web tools like JardinCalcul.fr."
+            : "9 ans de code : 4 ans de licence informatique à Blois, 4 ans d'ingénierie d'automatisation, de botting et d'activité marchande sur Eldorado.gg (+9 400 avis à 99,99% positifs), puis la création en 2026 d'outils web ouverts, utiles et ultra-rapides comme JardinCalcul.fr."}
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-3">
@@ -202,7 +202,7 @@ export default function HomePage() {
             className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-400 font-semibold text-sm transition-all hover:scale-[1.02]"
           >
             <Coins className="w-4 h-4" />
-            <span>{isEn ? "Eldorado.gg Profile ↗" : "Profil Eldorado.gg ↗"}</span>
+            <span>{isEn ? "+9,400 Reviews (99.99%) ↗" : "+9 400 Avis (99,99%) ↗"}</span>
           </a>
           <a
             href="https://github.com/Stygmar"
@@ -213,6 +213,24 @@ export default function HomePage() {
             <FolderGit2 className="w-4 h-4 text-[#94a3b8]" />
             <span>GitHub</span>
           </a>
+        </div>
+
+        {/* Quick Social Proof Strip */}
+        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 mt-10 pt-6 border-t border-white/5 text-xs text-[#94a3b8]">
+          <div className="flex items-center gap-2">
+            <span className="font-mono font-bold text-white">4 ans</span>
+            <span>{isEn ? "Licence CS Blois" : "Licence Informatique (Blois)"}</span>
+          </div>
+          <span className="hidden sm:inline text-white/20">•</span>
+          <div className="flex items-center gap-2">
+            <span className="font-mono font-extrabold text-amber-400">+9 400 avis</span>
+            <span className="text-amber-200/90 font-medium">{isEn ? "(99.99% positive rating)" : "(99,99% d'avis positifs sur Eldorado)"}</span>
+          </div>
+          <span className="hidden sm:inline text-white/20">•</span>
+          <div className="flex items-center gap-2">
+            <span className="font-mono font-bold text-[#34d399]">100%</span>
+            <span>{isEn ? "Autonomous & Client Focus" : "Exécution & Rigueur Client"}</span>
+          </div>
         </div>
       </section>
 
@@ -389,18 +407,18 @@ export default function HomePage() {
                     <span className="w-2.5 h-2.5 rounded-full bg-[#06b6d4] animate-ping" />
                     <h3 className="text-xl font-bold text-white">
                       {isEn
-                        ? "High-Volume Automation, Botting & Digital Asset Trading"
-                        : "Ingénierie d'Automatisation, Botting & Revente Numérique à Grande Échelle"}
+                        ? "High-Volume Automation, Botting & Eldorado Merchant (+9,400 Reviews)"
+                        : "Ingénierie d'Automatisation, Botting & Vendeur Eldorado (+9 400 Avis)"}
                     </h3>
                   </div>
                   <a
                     href="https://www.eldorado.gg/users/Stygmar"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-xs font-bold text-amber-400 transition-colors"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-xs font-bold text-amber-400 transition-colors"
                   >
                     <Coins className="w-3.5 h-3.5" />
-                    <span>{isEn ? "Verify Merchant Profile on Eldorado.gg ↗" : "Vérifier mon profil marchand Eldorado.gg ↗"}</span>
+                    <span>{isEn ? "Eldorado.gg: +9,400 Reviews (99.99%) ↗" : "Eldorado.gg : +9 400 Avis (99,99%) ↗"}</span>
                   </a>
                 </div>
 
@@ -409,6 +427,28 @@ export default function HomePage() {
                     ? "For 4 years, I operated professionally across global digital asset marketplaces, architecting autonomous bots and scripts to farm, trade, and distribute virtual currencies and gaming accounts at high volume."
                     : "Pendant 4 ans, j'ai opéré professionnellement sur les marchés virtuels internationaux en développant des scripts et des bots pour générer et revendre des monnaies numériques et des comptes de jeux vidéo à fort volume."}
                 </p>
+
+                {/* Highlight Card: Direct Client Relationships & 9,400 Reviews */}
+                <div className="p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-black/70 to-black/70 border border-amber-500/30 space-y-2">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 text-amber-400 font-bold text-sm">
+                      <BadgeCheck className="w-4 h-4 text-amber-400 shrink-0" />
+                      <span>
+                        {isEn
+                          ? "High-Volume Merchant Operations & Client Relationships (+9,400 Reviews)"
+                          : "Activité Marchande & Relation Client à Fort Volume (+9 400 Avis)"}
+                      </span>
+                    </div>
+                    <span className="text-xs font-mono font-extrabold px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/40">
+                      99,99% {isEn ? "Positive Rating" : "Avis Positifs"}
+                    </span>
+                  </div>
+                  <p className="text-xs text-[#cbd5e1] leading-relaxed">
+                    {isEn
+                      ? "Alongside autonomous code development, I personally operated the commercial storefront on Eldorado.gg: serving thousands of international clients, managing rapid 24/7 order fulfillment, resolving customer queries, and maintaining a flawless 99.99% positive feedback track record over +9,400 verified reviews."
+                      : "En parallèle du développement des bots et scripts, j'ai assuré la gestion commerciale en direct avec les clients sur Eldorado.gg : traitement de milliers de commandes avec des acheteurs du monde entier, support client 24/7 réactif et multilingue, sécurisation des livraisons et maintien d'une réputation irréprochable avec plus de 9 400 avis clients à 99,99% positifs."}
+                  </p>
+                </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                   <div className="p-5 rounded-2xl bg-black/60 border border-[#06b6d4]/30 space-y-2">
