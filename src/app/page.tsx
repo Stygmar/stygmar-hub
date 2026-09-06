@@ -474,9 +474,33 @@ export default function HomePage() {
                       <span>Old School RuneScape (OSRS) — Java &amp; DreamBot</span>
                     </div>
                     <p className="text-xs text-[#94a3b8] leading-relaxed">
-                      {isEn
-                        ? "Development of complex Java scripts on DreamBot.com client paired with automation tools like EternalFarm. End-to-end automation infrastructure: automated mass-account creation (custom VPS self-hosted mailbox server for verification) all the way to autonomous high-level character leveling running 24/7 unattended."
-                        : "Développement de scripts Java complexes sur le client DreamBot.com couplé à des logiciels d'automatisation comme EternalFarm. Automatisation complexe de bout en bout : de la création de comptes en masse (création d'une mailbox auto-hébergée sur VPS pour validation) jusqu'à la montée des personnages à haut niveau sans surveillance 24h/24 et 7j/7."}
+                      {isEn ? (
+                        <>
+                          Development of complex Java scripts on the{" "}
+                          <a
+                            href="https://dreambot.org"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[#c084fc] hover:underline font-semibold"
+                          >
+                            dreambot.org
+                          </a>{" "}
+                          client paired with automation software like EternalFarm. End-to-end automation infrastructure: automated mass-account creation (custom VPS self-hosted mailbox server for verification) all the way to autonomous high-level character leveling running 24/7 unattended.
+                        </>
+                      ) : (
+                        <>
+                          Développement de scripts Java complexes sur le client{" "}
+                          <a
+                            href="https://dreambot.org"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[#c084fc] hover:underline font-semibold"
+                          >
+                            dreambot.org
+                          </a>{" "}
+                          couplé à des logiciels d&apos;automatisation comme EternalFarm. Automatisation complexe de bout en bout : de la création de comptes en masse (création d&apos;une mailbox auto-hébergée sur VPS pour validation) jusqu&apos;à la montée des personnages à haut niveau sans surveillance 24h/24 et 7j/7.
+                        </>
+                      )}
                     </p>
                     <div className="text-[11px] font-mono text-[#a855f7] pt-1">
                       {isEn
