@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Stygmar — Studio & Hub de Projets Web",
-  description: "Portail officiel de Stygmar. Découvrez nos applications web, calculateurs pratiques d'aménagement et projets numériques.",
+  title: "Stygmar — Studio d'Outils Web Utiles & Indépendants",
+  description: "Créateur d'applications et outils web pratiques, rapides et sans friction. Découvrez JardinCalcul.fr (aménagement extérieur) et notre prochain projet comparateur hardware & tech.",
   metadataBase: new URL("https://stygmar.com"),
   alternates: {
     canonical: "https://stygmar.com",
@@ -15,8 +15,8 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
   },
   openGraph: {
-    title: "Stygmar — Studio & Hub de Projets Web",
-    description: "Portail officiel de Stygmar. Découvrez nos outils en ligne et projets innovants.",
+    title: "Stygmar — Studio d'Outils Web Utiles & Indépendants",
+    description: "Créateur d'applications web gratuites, rapides et sans friction. JardinCalcul.fr & futur comparateur tech/hardware.",
     url: "https://stygmar.com",
     siteName: "Stygmar",
     locale: "fr_FR",
