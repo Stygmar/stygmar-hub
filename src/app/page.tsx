@@ -471,15 +471,17 @@ export default function HomePage() {
                   <div className="p-5 rounded-2xl bg-black/60 border border-[#8b5cf6]/30 space-y-2">
                     <div className="flex items-center gap-2 text-[#c084fc] font-bold text-sm">
                       <Terminal className="w-4 h-4" />
-                      <span>Old School RuneScape (OSRS) — Java</span>
+                      <span>Old School RuneScape (OSRS) — Java &amp; DreamBot</span>
                     </div>
                     <p className="text-xs text-[#94a3b8] leading-relaxed">
                       {isEn
-                        ? "Autonomous Java bots: game client reverse-engineering, event-driven decision trees, and distributed multi-session farms running 24/7 with zero human intervention."
-                        : "Développement de bots complets en Java : reverse-engineering du client de jeu, logique événementielle, gestion de fermes multi-sessions et multi-threads tournant 24h/24 et 7j/7 sans surveillance."}
+                        ? "Development of complex Java scripts on DreamBot.com client paired with automation tools like EternalFarm. End-to-end automation infrastructure: automated mass-account creation (custom VPS self-hosted mailbox server for verification) all the way to autonomous high-level character leveling running 24/7 unattended."
+                        : "Développement de scripts Java complexes sur le client DreamBot.com couplé à des logiciels d'automatisation comme EternalFarm. Automatisation complexe de bout en bout : de la création de comptes en masse (création d'une mailbox auto-hébergée sur VPS pour validation) jusqu'à la montée des personnages à haut niveau sans surveillance 24h/24 et 7j/7."}
                     </p>
                     <div className="text-[11px] font-mono text-[#a855f7] pt-1">
-                      {isEn ? "→ Distributed systems, 24/7 resilience & zero memory leak" : "→ Systèmes distribués, résilience 24/7 & zero memory leak"}
+                      {isEn
+                        ? "→ DreamBot API, EternalFarm farm management, VPS mass mailbox & high-level leveling"
+                        : "→ API DreamBot, gestion EternalFarm, mailbox VPS & leveling haut niveau 24/7"}
                     </div>
                   </div>
                 </div>
@@ -616,17 +618,19 @@ export default function HomePage() {
                 <div className="space-y-1">
                   <div className="text-[#64748b]">
                     {isEn
-                      ? "// 2021-2025: Autonomous Java multi-thread daemon running 24/7 on Old School RuneScape"
-                      : "// 2021-2025: Démon multi-thread Java tournant 24/7 sur Old School RuneScape"}
+                      ? "// 2021-2025: DreamBot Java Scripting & EternalFarm 24/7 Farm Orchestration"
+                      : "// 2021-2025: Scripting Java DreamBot & orchestration de ferme via EternalFarm (24/7)"}
                   </div>
-                  <div><span className="text-[#a855f7]">public class</span> <span className="text-[#22d3ee]">AutonomousWorkerThread</span> <span className="text-[#a855f7]">implements</span> Runnable &#123;</div>
-                  <div className="pl-4"><span className="text-[#a855f7]">private final</span> GameClientInstance client;</div>
-                  <div className="pl-4"><span className="text-[#a855f7]">public void</span> <span className="text-amber-400">run</span>() &#123;</div>
-                  <div className="pl-8"><span className="text-[#34d399]">while</span> (!Thread.currentThread().isInterrupted()) &#123;</div>
-                  <div className="pl-12">GameState state = client.pollGameState();</div>
-                  <div className="pl-12">DecisionTree.evaluateNextAction(state).dispatch(client);</div>
-                  <div className="pl-12">TelemetryService.recordHeartbeat(client.getId(), <span className="text-amber-400">&quot;OK_24_7&quot;</span>);</div>
+                  <div><span className="text-[#a855f7]">public class</span> <span className="text-[#22d3ee]">HighLevelWorkerScript</span> <span className="text-[#a855f7]">extends</span> AbstractScript &#123;</div>
+                  <div className="pl-4"><span className="text-[#a855f7]">private final</span> VPSMailboxService mailbox = <span className="text-[#a855f7]">new</span> VPSMailboxService(&quot;vps.mail.node&quot;);</div>
+                  <div className="pl-4"><span className="text-[#a855f7]">public void</span> <span className="text-amber-400">onStart</span>() &#123;</div>
+                  <div className="pl-8"><span className="text-[#34d399]">if</span> (AccountQueue.needsNewAccount()) &#123;</div>
+                  <div className="pl-12">Account acc = mailbox.createAndVerifyNewAccount(); <span className="text-[#64748b] font-italic">{isEn ? "// VPS mailbox validation" : "// Création & validation VPS"}</span></div>
+                  <div className="pl-12">EternalFarm.registerNode(acc.getId(), FarmProfile.HIGH_LEVEL);</div>
                   <div className="pl-8">&#125;</div>
+                  <div className="pl-4">&#125;</div>
+                  <div className="pl-4"><span className="text-[#a855f7]">public int</span> <span className="text-amber-400">onLoop</span>() &#123;</div>
+                  <div className="pl-8"><span className="text-[#34d399]">return</span> HighLevelSkillTrainer.executeNextAction(); <span className="text-[#64748b] font-italic">{isEn ? "// Autonomous 24/7 leveling" : "// Montée haut niveau 24/7"}</span></div>
                   <div className="pl-4">&#125;</div>
                   <div>&#125;</div>
                 </div>
