@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   ExternalLink,
@@ -27,23 +27,50 @@ import {
   Copy,
   Check,
   Activity,
+  Globe,
 } from "lucide-react";
 
+type Language = "fr" | "en";
 type TimelineTab = "botting" | "blois" | "web";
 type ProjectTab = "jardin" | "hardware";
 type CodeSnippetTab = "tarkov" | "osrs" | "jardin";
 
 export default function HomePage() {
+  const [lang, setLang] = useState<Language>("fr");
   const [timelineTab, setTimelineTab] = useState<TimelineTab>("botting");
   const [projectTab, setProjectTab] = useState<ProjectTab>("jardin");
   const [codeTab, setCodeTab] = useState<CodeSnippetTab>("tarkov");
   const [copiedEmail, setCopiedEmail] = useState(false);
+
+  useEffect(() => {
+    try {
+      const savedLang = localStorage.getItem("stygmar_lang");
+      if (savedLang === "en" || savedLang === "fr") {
+        queueMicrotask(() => {
+          setLang(savedLang);
+        });
+      }
+    } catch {
+      // ignore storage errors
+    }
+  }, []);
+
+  const toggleLang = (selectedLang: Language) => {
+    setLang(selectedLang);
+    try {
+      localStorage.setItem("stygmar_lang", selectedLang);
+    } catch {
+      // ignore storage errors
+    }
+  };
 
   const copyEmailToClipboard = () => {
     navigator.clipboard.writeText("contact@stygmar.com");
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2500);
   };
+
+  const isEn = lang === "en";
 
   return (
     <div className="min-h-screen bg-[#06080d] text-[#f1f5f9] relative bg-grid-pattern selection:bg-[#10b981]/30 selection:text-[#34d399]">
@@ -65,32 +92,59 @@ export default function HomePage() {
               </span>
               <div className="flex items-center gap-1.5 text-[11px] font-medium text-[#94a3b8] -mt-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse" />
-                <span>Alexandre · Développeur &amp; Maker</span>
+                <span>{isEn ? "Alexandre · Software Engineer & Maker" : "Alexandre · Développeur & Maker"}</span>
               </div>
             </div>
           </Link>
 
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-[#94a3b8]">
             <a href="#parcours" className="hover:text-[#a855f7] transition-colors font-semibold flex items-center gap-1">
-              <span>Mon Parcours</span>
+              <span>{isEn ? "My Journey" : "Mon Parcours"}</span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#a855f7]" />
             </a>
             <a href="#projets" className="hover:text-white transition-colors">
-              Projets
+              {isEn ? "Projects" : "Projets"}
             </a>
             <a href="#hardware" className="hover:text-[#06b6d4] transition-colors flex items-center gap-1">
-              <span>Hardware Lab</span>
-              <span className="text-[10px] px-1.5 py-0.2 rounded bg-[#06b6d4]/15 text-[#06b6d4] font-semibold border border-[#06b6d4]/30">Bientôt</span>
+              <span>{isEn ? "Hardware Lab" : "Hardware Lab"}</span>
+              <span className="text-[10px] px-1.5 py-0.2 rounded bg-[#06b6d4]/15 text-[#06b6d4] font-semibold border border-[#06b6d4]/30">
+                {isEn ? "Soon" : "Bientôt"}
+              </span>
             </a>
             <a href="#philosophie" className="hover:text-white transition-colors">
-              Philosophie
+              {isEn ? "Philosophy" : "Philosophie"}
             </a>
             <a href="#contact" className="hover:text-white transition-colors">
-              Contact
+              {isEn ? "Contact" : "Contact"}
             </a>
           </nav>
 
           <div className="flex items-center gap-3">
+            {/* Language Switcher Pill */}
+            <div className="flex items-center p-1 rounded-xl bg-white/5 border border-white/10 text-xs font-bold">
+              <Globe className="w-3.5 h-3.5 text-[#94a3b8] ml-1.5 mr-1" />
+              <button
+                type="button"
+                onClick={() => toggleLang("fr")}
+                className={`px-2 py-0.5 rounded-lg transition-all cursor-pointer ${
+                  lang === "fr" ? "bg-[#10b981] text-white shadow-sm" : "text-[#94a3b8] hover:text-white"
+                }`}
+                title="Passer le site en Français"
+              >
+                FR
+              </button>
+              <button
+                type="button"
+                onClick={() => toggleLang("en")}
+                className={`px-2 py-0.5 rounded-lg transition-all cursor-pointer ${
+                  lang === "en" ? "bg-[#06b6d4] text-black shadow-sm font-black" : "text-[#94a3b8] hover:text-white"
+                }`}
+                title="Switch site to English"
+              >
+                EN
+              </button>
+            </div>
+
             <a
               href="https://www.jardincalcul.fr"
               target="_blank"
@@ -108,19 +162,20 @@ export default function HomePage() {
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold bg-[#10b981]/10 text-[#34d399] border border-[#10b981]/25 mb-6 backdrop-blur-sm shadow-inner">
           <Sparkles className="w-3.5 h-3.5 text-[#34d399]" />
-          <span>PORTFOLIO, EXPERTISE &amp; PROJETS ACTIFS</span>
+          <span>{isEn ? "OFFICIAL PORTFOLIO, EXPERTISE & ACTIVE PROJECTS" : "PORTFOLIO, EXPERTISE & PROJETS ACTIFS"}</span>
         </div>
 
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white max-w-4xl mx-auto leading-[1.1] mb-6">
           Alexandre (Stygmar).{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34d399] via-[#06b6d4] to-[#a855f7]">
-            Ingénieur logiciel &amp; expert en automatisation.
+            {isEn ? "Software engineer & automation specialist." : "Ingénieur logiciel & expert en automatisation."}
           </span>
         </h1>
 
         <p className="text-base sm:text-xl text-[#94a3b8] max-w-2xl mx-auto leading-relaxed mb-8">
-          9 ans de code : 4 ans de licence informatique à Blois, 4 ans d&apos;ingénierie d&apos;automatisation et de botting gaming 24/7 sur Eldorado.gg,
-          puis la création en 2026 d&apos;outils web ouverts, utiles et ultra-rapides comme <strong>JardinCalcul.fr</strong>.
+          {isEn
+            ? "9 years of code: 4 years studying Computer Science in Blois, 4 years architecting 24/7 high-uptime gaming automation & botting systems on Eldorado.gg, leading in 2026 to building frictionless, lightning-fast web tools like JardinCalcul.fr."
+            : "9 ans de code : 4 ans de licence informatique à Blois, 4 ans d'ingénierie d'automatisation et de botting gaming 24/7 sur Eldorado.gg, puis la création en 2026 d'outils web ouverts, utiles et ultra-rapides comme JardinCalcul.fr."}
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-3">
@@ -129,7 +184,7 @@ export default function HomePage() {
             className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#8b5cf6] to-[#06b6d4] hover:opacity-95 text-white font-bold text-sm transition-all shadow-lg shadow-[#8b5cf6]/20 hover:scale-[1.02] active:scale-[0.98]"
           >
             <Terminal className="w-4 h-4" />
-            <span>Explorer mon parcours en détail</span>
+            <span>{isEn ? "Explore my journey in detail" : "Explorer mon parcours en détail"}</span>
           </a>
           <a
             href="https://www.jardincalcul.fr"
@@ -138,7 +193,7 @@ export default function HomePage() {
             className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#10b981] hover:bg-[#059669] text-white font-bold text-sm transition-all shadow-lg shadow-[#10b981]/20 hover:scale-[1.02] active:scale-[0.98]"
           >
             <Sprout className="w-4 h-4" />
-            <span>Tester JardinCalcul.fr ↗</span>
+            <span>{isEn ? "Try JardinCalcul.fr ↗" : "Tester JardinCalcul.fr ↗"}</span>
           </a>
           <a
             href="https://www.eldorado.gg/users/Stygmar"
@@ -147,7 +202,7 @@ export default function HomePage() {
             className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-400 font-semibold text-sm transition-all hover:scale-[1.02]"
           >
             <Coins className="w-4 h-4" />
-            <span>Profil Eldorado.gg ↗</span>
+            <span>{isEn ? "Eldorado.gg Profile ↗" : "Profil Eldorado.gg ↗"}</span>
           </a>
           <a
             href="https://github.com/Stygmar"
@@ -169,14 +224,14 @@ export default function HomePage() {
             <div>
               <div className="inline-flex items-center gap-2 text-xs font-bold text-[#a855f7] uppercase tracking-wider mb-1">
                 <Activity className="w-4 h-4 text-[#a855f7]" />
-                <span>Parcours Chronologique &amp; Savoir-Faire</span>
+                <span>{isEn ? "Chronological Journey & Technical DNA" : "Parcours Chronologique & Savoir-Faire"}</span>
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
-                De l&apos;automatisation de haut vol à l&apos;édition d&apos;outils web
+                {isEn ? "From High-Precision Automation to Web Products" : "De l'automatisation de haut vol à l'édition d'outils web"}
               </h2>
             </div>
             <div className="text-xs text-[#94a3b8] md:text-right">
-              Cliquez sur une période pour explorer l&apos;ingénierie et les technologies associées.
+              {isEn ? "Click on an era to inspect the underlying engineering and tech stack." : "Cliquez sur une période pour explorer l'ingénierie et les technologies associées."}
             </div>
           </div>
 
@@ -198,8 +253,8 @@ export default function HomePage() {
               </div>
               <div>
                 <div className="text-xs font-mono font-bold text-[#c084fc]">2017 — 2021</div>
-                <div className="font-bold text-sm text-white mt-0.5">Licence Informatique</div>
-                <div className="text-xs text-[#94a3b8] mt-0.5">Université · Antenne de Blois</div>
+                <div className="font-bold text-sm text-white mt-0.5">{isEn ? "B.S. in Computer Science" : "Licence Informatique"}</div>
+                <div className="text-xs text-[#94a3b8] mt-0.5">{isEn ? "University of Tours · Blois Campus" : "Université · Antenne de Blois"}</div>
               </div>
             </button>
 
@@ -214,7 +269,7 @@ export default function HomePage() {
             >
               <div className="absolute top-2 right-2 flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                <span className="text-[10px] font-mono text-amber-400 font-bold">Expérience Clé</span>
+                <span className="text-[10px] font-mono text-amber-400 font-bold">{isEn ? "Defining Era" : "Expérience Clé"}</span>
               </div>
               <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
                 timelineTab === "botting" ? "bg-[#06b6d4] text-black font-bold" : "bg-white/5 text-[#94a3b8]"
@@ -223,7 +278,7 @@ export default function HomePage() {
               </div>
               <div>
                 <div className="text-xs font-mono font-bold text-[#22d3ee]">2021 — 2025</div>
-                <div className="font-bold text-sm text-white mt-0.5">Automatisation &amp; Botting</div>
+                <div className="font-bold text-sm text-white mt-0.5">{isEn ? "Automation & Botting" : "Automatisation & Botting"}</div>
                 <div className="text-xs text-[#94a3b8] mt-0.5">Tarkov · OSRS · Eldorado.gg</div>
               </div>
             </button>
@@ -243,8 +298,8 @@ export default function HomePage() {
                 <Rocket className="w-5 h-5" />
               </div>
               <div>
-                <div className="text-xs font-mono font-bold text-[#34d399]">2026 — Aujourd&apos;hui</div>
-                <div className="font-bold text-sm text-white mt-0.5">Édition Web Indépendante</div>
+                <div className="text-xs font-mono font-bold text-[#34d399]">{isEn ? "2026 — Present" : "2026 — Aujourd'hui"}</div>
+                <div className="font-bold text-sm text-white mt-0.5">{isEn ? "Independent Web Studio" : "Édition Web Indépendante"}</div>
                 <div className="text-xs text-[#94a3b8] mt-0.5">JardinCalcul &amp; Hardware Lab</div>
               </div>
             </button>
@@ -258,48 +313,71 @@ export default function HomePage() {
                   <div className="flex items-center gap-2.5">
                     <span className="w-2.5 h-2.5 rounded-full bg-[#8b5cf6]" />
                     <h3 className="text-xl font-bold text-white">
-                      Licence Informatique Générale (Antenne Universitaire de Blois)
+                      {isEn
+                        ? "B.S. in Computer Science (University of Tours · Blois Campus)"
+                        : "Licence Informatique Générale (Antenne Universitaire de Blois)"}
                     </h3>
                   </div>
                   <span className="text-xs font-mono px-3 py-1 rounded-full bg-[#8b5cf6]/15 text-[#c084fc] border border-[#8b5cf6]/30">
-                    2017 — 2021 · 4 ans
+                    {isEn ? "2017 — 2021 · 4 years" : "2017 — 2021 · 4 ans"}
                   </span>
                 </div>
 
                 <p className="text-sm sm:text-base text-[#cbd5e1] leading-relaxed">
-                  Quatre années d&apos;immersion dans les fondamentaux scientifiques et l&apos;ingénierie logicielle.
-                  C&apos;est ici que j&apos;ai forgé ma rigueur mathématique et ma compréhension profonde des architectures machines :
+                  {isEn
+                    ? "Four years immersed in scientific foundations and software engineering. This is where I developed algorithmic rigor and a deep understanding of low-level machine architectures:"
+                    : "Quatre années d'immersion dans les fondamentaux scientifiques et l'ingénierie logicielle. C'est ici que j'ai forgé ma rigueur mathématique et ma compréhension profonde des architectures machines :"}
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
                   <div className="p-4 rounded-xl bg-white/[0.02] border border-white/10 space-y-1">
-                    <strong className="text-white block text-sm font-semibold">Algorithmique &amp; Complexité :</strong>
+                    <strong className="text-white block text-sm font-semibold">
+                      {isEn ? "Algorithms & Complexity:" : "Algorithmique & Complexité :"}
+                    </strong>
                     <p className="text-xs text-[#94a3b8] leading-relaxed">
-                      Structures de données (arbres, graphes, tables de hachage), optimisation temporelle/spatiale et résolution de problèmes d&apos;ingénierie.
+                      {isEn
+                        ? "Data structures (trees, graphs, hash tables), time/space complexity optimization, and engineering problem solving."
+                        : "Structures de données (arbres, graphes, tables de hachage), optimisation temporelle/spatiale et résolution de problèmes d'ingénierie."}
                     </p>
                   </div>
                   <div className="p-4 rounded-xl bg-white/[0.02] border border-white/10 space-y-1">
-                    <strong className="text-white block text-sm font-semibold">Programmation Système &amp; POO :</strong>
+                    <strong className="text-white block text-sm font-semibold">
+                      {isEn ? "Systems Programming & OOP:" : "Programmation Système & POO :"}
+                    </strong>
                     <p className="text-xs text-[#94a3b8] leading-relaxed">
-                      C et C++ pour la gestion bas niveau de la mémoire, et Java pour la programmation orientée objet stricte et modulaire.
+                      {isEn
+                        ? "C and C++ for manual low-level memory management, and Java for modular object-oriented design."
+                        : "C et C++ pour la gestion bas niveau de la mémoire, et Java pour la programmation orientée objet stricte et modulaire."}
                     </p>
                   </div>
                   <div className="p-4 rounded-xl bg-white/[0.02] border border-white/10 space-y-1">
-                    <strong className="text-white block text-sm font-semibold">Bases de Données &amp; SQL :</strong>
+                    <strong className="text-white block text-sm font-semibold">
+                      {isEn ? "Databases & SQL:" : "Bases de Données & SQL :"}
+                    </strong>
                     <p className="text-xs text-[#94a3b8] leading-relaxed">
-                      Modélisation relationnelle, normalisation des données et requêtes d&apos;agrégation à haute performance.
+                      {isEn
+                        ? "Relational database modeling, schema normalization, and high-performance aggregation queries."
+                        : "Modélisation relationnelle, normalisation des données et requêtes d'agrégation à haute performance."}
                     </p>
                   </div>
                   <div className="p-4 rounded-xl bg-white/[0.02] border border-white/10 space-y-1">
-                    <strong className="text-white block text-sm font-semibold">Systèmes &amp; Réseaux :</strong>
+                    <strong className="text-white block text-sm font-semibold">
+                      {isEn ? "Systems & Networking:" : "Systèmes & Réseaux :"}
+                    </strong>
                     <p className="text-xs text-[#94a3b8] leading-relaxed">
-                      Protocoles TCP/IP, gestion des threads, processus concurrents et communications client-serveur.
+                      {isEn
+                        ? "TCP/IP protocols, thread management, concurrent processes, and client-server architectures."
+                        : "Protocoles TCP/IP, gestion des threads, processus concurrents et communications client-serveur."}
                     </p>
                   </div>
                 </div>
 
                 <div className="pt-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs text-[#94a3b8]">
-                  <span>Ce que ça m&apos;a apporté : la rigueur nécessaire pour modéliser des formules physiques sans la moindre approximation.</span>
+                  <span>
+                    {isEn
+                      ? "Key takeaway: the mathematical discipline required to model physical formulas and engineering rules with zero approximation."
+                      : "Ce que ça m'a apporté : la rigueur nécessaire pour modéliser des formules physiques sans la moindre approximation."}
+                  </span>
                 </div>
               </div>
             )}
@@ -310,7 +388,9 @@ export default function HomePage() {
                   <div className="flex items-center gap-2.5">
                     <span className="w-2.5 h-2.5 rounded-full bg-[#06b6d4] animate-ping" />
                     <h3 className="text-xl font-bold text-white">
-                      Ingénierie d&apos;Automatisation, Botting &amp; Revente Numérique à Grande Échelle
+                      {isEn
+                        ? "High-Volume Automation, Botting & Digital Asset Trading"
+                        : "Ingénierie d'Automatisation, Botting & Revente Numérique à Grande Échelle"}
                     </h3>
                   </div>
                   <a
@@ -320,12 +400,14 @@ export default function HomePage() {
                     className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-xs font-bold text-amber-400 transition-colors"
                   >
                     <Coins className="w-3.5 h-3.5" />
-                    <span>Vérifier mon profil marchand Eldorado.gg ↗</span>
+                    <span>{isEn ? "Verify Merchant Profile on Eldorado.gg ↗" : "Vérifier mon profil marchand Eldorado.gg ↗"}</span>
                   </a>
                 </div>
 
                 <p className="text-sm sm:text-base text-[#cbd5e1] leading-relaxed">
-                  Pendant 4 ans, j&apos;ai opéré professionnellement sur les marchés virtuels internationaux en développant des scripts et des bots pour générer et revendre des monnaies numériques et des comptes de jeux vidéo à fort volume.
+                  {isEn
+                    ? "For 4 years, I operated professionally across global digital asset marketplaces, architecting autonomous bots and scripts to farm, trade, and distribute virtual currencies and gaming accounts at high volume."
+                    : "Pendant 4 ans, j'ai opéré professionnellement sur les marchés virtuels internationaux en développant des scripts et des bots pour générer et revendre des monnaies numériques et des comptes de jeux vidéo à fort volume."}
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
@@ -335,10 +417,12 @@ export default function HomePage() {
                       <span>Escape from Tarkov (EFT) — AutoHotkey</span>
                     </div>
                     <p className="text-xs text-[#94a3b8] leading-relaxed">
-                      Scripts AHK poussés à l&apos;extrême : automatisation d&apos;interfaces d&apos;inventaire touffues, interactions de marché (Flea Market) en microsecondes, détection visuelle et contournement de la latence réseau.
+                      {isEn
+                        ? "Extreme AutoHotkey (AHK) scripting: complex inventory automation, sub-15ms Flea Market sniping, visual pixel detection, and network latency compensation."
+                        : "Scripts AHK poussés à l'extrême : automatisation d'interfaces d'inventaire touffues, interactions de marché (Flea Market) en microsecondes, détection visuelle et contournement de la latence réseau."}
                     </p>
                     <div className="text-[11px] font-mono text-[#06b6d4] pt-1">
-                      → Maîtrise des timings d&apos;inputs &amp; macros réactives
+                      {isEn ? "→ Mastered input timings & lightning-fast reactive macros" : "→ Maîtrise des timings d'inputs & macros réactives"}
                     </div>
                   </div>
 
@@ -348,16 +432,21 @@ export default function HomePage() {
                       <span>Old School RuneScape (OSRS) — Java</span>
                     </div>
                     <p className="text-xs text-[#94a3b8] leading-relaxed">
-                      Développement de bots complets en Java : reverse-engineering du client de jeu, logique événementielle, gestion de fermes multi-sessions et multi-threads tournant 24h/24 et 7j/7 sans surveillance.
+                      {isEn
+                        ? "Autonomous Java bots: game client reverse-engineering, event-driven decision trees, and distributed multi-session farms running 24/7 with zero human intervention."
+                        : "Développement de bots complets en Java : reverse-engineering du client de jeu, logique événementielle, gestion de fermes multi-sessions et multi-threads tournant 24h/24 et 7j/7 sans surveillance."}
                     </p>
                     <div className="text-[11px] font-mono text-[#a855f7] pt-1">
-                      → Systèmes distribués, résilience 24/7 &amp; zero memory leak
+                      {isEn ? "→ Distributed systems, 24/7 resilience & zero memory leak" : "→ Systèmes distribués, résilience 24/7 & zero memory leak"}
                     </div>
                   </div>
                 </div>
 
                 <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/25 text-xs text-amber-200/90 leading-relaxed">
-                  <strong>La leçon capitale de cette expérience :</strong> Quand une erreur de code, une fuite de mémoire ou une désynchronisation réseau entraîne une perte d&apos;argent réelle en direct, la tolérance aux bugs est nulle. On apprend à concevoir du code infaillible, testé sous toutes les conditions de stress et totalement autonome.
+                  <strong>{isEn ? "The critical lesson from this real-world battlefield: " : "La leçon capitale de cette expérience : "}</strong>
+                  {isEn
+                    ? "When a software bug, memory leak, or network hiccup immediately costs real money in real time, error tolerance is zero. You learn to write battle-hardened code engineered to endure stress and run indefinitely without failing."
+                    : "Quand une erreur de code, une fuite de mémoire ou une désynchronisation réseau entraîne une perte d'argent réelle en direct, la tolérance aux bugs est nulle. On apprend à concevoir du code infaillible, testé sous toutes les conditions de stress et totalement autonome."}
                 </div>
               </div>
             )}
@@ -368,42 +457,48 @@ export default function HomePage() {
                   <div className="flex items-center gap-2.5">
                     <span className="w-2.5 h-2.5 rounded-full bg-[#10b981]" />
                     <h3 className="text-xl font-bold text-white">
-                      Édition d&apos;Outils Web Utiles, Neutres &amp; Instantanés
+                      {isEn ? "Building Open, Frictionless & Blazingly Fast Web Tools" : "Édition d'Outils Web Utiles, Neutres & Instantanés"}
                     </h3>
                   </div>
                   <span className="text-xs font-mono px-3 py-1 rounded-full bg-[#10b981]/15 text-[#34d399] border border-[#10b981]/30">
-                    2026 — Aujourd&apos;hui
+                    {isEn ? "2026 — Present" : "2026 — Aujourd'hui"}
                   </span>
                 </div>
 
                 <p className="text-sm sm:text-base text-[#cbd5e1] leading-relaxed">
-                  Mettre ces 9 années d&apos;expertise en algorithmes, en automatisation et en scraping au service d&apos;outils web grand public en accès libre, sans intermédiaire ni modèle prédateur :
+                  {isEn
+                    ? "Channeling these 9 years of algorithmic rigor, scraping proficiency, and automation discipline into open, frictionless consumer web products:"
+                    : "Mettre ces 9 années d'expertise en algorithmes, en automatisation et en scraping au service d'outils web grand public en accès libre, sans intermédiaire ni modèle prédateur :"}
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                   <div className="p-5 rounded-2xl bg-black/60 border border-[#10b981]/30 space-y-2">
                     <div className="flex items-center gap-2 text-[#34d399] font-bold text-sm">
                       <Sprout className="w-4 h-4" />
-                      <span>JardinCalcul.fr (En Production)</span>
+                      <span>{isEn ? "JardinCalcul.fr (Live in Production)" : "JardinCalcul.fr (En Production)"}</span>
                     </div>
                     <p className="text-xs text-[#94a3b8] leading-relaxed">
-                      7 calculateurs physiques (gravier, béton, gazon, terreau, clôtures, dalles), 35 guides chantiers et 50 pages statiques. Exécution locale 100% client-side en moins de 50ms.
+                      {isEn
+                        ? "7 physical material calculators (gravel, concrete, lawn, soil, fences, tiles), 35 technical guides, and 50 pre-rendered static pages. 100% local client-side computation in < 50ms."
+                        : "7 calculateurs physiques (gravier, béton, gazon, terreau, clôtures, dalles), 35 guides chantiers et 50 pages statiques. Exécution locale 100% client-side en moins de 50ms."}
                     </p>
                     <a href="https://www.jardincalcul.fr" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-xs font-bold text-[#34d399] hover:underline pt-1">
-                      <span>Visiter le site officiel →</span>
+                      <span>{isEn ? "Visit official website →" : "Visiter le site officiel →"}</span>
                     </a>
                   </div>
 
                   <div className="p-5 rounded-2xl bg-black/60 border border-[#06b6d4]/30 space-y-2">
                     <div className="flex items-center gap-2 text-[#22d3ee] font-bold text-sm">
                       <Cpu className="w-4 h-4" />
-                      <span>Comparateur Hardware &amp; Tech (En Conception)</span>
+                      <span>{isEn ? "Hardware & Tech Comparator (In R&D)" : "Comparateur Hardware & Tech (En Conception)"}</span>
                     </div>
                     <p className="text-xs text-[#94a3b8] leading-relaxed">
-                      Comparateur neutre GPU/CPU (FPS/€/Watt), agrégateur de cours multi-marchands et détecteur mathématique de vrais bons plans matériels.
+                      {isEn
+                        ? "Unbiased GPU/CPU comparator (FPS/$/Watt), multi-retailer price aggregator, and mathematical real-deal detector."
+                        : "Comparateur neutre GPU/CPU (FPS/€/Watt), agrégateur de cours multi-marchands et détecteur mathématique de vrais bons plans matériels."}
                     </p>
                     <a href="#hardware" className="inline-flex items-center gap-1 text-xs font-bold text-[#22d3ee] hover:underline pt-1">
-                      <span>Découvrir le concept R&amp;D →</span>
+                      <span>{isEn ? "Discover R&D concept →" : "Découvrir le concept R&D →"}</span>
                     </a>
                   </div>
                 </div>
@@ -418,14 +513,14 @@ export default function HomePage() {
                 <div className="w-3 h-3 rounded-full bg-red-500/80" />
                 <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                 <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                <span className="text-xs font-mono text-[#94a3b8] ml-2">stygmar-env — terminal interactif</span>
+                <span className="text-xs font-mono text-[#94a3b8] ml-2">stygmar-env — {isEn ? "interactive terminal" : "terminal interactif"}</span>
               </div>
 
               <div className="flex items-center gap-1.5">
                 <button
                   type="button"
                   onClick={() => setCodeTab("tarkov")}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-colors ${
+                  className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-colors cursor-pointer ${
                     codeTab === "tarkov" ? "bg-[#06b6d4]/20 text-[#22d3ee] font-bold" : "text-[#64748b] hover:text-white"
                   }`}
                 >
@@ -434,7 +529,7 @@ export default function HomePage() {
                 <button
                   type="button"
                   onClick={() => setCodeTab("osrs")}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-colors ${
+                  className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-colors cursor-pointer ${
                     codeTab === "osrs" ? "bg-[#8b5cf6]/20 text-[#c084fc] font-bold" : "text-[#64748b] hover:text-white"
                   }`}
                 >
@@ -443,7 +538,7 @@ export default function HomePage() {
                 <button
                   type="button"
                   onClick={() => setCodeTab("jardin")}
-                  className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-colors ${
+                  className={`px-2.5 py-1 rounded-lg text-xs font-mono transition-colors cursor-pointer ${
                     codeTab === "jardin" ? "bg-[#10b981]/20 text-[#34d399] font-bold" : "text-[#64748b] hover:text-white"
                   }`}
                 >
@@ -455,13 +550,17 @@ export default function HomePage() {
             <div className="p-4 sm:p-5 font-mono text-xs text-[#cbd5e1] leading-relaxed overflow-x-auto">
               {codeTab === "tarkov" && (
                 <div className="space-y-1">
-                  <div className="text-[#64748b]">{"// 2021-2025: Script AutoHotkey avancé pour Escape from Tarkov (Flea Market / Inventaire)"}</div>
+                  <div className="text-[#64748b]">
+                    {isEn
+                      ? "// 2021-2025: Advanced AutoHotkey script for Escape from Tarkov (Flea Market / Inventory)"
+                      : "// 2021-2025: Script AutoHotkey avancé pour Escape from Tarkov (Flea Market / Inventaire)"}
+                  </div>
                   <div><span className="text-[#a855f7]">SetBatchLines</span>, -1</div>
                   <div><span className="text-[#a855f7]">SetKeyDelay</span>, -1, 0</div>
                   <div><span className="text-[#22d3ee]">AutoMarketSnipe</span>(itemSlot, targetPrice, maxLatencyMs) &#123;</div>
                   <div className="pl-4">pixelColor := <span className="text-amber-400">PixelGetColor</span>(itemSlot.x, itemSlot.y, &quot;RGB&quot;)</div>
                   <div className="pl-4"><span className="text-[#34d399]">if</span> (pixelColor == 0x24C882 &amp;&amp; <span className="text-amber-400">QueryPrice</span>() &lt;= targetPrice) &#123;</div>
-                  <div className="pl-8"><span className="text-amber-400">SendInput</span>, &#123;Space&#125;&#123;Y&#125; <span className="text-[#64748b] font-italic">{"// Confirmation instantanée (< 15ms)"}</span></div>
+                  <div className="pl-8"><span className="text-amber-400">SendInput</span>, &#123;Space&#125;&#123;Y&#125; <span className="text-[#64748b] font-italic">{isEn ? "// Instant confirmation (< 15ms)" : "// Confirmation instantanée (< 15ms)"}</span></div>
                   <div className="pl-8"><span className="text-amber-400">LogTransactionSuccess</span>(&quot;EldoradoOrder_Sync&quot;, itemSlot.id)</div>
                   <div className="pl-4">&#125;</div>
                   <div>&#125;</div>
@@ -470,7 +569,11 @@ export default function HomePage() {
 
               {codeTab === "osrs" && (
                 <div className="space-y-1">
-                  <div className="text-[#64748b]">{"// 2021-2025: Démon multi-thread Java tournant 24/7 sur Old School RuneScape"}</div>
+                  <div className="text-[#64748b]">
+                    {isEn
+                      ? "// 2021-2025: Autonomous Java multi-thread daemon running 24/7 on Old School RuneScape"
+                      : "// 2021-2025: Démon multi-thread Java tournant 24/7 sur Old School RuneScape"}
+                  </div>
                   <div><span className="text-[#a855f7]">public class</span> <span className="text-[#22d3ee]">AutonomousWorkerThread</span> <span className="text-[#a855f7]">implements</span> Runnable &#123;</div>
                   <div className="pl-4"><span className="text-[#a855f7]">private final</span> GameClientInstance client;</div>
                   <div className="pl-4"><span className="text-[#a855f7]">public void</span> <span className="text-amber-400">run</span>() &#123;</div>
@@ -486,10 +589,14 @@ export default function HomePage() {
 
               {codeTab === "jardin" && (
                 <div className="space-y-1">
-                  <div className="text-[#64748b]">{"// 2026: Moteur de calcul physique pur client-side de JardinCalcul.fr (< 50ms)"}</div>
+                  <div className="text-[#64748b]">
+                    {isEn
+                      ? "// 2026: Pure client-side physical calculation engine of JardinCalcul.fr (< 50ms)"
+                      : "// 2026: Moteur de calcul physique pur client-side de JardinCalcul.fr (< 50ms)"}
+                  </div>
                   <div><span className="text-[#a855f7]">export function</span> <span className="text-[#22d3ee]">calculateGravelNeeds</span>(lengthM: number, widthM: number, depthCm: number, density: number) &#123;</div>
                   <div className="pl-4"><span className="text-[#a855f7]">const</span> rawVolumeM3 = (lengthM * widthM * depthCm) / 100;</div>
-                  <div className="pl-4"><span className="text-[#a855f7]">const</span> withCompactionM3 = rawVolumeM3 * 1.10; <span className="text-[#64748b] font-italic">{"// +10% tassement normalisé"}</span></div>
+                  <div className="pl-4"><span className="text-[#a855f7]">const</span> withCompactionM3 = rawVolumeM3 * 1.10; <span className="text-[#64748b] font-italic">{isEn ? "// +10% standard compaction" : "// +10% tassement normalisé"}</span></div>
                   <div className="pl-4"><span className="text-[#a855f7]">const</span> totalTonnes = withCompactionM3 * density;</div>
                   <div className="pl-4"><span className="text-[#34d399]">return</span> &#123;</div>
                   <div className="pl-8">volumeM3: rawVolumeM3,</div>
@@ -510,10 +617,10 @@ export default function HomePage() {
           <div>
             <div className="inline-flex items-center gap-2 text-xs font-bold text-[#10b981] uppercase tracking-wider mb-2">
               <BadgeCheck className="w-4 h-4 text-[#10b981]" />
-              <span>Studio &amp; Réalisations Numériques</span>
+              <span>{isEn ? "Studio & Digital Products" : "Studio & Réalisations Numériques"}</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white">
-              Les Projets Développés
+              {isEn ? "Engineered Projects" : "Les Projets Développés"}
             </h2>
           </div>
 
@@ -550,24 +657,26 @@ export default function HomePage() {
                 <div className="flex flex-wrap items-center gap-2.5">
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#10b981]/20 text-[#34d399] border border-[#10b981]/40">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#34d399] animate-ping" />
-                    EN LIGNE &amp; ACTIF
+                    {isEn ? "LIVE & IN PRODUCTION" : "EN LIGNE & ACTIF"}
                   </span>
                   <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-white/90 border border-white/10">
-                    Aménagement Extérieur &amp; BTP
+                    {isEn ? "Landscaping & Construction" : "Aménagement Extérieur & BTP"}
                   </span>
                   <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-white/90 border border-white/10">
-                    50 Pages Statiques
+                    {isEn ? "50 Static Pages" : "50 Pages Statiques"}
                   </span>
                 </div>
 
                 <div>
                   <h3 className="text-2xl sm:text-3xl font-black text-white group-hover:text-[#34d399] transition-colors mb-2">
-                    JardinCalcul.fr — La suite d&apos;estimation de matériaux d&apos;extérieur
+                    {isEn
+                      ? "JardinCalcul.fr — The Exterior Material Estimation Suite"
+                      : "JardinCalcul.fr — La suite d'estimation de matériaux d'extérieur"}
                   </h3>
                   <p className="text-sm sm:text-base text-[#94a3b8] leading-relaxed">
-                    Conçu pour les particuliers et bricoleurs exigeants : fini les hésitations en magasin.
-                    Vous décrivez votre chantier (dimensions, usage, finition), l&apos;outil calcule instantanément le cubage,
-                    le tonnage, le nombre de sacs et vous génère une liste d&apos;achats complète avec accessoires indispensables.
+                    {isEn
+                      ? "Engineered for homeowners and DIYers: no more guesswork in hardware stores. Describe your project (dimensions, use case, depth), and the engine immediately calculates volume, tonnage, exact bag count, and generates a printable shopping list with essential accessories."
+                      : "Conçu pour les particuliers et bricoleurs exigeants : fini les hésitations en magasin. Vous décrivez votre chantier (dimensions, usage, finition), l'outil calcule instantanément le cubage, le tonnage, le nombre de sacs et vous génère une liste d'achats complète avec accessoires indispensables."}
                   </p>
                 </div>
 
@@ -576,32 +685,40 @@ export default function HomePage() {
                   <div className="flex items-start gap-2.5 p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
                     <CheckCircle2 className="w-4 h-4 text-[#34d399] shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-white block font-medium">7 Calculateurs Métier :</strong>
-                      <span className="text-[#94a3b8] text-xs">Gravier, béton, terreau, gazon, paillage, clôture, terrasse sur plots.</span>
+                      <strong className="text-white block font-medium">{isEn ? "7 Specialized Calculators:" : "7 Calculateurs Métier :"}</strong>
+                      <span className="text-[#94a3b8] text-xs">
+                        {isEn ? "Gravel, concrete, soil, lawn, mulch, rigid fences, pedestal tiles." : "Gravier, béton, terreau, gazon, paillage, clôture, terrasse sur plots."}
+                      </span>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-2.5 p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
                     <CheckCircle2 className="w-4 h-4 text-[#34d399] shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-white block font-medium">Schémas 2D de coupe :</strong>
-                      <span className="text-[#94a3b8] text-xs">Visualisation immédiate de l&apos;épaisseur et des couches techniques.</span>
+                      <strong className="text-white block font-medium">{isEn ? "Interactive 2D Cross-Sections:" : "Schémas 2D de coupe :"}</strong>
+                      <span className="text-[#94a3b8] text-xs">
+                        {isEn ? "Instant visual breakdown of depth, base layers, and material compaction." : "Visualisation immédiate de l'épaisseur et des couches techniques."}
+                      </span>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-2.5 p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
                     <CheckCircle2 className="w-4 h-4 text-[#34d399] shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-white block font-medium">Décision d&apos;achat &amp; Budget :</strong>
-                      <span className="text-[#94a3b8] text-xs">Arbitrage économique sacs vs vrac et fourchette de prix magasin en direct.</span>
+                      <strong className="text-white block font-medium">{isEn ? "Purchase Arbitrage & Budget:" : "Décision d'achat & Budget :"}</strong>
+                      <span className="text-[#94a3b8] text-xs">
+                        {isEn ? "Smart cost comparison (bags vs bulk) and real retail market estimates." : "Arbitrage économique sacs vs vrac et fourchette de prix magasin en direct."}
+                      </span>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-2.5 p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
                     <CheckCircle2 className="w-4 h-4 text-[#34d399] shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-white block font-medium">35 Guides Pratiques :</strong>
-                      <span className="text-[#94a3b8] text-xs">Dosages au seau/pelle, calibres, normes DTU et conseils de mise en œuvre.</span>
+                      <strong className="text-white block font-medium">{isEn ? "35 Technical Guides:" : "35 Guides Pratiques :"}</strong>
+                      <span className="text-[#94a3b8] text-xs">
+                        {isEn ? "Shovel/bucket concrete recipes, gravel grades, building standards, and best practices." : "Dosages au seau/pelle, calibres, normes DTU et conseils de mise en œuvre."}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -623,14 +740,14 @@ export default function HomePage() {
                   rel="noopener noreferrer"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-[#10b981] hover:bg-[#059669] text-white font-bold text-sm transition-all shadow-xl shadow-[#10b981]/25 hover:scale-105 active:scale-[0.98]"
                 >
-                  <span>Accéder à JardinCalcul.fr</span>
+                  <span>{isEn ? "Launch JardinCalcul.fr" : "Accéder à JardinCalcul.fr"}</span>
                   <ExternalLink className="w-4 h-4" />
                 </a>
                 <div className="text-xs text-[#94a3b8] text-center lg:text-right">
-                  Domaine officiel : <strong className="text-white">jardincalcul.fr</strong>
+                  {isEn ? "Official domain: " : "Domaine officiel : "} <strong className="text-white">jardincalcul.fr</strong>
                 </div>
                 <div className="text-[11px] text-[#64748b] text-center lg:text-right">
-                  Gratuit · Sans pub intrusive · 100% Client-side
+                  {isEn ? "Free · Zero intrusive ads · 100% Client-side" : "Gratuit · Sans pub intrusive · 100% Client-side"}
                 </div>
               </div>
             </div>
@@ -645,22 +762,25 @@ export default function HomePage() {
                 <div className="flex items-center gap-2">
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#06b6d4]/20 text-[#22d3ee] border border-[#06b6d4]/40">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#22d3ee] animate-pulse" />
-                    PROJET EN CONCEPTION (R&amp;D 2026)
+                    {isEn ? "PROJECT IN CONCEPTION (R&D 2026)" : "PROJET EN CONCEPTION (R&D 2026)"}
                   </span>
                   <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-white/80 border border-white/10">
                     Hardware &amp; Tech
                   </span>
                 </div>
-                <span className="text-xs font-mono text-[#22d3ee]">Horizon Fin 2026</span>
+                <span className="text-xs font-mono text-[#22d3ee]">{isEn ? "Horizon: Late 2026" : "Horizon Fin 2026"}</span>
               </div>
 
               <div className="max-w-3xl space-y-3">
                 <h3 className="text-2xl sm:text-3xl font-black text-white">
-                  Le Comparateur &amp; Agrégateur Hardware neutre, sans faux bons plans
+                  {isEn
+                    ? "The Unbiased Hardware & Tech Comparator: Zero Bullshit, Real Metrics"
+                    : "Le Comparateur & Agrégateur Hardware neutre, sans faux bons plans"}
                 </h3>
                 <p className="text-sm sm:text-base text-[#94a3b8] leading-relaxed">
-                  Le marché des composants PC est pollué par des comparateurs automatisés sans âme, des benchmarks trompeurs et de fausses promos barrées.
-                  Le projet Hardware Lab réutilisera nos compétences en scraping et calculs instantanés pour proposer un outil 100 % objectif.
+                  {isEn
+                    ? "The PC hardware space is riddled with generic AI scrapers, misleading benchmarks, and fake discounted prices. Hardware Lab leverages our scraping and instant analytics background to deliver a genuinely objective tool."
+                    : "Le marché des composants PC est pollué par des comparateurs automatisés sans âme, des benchmarks trompeurs et de fausses promos barrées. Le projet Hardware Lab réutilisera nos compétences en scraping et calculs instantanés pour proposer un outil 100 % objectif."}
                 </p>
               </div>
 
@@ -668,48 +788,60 @@ export default function HomePage() {
                 <div className="p-5 rounded-2xl bg-black/40 border border-white/10 space-y-2">
                   <div className="flex items-center gap-2 text-[#22d3ee] font-bold text-sm">
                     <Scale className="w-4 h-4" />
-                    <span>Comparateur GPU &amp; CPU (FPS / € / Watt)</span>
+                    <span>{isEn ? "Real GPU & CPU Comparator (FPS / $ / Watt)" : "Comparateur GPU & CPU (FPS / € / Watt)"}</span>
                   </div>
                   <p className="text-xs text-[#94a3b8] leading-relaxed">
-                    Comparaison directe des performances réelles en jeu et création par rapport au prix payé et à la consommation énergétique.
+                    {isEn
+                      ? "Direct real-world gaming and creative benchmarks indexed against street price and power draw."
+                      : "Comparaison directe des performances réelles en jeu et création par rapport au prix payé et à la consommation énergétique."}
                   </p>
                 </div>
 
                 <div className="p-5 rounded-2xl bg-black/40 border border-white/10 space-y-2">
                   <div className="flex items-center gap-2 text-[#34d399] font-bold text-sm">
                     <TrendingDown className="w-4 h-4" />
-                    <span>Agrégateur de Deals &amp; Historique de Cours</span>
+                    <span>{isEn ? "Deal Aggregator & Price History" : "Agrégateur de Deals & Historique de Cours"}</span>
                   </div>
                   <p className="text-xs text-[#94a3b8] leading-relaxed">
-                    Suivi transparent des cours des composants chez les cybermarchands européens avec détection des vraies baisses de prix.
+                    {isEn
+                      ? "Transparent price tracking across European e-tailers, mathematically detecting genuine price drops."
+                      : "Suivi transparent des cours des composants chez les cybermarchands européens avec détection des vraies baisses de prix."}
                   </p>
                 </div>
 
                 <div className="p-5 rounded-2xl bg-black/40 border border-white/10 space-y-2">
                   <div className="flex items-center gap-2 text-[#a855f7] font-bold text-sm">
                     <Sliders className="w-4 h-4" />
-                    <span>Config Builder &amp; Vérificateur Physique</span>
+                    <span>{isEn ? "PC Builder & Physical Clearance Checker" : "Config Builder & Vérificateur Physique"}</span>
                   </div>
                   <p className="text-xs text-[#94a3b8] leading-relaxed">
-                    Vérification intelligente des compatibilités physiques : dégagement ventirad, longueur GPU dans le boîtier et dimensionnement d&apos;alimentation.
+                    {isEn
+                      ? "Smart physical clearance checks: cooler height, GPU case length, motherboard VRM, and PSU capacity."
+                      : "Vérification intelligente des compatibilités physiques : dégagement ventirad, longueur GPU dans le boîtier et dimensionnement d'alimentation."}
                   </p>
                 </div>
 
                 <div className="p-5 rounded-2xl bg-black/40 border border-white/10 space-y-2">
                   <div className="flex items-center gap-2 text-amber-400 font-bold text-sm">
                     <Monitor className="w-4 h-4" />
-                    <span>Paniers Types par Budget Réel</span>
+                    <span>{isEn ? "Balanced Build Guides by Real Budget" : "Paniers Types par Budget Réel"}</span>
                   </div>
                   <p className="text-xs text-[#94a3b8] leading-relaxed">
-                    Configurations optimisées au centime près (1080p, 1440p, 4K / IA créateurs) mises à jour en continu selon les fluctuations réelles.
+                    {isEn
+                      ? "Optimized part selections (1080p budget, 1440p sweet-spot, 4K workstation) auto-updated with stock swings."
+                      : "Configurations optimisées au centime près (1080p, 1440p, 4K / IA créateurs) mises à jour en continu selon les fluctuations réelles."}
                   </p>
                 </div>
               </div>
 
               <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-[#94a3b8]">
-                <span>Phase actuelle : <strong>Modélisation de la base de données de composants</strong></span>
+                <span>
+                  {isEn
+                    ? "Current stage: Component database modeling & ratio formulas"
+                    : "Phase actuelle : Modélisation de la base de données de composants"}
+                </span>
                 <a href="#contact" className="font-bold text-[#22d3ee] hover:underline">
-                  Une idée ou suggestion ? Écrivez-nous →
+                  {isEn ? "Have an idea or feedback? Let us know →" : "Une idée ou suggestion ? Écrivez-nous →"}
                 </a>
               </div>
             </div>
@@ -722,10 +854,12 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white">
-              Notre Ligne de Conduite
+              {isEn ? "Core Philosophy & Engineering Standards" : "Notre Ligne de Conduite"}
             </h2>
             <p className="text-sm sm:text-base text-[#94a3b8] mt-3">
-              Construire des applications web qui respectent le temps et l&apos;intelligence de leurs utilisateurs.
+              {isEn
+                ? "Building software that respects user attention, time, and intelligence."
+                : "Construire des applications web qui respectent le temps et l'intelligence de leurs utilisateurs."}
             </p>
           </div>
 
@@ -734,9 +868,11 @@ export default function HomePage() {
               <div className="w-12 h-12 rounded-xl bg-[#10b981]/15 text-[#34d399] flex items-center justify-center">
                 <Zap className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-white">Zéro Friction</h3>
+              <h3 className="text-lg font-bold text-white">{isEn ? "Zero Friction" : "Zéro Friction"}</h3>
               <p className="text-xs sm:text-sm text-[#94a3b8] leading-relaxed">
-                Aucun compte forcé, aucun paywall dissimulé, aucune pop-up bloquante. L&apos;utilisateur entre ses données et obtient sa réponse en quelques secondes.
+                {isEn
+                  ? "No mandatory accounts, no dark patterns, no modal paywalls. Enter your parameters and get instant answers in seconds."
+                  : "Aucun compte forcé, aucun paywall dissimulé, aucune pop-up bloquante. L'utilisateur entre ses données et obtient sa réponse en quelques secondes."}
               </p>
             </div>
 
@@ -744,9 +880,11 @@ export default function HomePage() {
               <div className="w-12 h-12 rounded-xl bg-[#06b6d4]/15 text-[#22d3ee] flex items-center justify-center">
                 <ShieldCheck className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-white">Rigueur &amp; Transparence</h3>
+              <h3 className="text-lg font-bold text-white">{isEn ? "Rigor & Transparency" : "Rigueur & Transparence"}</h3>
               <p className="text-xs sm:text-sm text-[#94a3b8] leading-relaxed">
-                Les moteurs de calcul et algorithmes de comparaison s&apos;appuient sur des données physiques, des normes établies et des formules vérifiables, pas sur du vent.
+                {isEn
+                  ? "Calculators and comparison engines are grounded in verified physical standards, industry norms, and auditable math."
+                  : "Les moteurs de calcul et algorithmes de comparaison s'appuient sur des données physiques, des normes établies et des formules vérifiables, pas sur du vent."}
               </p>
             </div>
 
@@ -754,9 +892,11 @@ export default function HomePage() {
               <div className="w-12 h-12 rounded-xl bg-purple-500/15 text-purple-400 flex items-center justify-center">
                 <Code2 className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-white">Ingénierie Web Moderne</h3>
+              <h3 className="text-lg font-bold text-white">{isEn ? "Modern Web Engineering" : "Ingénierie Web Moderne"}</h3>
               <p className="text-xs sm:text-sm text-[#94a3b8] leading-relaxed">
-                Next.js App Router, TypeScript strict, exécution client-side instantanée et architecture légère pour des temps de chargement ultra-rapides même sur mobile.
+                {isEn
+                  ? "Next.js App Router, strict TypeScript, instant client-side execution, and lightweight architecture for sub-100ms load times."
+                  : "Next.js App Router, TypeScript strict, exécution client-side instantanée et architecture légère pour des temps de chargement ultra-rapides même sur mobile."}
               </p>
             </div>
           </div>
@@ -771,11 +911,13 @@ export default function HomePage() {
           </div>
 
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
-            Un retour, une suggestion ou une question ?
+            {isEn ? "Feedback, suggestions, or collaboration?" : "Un retour, une suggestion ou une question ?"}
           </h2>
 
           <p className="text-sm text-[#94a3b8] mb-8 leading-relaxed">
-            Vous avez une idée d&apos;amélioration pour <strong>JardinCalcul.fr</strong>, une suggestion pour le futur <strong>comparateur Hardware</strong>, ou vous souhaitez échanger sur du code ou de l&apos;automatisation ? Parlons-en !
+            {isEn
+              ? "Have an idea for JardinCalcul.fr, feature requests for the upcoming Hardware comparator, or want to discuss automation and code? Let's connect!"
+              : "Vous avez une idée d'amélioration pour JardinCalcul.fr, une suggestion pour le futur comparateur Hardware, ou vous souhaitez échanger sur du code ou de l'automatisation ? Parlons-en !"}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -787,12 +929,12 @@ export default function HomePage() {
               {copiedEmail ? (
                 <>
                   <Check className="w-4 h-4 text-emerald-600" />
-                  <span>Email copié (contact@stygmar.com)</span>
+                  <span>{isEn ? "Email copied (contact@stygmar.com)" : "Email copié (contact@stygmar.com)"}</span>
                 </>
               ) : (
                 <>
                   <Copy className="w-4 h-4 text-[#06080d]" />
-                  <span>Copier contact@stygmar.com</span>
+                  <span>{isEn ? "Copy contact@stygmar.com" : "Copier contact@stygmar.com"}</span>
                 </>
               )}
             </button>
@@ -801,7 +943,7 @@ export default function HomePage() {
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-sm border border-white/10 transition-colors"
             >
               <Mail className="w-4 h-4" />
-              <span>Ouvrir ma messagerie</span>
+              <span>{isEn ? "Open email client" : "Ouvrir ma messagerie"}</span>
             </a>
             <a
               href="https://github.com/Stygmar"
@@ -822,7 +964,7 @@ export default function HomePage() {
           <div className="flex items-center gap-2 text-[#94a3b8]">
             <span className="font-bold text-white">STYGMAR</span>
             <span>—</span>
-            <span>Studio Web &amp; Automatisation · © 2026</span>
+            <span>{isEn ? "Independent Web Studio & Automation · © 2026" : "Studio Web & Automatisation · © 2026"}</span>
           </div>
 
           <div className="flex items-center gap-6">
