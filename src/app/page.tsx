@@ -1116,21 +1116,79 @@ export default function HomePage() {
                         <span>Escape from Tarkov</span>
                       </div>
                       <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#06b6d4]/20 text-[#22d3ee] border border-[#06b6d4]/30">
-                        AutoHotkey · &lt; 15 ms
+                        AutoHotkey · VMs (17x) · &lt; 15 ms
                       </span>
                     </div>
                     <ul className="space-y-1.5 text-xs text-[#cbd5e1]">
                       <li className="flex items-start gap-2">
                         <span className="text-[#06b6d4] font-bold shrink-0">⚡</span>
-                        <span><strong>Sniping Flea Market</strong> : détection visuelle de pixels et validation d&apos;achat en microsecondes.</span>
+                        <span>
+                          {isEn ? (
+                            <>
+                              <strong>Sniping Flea Market</strong> : computer-vision pixel detection and buy validation in microseconds.
+                            </>
+                          ) : (
+                            <>
+                              <strong>Sniping Flea Market</strong> : détection visuelle de pixels et validation d&apos;achat en microsecondes.
+                            </>
+                          )}
+                        </span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-[#06b6d4] font-bold shrink-0">🎒</span>
-                        <span><strong>Inventaires imbriqués</strong> : manipulation chirurgicale d&apos;interfaces touffues et tri automatisé.</span>
+                        <span>
+                          {isEn ? (
+                            <>
+                              <strong>Nested Inventories</strong> : surgical manipulation of complex dense UI &amp; automated sorting.
+                            </>
+                          ) : (
+                            <>
+                              <strong>Inventaires imbriqués</strong> : manipulation chirurgicale d&apos;interfaces touffues et tri automatisé.
+                            </>
+                          )}
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-[#06b6d4] font-bold shrink-0">🖥️</span>
+                        <span>
+                          {isEn ? (
+                            <>
+                              <strong>VM Optimization (17 Accounts)</strong> : heavy virtual machine tuning and resource management to run and orchestrate up to 17 accounts in parallel.
+                            </>
+                          ) : (
+                            <>
+                              <strong>Optimisation sur machines virtuelles</strong> : gestion et orchestration de jusqu&apos;à 17 comptes en parallèle sur des VMs optimisées sans perte de performance.
+                            </>
+                          )}
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-[#06b6d4] font-bold shrink-0">🧩</span>
+                        <span>
+                          {isEn ? (
+                            <>
+                              <strong>In-Game Captcha Bypass</strong> : computer vision detection and automated solving of in-game captchas for uninterrupted execution.
+                            </>
+                          ) : (
+                            <>
+                              <strong>Contournement de captchas in-game</strong> : détection visuelle et contournement/résolution automatisée des captchas en jeu pour maintenir l&apos;automatisation sans interruption.
+                            </>
+                          )}
+                        </span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-[#06b6d4] font-bold shrink-0">🌐</span>
-                        <span><strong>Zéro latence</strong> : compensation fine de la latence réseau et timings millimétrés.</span>
+                        <span>
+                          {isEn ? (
+                            <>
+                              <strong>Zero Latency</strong> : precise network latency compensation and millisecond-accurate timings.
+                            </>
+                          ) : (
+                            <>
+                              <strong>Zéro latence</strong> : compensation fine de la latence réseau et timings millimétrés.
+                            </>
+                          )}
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -1474,8 +1532,8 @@ export default function HomePage() {
                 <div className="space-y-1">
                   <div className="text-[#64748b]">
                     {isEn
-                      ? "// 2021-2025: Advanced AHK script for Tarkov: Flea Market sniping & pixel analysis"
-                      : "// 2021-2025: Script AHK avancé Tarkov : sniping Flea Market & analyse de pixels temps réel"}
+                      ? "// 2021-2025: Advanced AHK script for Tarkov: 17x VM orchestration, flea market sniping & captcha solving"
+                      : "// 2021-2025: Script AHK avancé Tarkov : orchestration 17 VMs, sniping Flea Market & contournement captchas"}
                   </div>
                   <div>
                     <span className="text-[#a855f7]">SetBatchLines</span>, -1
@@ -1484,7 +1542,13 @@ export default function HomePage() {
                     <span className="text-[#a855f7]">SetKeyDelay</span>, -1, 0
                   </div>
                   <div>
-                    <span className="text-[#22d3ee]">AutoMarketSnipe</span>(itemSlot, targetPrice, maxLatencyMs) &#123;
+                    <span className="text-[#22d3ee]">AutoMarketSnipe</span>(vmId, itemSlot, targetPrice, maxLatencyMs) &#123;
+                  </div>
+                  <div className="pl-4">
+                    <span className="text-[#64748b]">{isEn ? "// In-game captcha bypass routine" : "// Contournement automatique de captcha in-game"}</span>
+                  </div>
+                  <div className="pl-4">
+                    <span className="text-[#34d399]">if</span> (<span className="text-amber-400">DetectInGameCaptcha</span>(vmId)) &#123; <span className="text-amber-400">SolveCaptcha</span>(vmId) &#125;
                   </div>
                   <div className="pl-4">
                     pixelColor := <span className="text-amber-400">PixelGetColor</span>(itemSlot.x, itemSlot.y, &quot;RGB&quot;)
@@ -1497,7 +1561,7 @@ export default function HomePage() {
                     <span className="text-[#64748b] font-italic">{isEn ? "// Instant confirmation (< 15ms)" : "// Confirmation instantanée (< 15ms)"}</span>
                   </div>
                   <div className="pl-8">
-                    <span className="text-amber-400">LogTransactionSuccess</span>(&quot;EldoradoOrder_Sync&quot;, itemSlot.id)
+                    <span className="text-amber-400">LogTransactionSuccess</span>(&quot;EldoradoOrder_Sync&quot;, vmId, itemSlot.id)
                   </div>
                   <div className="pl-4">&#125;</div>
                   <div>&#125;</div>
