@@ -28,6 +28,9 @@ import {
   Check,
   Activity,
   Globe,
+  ArrowRight,
+  ArrowLeft,
+  ArrowDown,
 } from "lucide-react";
 
 type Language = "fr" | "en";
@@ -253,72 +256,178 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Interactive Epoch Switcher Tabs */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 my-8">
+          {/* Chronological Flow Tracker Bar */}
+          <div className="relative my-6 px-2">
+            <div className="hidden sm:block absolute top-3.5 left-[16%] right-[16%] h-[2px] bg-gradient-to-r from-[#8b5cf6]/50 via-[#06b6d4]/50 to-[#10b981]/50 -z-0" />
+            
+            <div className="grid grid-cols-3 text-center relative z-10">
+              <button
+                type="button"
+                onClick={() => setTimelineTab("blois")}
+                className="flex flex-col items-center group cursor-pointer"
+              >
+                <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-mono font-bold transition-all ${
+                  timelineTab === "blois" 
+                    ? "bg-[#8b5cf6] text-white ring-4 ring-[#8b5cf6]/30 shadow-lg shadow-[#8b5cf6]/40 scale-110" 
+                    : "bg-[#0d121f] border border-[#8b5cf6]/40 text-[#c084fc] group-hover:border-[#8b5cf6]"
+                }`}>
+                  1
+                </div>
+                <span className="text-[11px] font-bold text-white mt-1.5">{isEn ? "Foundations" : "Fondations"}</span>
+                <span className="text-[10px] font-mono text-[#94a3b8]">2017 — 2021</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setTimelineTab("botting")}
+                className="flex flex-col items-center group cursor-pointer"
+              >
+                <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-mono font-bold transition-all ${
+                  timelineTab === "botting" 
+                    ? "bg-[#06b6d4] text-black ring-4 ring-[#06b6d4]/30 shadow-lg shadow-[#06b6d4]/40 scale-110" 
+                    : "bg-[#0d121f] border border-[#06b6d4]/40 text-[#22d3ee] group-hover:border-[#06b6d4]"
+                }`}>
+                  2
+                </div>
+                <span className="text-[11px] font-bold text-white mt-1.5">{isEn ? "Automation & Scale" : "Automatisation & Marché"}</span>
+                <span className="text-[10px] font-mono text-[#94a3b8]">2021 — 2025</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setTimelineTab("web")}
+                className="flex flex-col items-center group cursor-pointer"
+              >
+                <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-mono font-bold transition-all ${
+                  timelineTab === "web" 
+                    ? "bg-[#10b981] text-white ring-4 ring-[#10b981]/30 shadow-lg shadow-[#10b981]/40 scale-110" 
+                    : "bg-[#0d121f] border border-[#10b981]/40 text-[#34d399] group-hover:border-[#10b981]"
+                }`}>
+                  3
+                </div>
+                <span className="text-[11px] font-bold text-white mt-1.5">{isEn ? "Web Studio" : "Studio Web"}</span>
+                <span className="text-[10px] font-mono text-[#94a3b8]">{isEn ? "2026 — Present" : "2026 — Aujourd'hui"}</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Interactive Epoch Switcher Tabs With Directional Flow Connectors */}
+          <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-3 my-8">
+            {/* Card 1: Blois */}
             <button
               type="button"
               onClick={() => setTimelineTab("blois")}
-              className={`p-4 rounded-2xl border text-left transition-all cursor-pointer flex items-start gap-3 ${
+              className={`flex-1 p-4 rounded-2xl border text-left transition-all cursor-pointer relative ${
                 timelineTab === "blois"
-                  ? "bg-[#8b5cf6]/15 border-[#8b5cf6] ring-2 ring-[#8b5cf6]/30 shadow-lg shadow-[#8b5cf6]/10"
+                  ? "bg-[#8b5cf6]/15 border-[#8b5cf6] ring-2 ring-[#8b5cf6]/30 shadow-lg shadow-[#8b5cf6]/15"
                   : "bg-white/[0.02] border-white/10 hover:bg-white/[0.05] hover:border-white/20 text-[#94a3b8]"
               }`}
             >
-              <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
-                timelineTab === "blois" ? "bg-[#8b5cf6] text-white" : "bg-white/5 text-[#94a3b8]"
-              }`}>
-                <GraduationCap className="w-5 h-5" />
+              {timelineTab === "blois" && (
+                <div className="hidden lg:block absolute -bottom-3 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-[#8b5cf6] z-20" />
+              )}
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="text-[10px] font-mono font-extrabold px-2 py-0.5 rounded bg-[#8b5cf6]/20 text-[#c084fc] border border-[#8b5cf6]/30">
+                  {isEn ? "STEP 01" : "ÉTAPE 01"}
+                </span>
+                <span className="text-xs font-mono font-bold text-[#c084fc]">2017 — 2021</span>
               </div>
-              <div>
-                <div className="text-xs font-mono font-bold text-[#c084fc]">2017 — 2021</div>
-                <div className="font-bold text-sm text-white mt-0.5">{isEn ? "B.S. in Computer Science" : "Licence Informatique"}</div>
-                <div className="text-xs text-[#94a3b8] mt-0.5">{isEn ? "University of Tours · Blois Campus" : "Université · Antenne de Blois"}</div>
+              <div className="flex items-start gap-3">
+                <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
+                  timelineTab === "blois" ? "bg-[#8b5cf6] text-white" : "bg-white/5 text-[#94a3b8]"
+                }`}>
+                  <GraduationCap className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="font-bold text-sm text-white">{isEn ? "B.S. in Computer Science" : "Licence Informatique"}</div>
+                  <div className="text-xs text-[#94a3b8] mt-0.5">{isEn ? "University of Tours · Blois Campus" : "Université · Antenne de Blois"}</div>
+                </div>
               </div>
             </button>
 
+            {/* Directional Connector 1 -> 2 */}
+            <div className="flex lg:flex-col items-center justify-center shrink-0 py-1 lg:py-0 px-1">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/70 shadow-inner">
+                <span className="text-[10px] font-mono font-bold text-[#c084fc] lg:hidden">{isEn ? "Step 2" : "Étape 2"}</span>
+                <ArrowRight className="hidden lg:block w-4 h-4 text-[#22d3ee] animate-pulse" />
+                <ArrowDown className="lg:hidden w-3.5 h-3.5 text-[#22d3ee] animate-bounce" />
+              </div>
+            </div>
+
+            {/* Card 2: Botting */}
             <button
               type="button"
               onClick={() => setTimelineTab("botting")}
-              className={`p-4 rounded-2xl border text-left transition-all cursor-pointer flex items-start gap-3 relative overflow-hidden ${
+              className={`flex-1 p-4 rounded-2xl border text-left transition-all cursor-pointer relative overflow-hidden ${
                 timelineTab === "botting"
-                  ? "bg-[#06b6d4]/15 border-[#06b6d4] ring-2 ring-[#06b6d4]/30 shadow-lg shadow-[#06b6d4]/10"
+                  ? "bg-[#06b6d4]/15 border-[#06b6d4] ring-2 ring-[#06b6d4]/30 shadow-lg shadow-[#06b6d4]/15"
                   : "bg-white/[0.02] border-white/10 hover:bg-white/[0.05] hover:border-white/20 text-[#94a3b8]"
               }`}
             >
-              <div className="absolute top-2 right-2 flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                <span className="text-[10px] font-mono text-amber-400 font-bold">{isEn ? "Defining Era" : "Expérience Clé"}</span>
+              {timelineTab === "botting" && (
+                <div className="hidden lg:block absolute -bottom-3 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-[#06b6d4] z-20" />
+              )}
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="text-[10px] font-mono font-extrabold px-2 py-0.5 rounded bg-[#06b6d4]/20 text-[#22d3ee] border border-[#06b6d4]/30">
+                  {isEn ? "STEP 02" : "ÉTAPE 02"}
+                </span>
+                <div className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                  <span className="text-[10px] font-mono text-amber-400 font-bold">{isEn ? "Defining Era" : "Expérience Clé"}</span>
+                </div>
               </div>
-              <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
-                timelineTab === "botting" ? "bg-[#06b6d4] text-black font-bold" : "bg-white/5 text-[#94a3b8]"
-              }`}>
-                <Bot className="w-5 h-5" />
-              </div>
-              <div>
-                <div className="text-xs font-mono font-bold text-[#22d3ee]">2021 — 2025</div>
-                <div className="font-bold text-sm text-white mt-0.5">{isEn ? "Automation & Botting" : "Automatisation & Botting"}</div>
-                <div className="text-xs text-[#94a3b8] mt-0.5">Tarkov · OSRS · Eldorado.gg</div>
+              <div className="flex items-start gap-3">
+                <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
+                  timelineTab === "botting" ? "bg-[#06b6d4] text-black font-bold" : "bg-white/5 text-[#94a3b8]"
+                }`}>
+                  <Bot className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-xs font-mono font-bold text-[#22d3ee]">2021 — 2025</div>
+                  <div className="font-bold text-sm text-white mt-0.5">{isEn ? "Automation & Botting" : "Automatisation & Botting"}</div>
+                  <div className="text-xs text-[#94a3b8] mt-0.5">Tarkov · OSRS · Eldorado.gg</div>
+                </div>
               </div>
             </button>
 
+            {/* Directional Connector 2 -> 3 */}
+            <div className="flex lg:flex-col items-center justify-center shrink-0 py-1 lg:py-0 px-1">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/70 shadow-inner">
+                <span className="text-[10px] font-mono font-bold text-[#34d399] lg:hidden">{isEn ? "Step 3" : "Étape 3"}</span>
+                <ArrowRight className="hidden lg:block w-4 h-4 text-[#34d399] animate-pulse" />
+                <ArrowDown className="lg:hidden w-3.5 h-3.5 text-[#34d399] animate-bounce" />
+              </div>
+            </div>
+
+            {/* Card 3: Web Studio */}
             <button
               type="button"
               onClick={() => setTimelineTab("web")}
-              className={`p-4 rounded-2xl border text-left transition-all cursor-pointer flex items-start gap-3 ${
+              className={`flex-1 p-4 rounded-2xl border text-left transition-all cursor-pointer relative ${
                 timelineTab === "web"
-                  ? "bg-[#10b981]/15 border-[#10b981] ring-2 ring-[#10b981]/30 shadow-lg shadow-[#10b981]/10"
+                  ? "bg-[#10b981]/15 border-[#10b981] ring-2 ring-[#10b981]/30 shadow-lg shadow-[#10b981]/15"
                   : "bg-white/[0.02] border-white/10 hover:bg-white/[0.05] hover:border-white/20 text-[#94a3b8]"
               }`}
             >
-              <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
-                timelineTab === "web" ? "bg-[#10b981] text-white" : "bg-white/5 text-[#94a3b8]"
-              }`}>
-                <Rocket className="w-5 h-5" />
+              {timelineTab === "web" && (
+                <div className="hidden lg:block absolute -bottom-3 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-[#10b981] z-20" />
+              )}
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="text-[10px] font-mono font-extrabold px-2 py-0.5 rounded bg-[#10b981]/20 text-[#34d399] border border-[#10b981]/30">
+                  {isEn ? "STEP 03" : "ÉTAPE 03"}
+                </span>
+                <span className="text-xs font-mono font-bold text-[#34d399]">{isEn ? "2026 — Present" : "2026 — Aujourd'hui"}</span>
               </div>
-              <div>
-                <div className="text-xs font-mono font-bold text-[#34d399]">{isEn ? "2026 — Present" : "2026 — Aujourd'hui"}</div>
-                <div className="font-bold text-sm text-white mt-0.5">{isEn ? "Independent Web Studio" : "Édition Web Indépendante"}</div>
-                <div className="text-xs text-[#94a3b8] mt-0.5">JardinCalcul &amp; Hardware Lab</div>
+              <div className="flex items-start gap-3">
+                <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
+                  timelineTab === "web" ? "bg-[#10b981] text-white" : "bg-white/5 text-[#94a3b8]"
+                }`}>
+                  <Rocket className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="font-bold text-sm text-white">{isEn ? "Independent Web Studio" : "Édition Web Indépendante"}</div>
+                  <div className="text-xs text-[#94a3b8] mt-0.5">JardinCalcul &amp; Hardware Lab</div>
+                </div>
               </div>
             </button>
           </div>
@@ -390,12 +499,19 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs text-[#94a3b8]">
-                  <span>
+                <div className="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
+                  <span className="text-[#94a3b8]">
                     {isEn
-                      ? "Key takeaway: the mathematical discipline required to model physical formulas and engineering rules with zero approximation."
-                      : "Ce que ça m'a apporté : la rigueur nécessaire pour modéliser des formules physiques sans la moindre approximation."}
+                      ? "Key takeaway: mathematical discipline applied to physical formulas without approximation."
+                      : "Ce que ça m'a apporté : la rigueur nécessaire pour modéliser des formules physiques sans approximation."}
                   </span>
+                  <button
+                    type="button"
+                    onClick={() => setTimelineTab("botting")}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#06b6d4]/15 hover:bg-[#06b6d4]/25 border border-[#06b6d4]/30 font-bold text-[#22d3ee] transition-all cursor-pointer"
+                  >
+                    <span>{isEn ? "Next: Step 02 (Automation & Scale 2021-2025) →" : "Étape suivante : 02 / Automatisation & Botting (2021-2025) →"}</span>
+                  </button>
                 </div>
               </div>
             )}
@@ -516,6 +632,25 @@ export default function HomePage() {
                     ? "When a software bug, memory leak, or network hiccup immediately costs real money in real time, error tolerance is zero. You learn to write battle-hardened code engineered to endure stress and run indefinitely without failing."
                     : "Quand une erreur de code, une fuite de mémoire ou une désynchronisation réseau entraîne une perte d'argent réelle en direct, la tolérance aux bugs est nulle. On apprend à concevoir du code infaillible, testé sous toutes les conditions de stress et totalement autonome."}
                 </div>
+
+                {/* Step navigation */}
+                <div className="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
+                  <button
+                    type="button"
+                    onClick={() => setTimelineTab("blois")}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 font-semibold text-[#cbd5e1] transition-all cursor-pointer"
+                  >
+                    <ArrowLeft className="w-3.5 h-3.5 text-[#c084fc]" />
+                    <span>{isEn ? "Step 01 (Licence Blois)" : "Étape précédente : 01 / Licence Blois"}</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setTimelineTab("web")}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#10b981]/15 hover:bg-[#10b981]/25 border border-[#10b981]/30 font-bold text-[#34d399] transition-all cursor-pointer"
+                  >
+                    <span>{isEn ? "Next: Step 03 (Web Studio 2026) →" : "Étape suivante : 03 / Studio Web (2026) →"}</span>
+                  </button>
+                </div>
               </div>
             )}
 
@@ -569,6 +704,24 @@ export default function HomePage() {
                       <span>{isEn ? "Discover R&D concept →" : "Découvrir le concept R&D →"}</span>
                     </a>
                   </div>
+                </div>
+
+                {/* Step navigation */}
+                <div className="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs">
+                  <button
+                    type="button"
+                    onClick={() => setTimelineTab("botting")}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 font-semibold text-[#cbd5e1] transition-all cursor-pointer"
+                  >
+                    <ArrowLeft className="w-3.5 h-3.5 text-[#22d3ee]" />
+                    <span>{isEn ? "Previous: Step 02 (Automation & Eldorado)" : "Étape précédente : 02 / Automatisation & Eldorado"}</span>
+                  </button>
+                  <a
+                    href="#projets"
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#10b981]/15 hover:bg-[#10b981]/25 border border-[#10b981]/30 font-bold text-[#34d399] transition-all"
+                  >
+                    <span>{isEn ? "Explore Studio Projects below ↓" : "Explorer les projets du Studio ↓"}</span>
+                  </a>
                 </div>
               </div>
             )}
