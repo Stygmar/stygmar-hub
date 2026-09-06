@@ -458,11 +458,13 @@ export default function HomePage() {
                     </div>
                     <p className="text-xs text-[#94a3b8] leading-relaxed">
                       {isEn
-                        ? "Extreme AutoHotkey (AHK) scripting: complex inventory automation, sub-15ms Flea Market sniping, visual pixel detection, and network latency compensation."
-                        : "Scripts AHK poussés à l'extrême : automatisation d'interfaces d'inventaire touffues, interactions de marché (Flea Market) en microsecondes, détection visuelle et contournement de la latence réseau."}
+                        ? "Advanced AutoHotkey (AHK) engineering: surgical automation of nested inventories, sub-15ms Flea Market sniping, high-speed pixel recognition, in-game captcha solving, and robust evasion of heuristic anti-bot detection systems."
+                        : "Ingénierie avancée sous AutoHotkey (AHK) : automatisation chirurgicale d'inventaires complexes, sniping ultra-rapide sur le Flea Market sous la barre des 15 ms, analyse visuelle de pixels, contournement des protections antibot et résolution automatisée des captchas in-game."}
                     </p>
                     <div className="text-[11px] font-mono text-[#06b6d4] pt-1">
-                      {isEn ? "→ Mastered input timings & lightning-fast reactive macros" : "→ Maîtrise des timings d'inputs & macros réactives"}
+                      {isEn
+                        ? "→ Anti-bot & in-game captcha bypass, reactive micro-timings & zero latency"
+                        : "→ Contournement antibot & captchas in-game, timings millimétrés & zéro latence"}
                     </div>
                   </div>
 
@@ -592,12 +594,15 @@ export default function HomePage() {
                 <div className="space-y-1">
                   <div className="text-[#64748b]">
                     {isEn
-                      ? "// 2021-2025: Advanced AutoHotkey script for Escape from Tarkov (Flea Market / Inventory)"
-                      : "// 2021-2025: Script AutoHotkey avancé pour Escape from Tarkov (Flea Market / Inventaire)"}
+                      ? "// 2021-2025: Advanced AHK script for Tarkov: Flea Market sniping, antibot evasion & captcha solving"
+                      : "// 2021-2025: Script AHK avancé Tarkov : sniping Flea Market, bypass antibot & résolution captchas"}
                   </div>
                   <div><span className="text-[#a855f7]">SetBatchLines</span>, -1</div>
                   <div><span className="text-[#a855f7]">SetKeyDelay</span>, -1, 0</div>
                   <div><span className="text-[#22d3ee]">AutoMarketSnipe</span>(itemSlot, targetPrice, maxLatencyMs) &#123;</div>
+                  <div className="pl-4"><span className="text-[#34d399]">if</span> (<span className="text-amber-400">DetectInGameCaptcha</span>()) &#123;</div>
+                  <div className="pl-8"><span className="text-amber-400">SolveVisualCaptcha</span>(itemSlot) <span className="text-[#64748b] font-italic">{isEn ? "// Heuristic & in-game captcha bypass" : "// Résolution & contournement antibot"}</span></div>
+                  <div className="pl-4">&#125;</div>
                   <div className="pl-4">pixelColor := <span className="text-amber-400">PixelGetColor</span>(itemSlot.x, itemSlot.y, &quot;RGB&quot;)</div>
                   <div className="pl-4"><span className="text-[#34d399]">if</span> (pixelColor == 0x24C882 &amp;&amp; <span className="text-amber-400">QueryPrice</span>() &lt;= targetPrice) &#123;</div>
                   <div className="pl-8"><span className="text-amber-400">SendInput</span>, &#123;Space&#125;&#123;Y&#125; <span className="text-[#64748b] font-italic">{isEn ? "// Instant confirmation (< 15ms)" : "// Confirmation instantanée (< 15ms)"}</span></div>
