@@ -35,6 +35,12 @@ import {
   Workflow,
   Server,
   Clock,
+  Boxes,
+  Bot,
+  TrendingUp,
+  Gauge,
+  Users,
+  Network,
 } from "lucide-react";
 
 type Language = "fr" | "en";
@@ -825,89 +831,34 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Chronological Flow Tracker Bar */}
-          <div className="relative my-6 px-2">
-            <div className="hidden sm:block absolute top-3.5 left-[16%] right-[16%] h-[2px] bg-gradient-to-r from-[#8b5cf6]/50 via-[#06b6d4]/50 to-[#10b981]/50 -z-0" />
-
-            <div className="grid grid-cols-3 text-center relative z-10">
-              <button
-                type="button"
-                onClick={() => setTimelineTab("blois")}
-                className="flex flex-col items-center group cursor-pointer"
-              >
-                <div
-                  className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-mono font-bold transition-all ${
-                    timelineTab === "blois"
-                      ? "bg-[#8b5cf6] text-white ring-4 ring-[#8b5cf6]/30 shadow-lg shadow-[#8b5cf6]/40 scale-110"
-                      : "bg-[#0d121f] border border-[#8b5cf6]/40 text-[#c084fc] group-hover:border-[#8b5cf6]"
-                  }`}
-                >
-                  1
-                </div>
-                <span className="text-[11px] font-bold text-white mt-1.5">{isEn ? "Foundations" : "Fondations Informatique"}</span>
-                <span className="text-[10px] font-mono text-[#94a3b8]">2017 — 2021</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setTimelineTab("botting")}
-                className="flex flex-col items-center group cursor-pointer"
-              >
-                <div
-                  className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-mono font-bold transition-all ${
-                    timelineTab === "botting"
-                      ? "bg-[#06b6d4] text-black ring-4 ring-[#06b6d4]/30 shadow-lg shadow-[#06b6d4]/40 scale-110"
-                      : "bg-[#0d121f] border border-[#06b6d4]/40 text-[#22d3ee] group-hover:border-[#06b6d4]"
-                  }`}
-                >
-                  2
-                </div>
-                <span className="text-[11px] font-bold text-white mt-1.5">{isEn ? "Automation & Scale" : "Automatisation & Botting"}</span>
-                <span className="text-[10px] font-mono text-[#94a3b8]">2021 — 2026</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setTimelineTab("web")}
-                className="flex flex-col items-center group cursor-pointer"
-              >
-                <div
-                  className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-mono font-bold transition-all ${
-                    timelineTab === "web"
-                      ? "bg-[#10b981] text-white ring-4 ring-[#10b981]/30 shadow-lg shadow-[#10b981]/40 scale-110"
-                      : "bg-[#0d121f] border border-[#10b981]/40 text-[#34d399] group-hover:border-[#10b981]"
-                  }`}
-                >
-                  3
-                </div>
-                <span className="text-[11px] font-bold text-white mt-1.5">{isEn ? "Web Studio" : "Studio Web & Outils"}</span>
-                <span className="text-[10px] font-mono text-[#94a3b8]">{isEn ? "2026 — Present" : "2026 — Aujourd'hui"}</span>
-              </button>
-            </div>
-          </div>
-
-          {/* Epoch Switcher Tab Buttons */}
-          <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-3 my-8">
+          {/* Unified Epoch Switcher Tabs */}
+          <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-3 my-6">
             {/* Card 1: Blois */}
             <button
               type="button"
               onClick={() => setTimelineTab("blois")}
-              className={`flex-1 p-4 rounded-2xl border text-left transition-all cursor-pointer relative ${
+              className={`flex-1 p-4 rounded-2xl border text-left transition-all cursor-pointer relative overflow-hidden group ${
                 timelineTab === "blois"
-                  ? "bg-[#8b5cf6]/15 border-[#8b5cf6] ring-2 ring-[#8b5cf6]/30 shadow-lg shadow-[#8b5cf6]/15"
+                  ? "bg-gradient-to-br from-[#8b5cf6]/20 via-black/60 to-black/80 border-[#8b5cf6] ring-1 ring-[#8b5cf6]/40 shadow-lg shadow-[#8b5cf6]/20 scale-[1.01]"
                   : "bg-white/[0.02] border-white/10 hover:bg-white/[0.05] hover:border-white/20 text-[#94a3b8]"
               }`}
             >
-              <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="text-[10px] font-mono font-extrabold px-2 py-0.5 rounded bg-[#8b5cf6]/20 text-[#c084fc] border border-[#8b5cf6]/30">
+              <div className="flex items-center justify-between gap-2 mb-2.5">
+                <span className={`text-[10px] font-mono font-extrabold px-2 py-0.5 rounded border transition-colors ${
+                  timelineTab === "blois"
+                    ? "bg-[#8b5cf6]/30 text-[#c084fc] border-[#8b5cf6]/50"
+                    : "bg-white/5 text-[#94a3b8] border-white/10"
+                }`}>
                   {isEn ? "STEP 01" : "ÉTAPE 01"}
                 </span>
                 <span className="text-xs font-mono font-bold text-[#c084fc]">2017 — 2021</span>
               </div>
               <div className="flex items-start gap-3">
                 <div
-                  className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
-                    timelineTab === "blois" ? "bg-[#8b5cf6] text-white" : "bg-white/5 text-[#94a3b8]"
+                  className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all ${
+                    timelineTab === "blois"
+                      ? "bg-[#8b5cf6] text-white shadow-md shadow-[#8b5cf6]/30"
+                      : "bg-white/5 text-[#94a3b8] group-hover:text-white"
                   }`}
                 >
                   <GraduationCap className="w-5 h-5" />
@@ -921,9 +872,9 @@ export default function HomePage() {
 
             {/* Directional Connector 1 -> 2 */}
             <div className="flex lg:flex-col items-center justify-center shrink-0 py-1 lg:py-0 px-1">
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/70 shadow-inner">
-                <ArrowRight className="hidden lg:block w-4 h-4 text-[#22d3ee] animate-pulse" />
-                <ArrowDown className="lg:hidden w-3.5 h-3.5 text-[#22d3ee] animate-bounce" />
+              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/50 shadow-inner">
+                <ArrowRight className="hidden lg:block w-3.5 h-3.5 text-[#22d3ee] animate-pulse" />
+                <ArrowDown className="lg:hidden w-3 h-3 text-[#22d3ee] animate-bounce" />
               </div>
             </div>
 
@@ -931,38 +882,44 @@ export default function HomePage() {
             <button
               type="button"
               onClick={() => setTimelineTab("botting")}
-              className={`flex-1 p-4 rounded-2xl border text-left transition-all cursor-pointer relative overflow-hidden ${
+              className={`flex-1 p-4 rounded-2xl border text-left transition-all cursor-pointer relative overflow-hidden group ${
                 timelineTab === "botting"
-                  ? "bg-[#06b6d4]/15 border-[#06b6d4] ring-2 ring-[#06b6d4]/30 shadow-lg shadow-[#06b6d4]/15"
+                  ? "bg-gradient-to-br from-[#06b6d4]/20 via-black/60 to-black/80 border-[#06b6d4] ring-1 ring-[#06b6d4]/40 shadow-lg shadow-[#06b6d4]/20 scale-[1.01]"
                   : "bg-white/[0.02] border-white/10 hover:bg-white/[0.05] hover:border-white/20 text-[#94a3b8]"
               }`}
             >
-              <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="text-[10px] font-mono font-extrabold px-2 py-0.5 rounded bg-[#06b6d4]/20 text-[#22d3ee] border border-[#06b6d4]/30">
+              <div className="flex items-center justify-between gap-2 mb-2.5">
+                <span className={`text-[10px] font-mono font-extrabold px-2 py-0.5 rounded border transition-colors ${
+                  timelineTab === "botting"
+                    ? "bg-[#06b6d4]/30 text-[#22d3ee] border-[#06b6d4]/50"
+                    : "bg-white/5 text-[#94a3b8] border-white/10"
+                }`}>
                   {isEn ? "STEP 02" : "ÉTAPE 02"}
                 </span>
                 <span className="text-xs font-mono font-bold text-[#22d3ee]">2021 — 2026</span>
               </div>
               <div className="flex items-start gap-3">
                 <div
-                  className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
-                    timelineTab === "botting" ? "bg-[#06b6d4] text-black font-bold" : "bg-white/5 text-[#94a3b8]"
+                  className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all ${
+                    timelineTab === "botting"
+                      ? "bg-[#06b6d4] text-black font-bold shadow-md shadow-[#06b6d4]/30"
+                      : "bg-white/5 text-[#94a3b8] group-hover:text-white"
                   }`}
                 >
                   <Workflow className="w-5 h-5" />
                 </div>
                 <div>
                   <div className="font-bold text-sm text-white">{isEn ? "Automation, Botting & Scale" : "Automatisation, Botting & Marché"}</div>
-                  <div className="text-xs text-[#94a3b8] mt-0.5">Tarkov (AHK) · OSRS (Java) · Eldorado.gg</div>
+                  <div className="text-xs text-[#94a3b8] mt-0.5">Tarkov · OSRS · Eldorado.gg</div>
                 </div>
               </div>
             </button>
 
             {/* Directional Connector 2 -> 3 */}
             <div className="flex lg:flex-col items-center justify-center shrink-0 py-1 lg:py-0 px-1">
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/70 shadow-inner">
-                <ArrowRight className="hidden lg:block w-4 h-4 text-[#34d399] animate-pulse" />
-                <ArrowDown className="lg:hidden w-3.5 h-3.5 text-[#34d399] animate-bounce" />
+              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/50 shadow-inner">
+                <ArrowRight className="hidden lg:block w-3.5 h-3.5 text-[#34d399] animate-pulse" />
+                <ArrowDown className="lg:hidden w-3 h-3 text-[#34d399] animate-bounce" />
               </div>
             </div>
 
@@ -970,22 +927,28 @@ export default function HomePage() {
             <button
               type="button"
               onClick={() => setTimelineTab("web")}
-              className={`flex-1 p-4 rounded-2xl border text-left transition-all cursor-pointer relative ${
+              className={`flex-1 p-4 rounded-2xl border text-left transition-all cursor-pointer relative overflow-hidden group ${
                 timelineTab === "web"
-                  ? "bg-[#10b981]/15 border-[#10b981] ring-2 ring-[#10b981]/30 shadow-lg shadow-[#10b981]/15"
+                  ? "bg-gradient-to-br from-[#10b981]/20 via-black/60 to-black/80 border-[#10b981] ring-1 ring-[#10b981]/40 shadow-lg shadow-[#10b981]/20 scale-[1.01]"
                   : "bg-white/[0.02] border-white/10 hover:bg-white/[0.05] hover:border-white/20 text-[#94a3b8]"
               }`}
             >
-              <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="text-[10px] font-mono font-extrabold px-2 py-0.5 rounded bg-[#10b981]/20 text-[#34d399] border border-[#10b981]/30">
+              <div className="flex items-center justify-between gap-2 mb-2.5">
+                <span className={`text-[10px] font-mono font-extrabold px-2 py-0.5 rounded border transition-colors ${
+                  timelineTab === "web"
+                    ? "bg-[#10b981]/30 text-[#34d399] border-[#10b981]/50"
+                    : "bg-white/5 text-[#94a3b8] border-white/10"
+                }`}>
                   {isEn ? "STEP 03" : "ÉTAPE 03"}
                 </span>
                 <span className="text-xs font-mono font-bold text-[#34d399]">{isEn ? "2026 — Present" : "2026 — Aujourd'hui"}</span>
               </div>
               <div className="flex items-start gap-3">
                 <div
-                  className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
-                    timelineTab === "web" ? "bg-[#10b981] text-white" : "bg-white/5 text-[#94a3b8]"
+                  className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all ${
+                    timelineTab === "web"
+                      ? "bg-[#10b981] text-white shadow-md shadow-[#10b981]/30"
+                      : "bg-white/5 text-[#94a3b8] group-hover:text-white"
                   }`}
                 >
                   <Rocket className="w-5 h-5" />
@@ -1083,48 +1046,79 @@ export default function HomePage() {
               </div>
             )}
 
-            {/* TAB 2: BOTTING & AUTOMATION (CONDENSÉ, VISUEL ET STRUCTURÉ EN 4 BLOCS) */}
+            {/* TAB 2: BOTTING & AUTOMATION (PROFESSIONNEL, ÉQUILIBRÉ & CYBER-ENGINEERED) */}
             {timelineTab === "botting" && (
-              <div className="space-y-5 animate-in fade-in duration-300">
-                <div className="flex flex-wrap items-center justify-between gap-3 pb-2 border-b border-white/10">
-                  <div className="flex items-center gap-2.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#06b6d4] animate-ping" />
-                    <h3 className="text-xl font-bold text-white">
-                      {isEn
-                        ? "High-Volume Automation, Botting & Marketplace Merchant (2021 — 2026)"
-                        : "Automatisation à Grande Échelle, Botting & Activité Marchande (2021 — 2026)"}
-                    </h3>
+              <div className="space-y-6 animate-in fade-in duration-300">
+                {/* Header */}
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-white/10">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-[#06b6d4]/15 border border-[#06b6d4]/30 flex items-center justify-center text-[#22d3ee] shrink-0 shadow-sm shadow-[#06b6d4]/20">
+                      <Workflow className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2.5 flex-wrap">
+                        <h3 className="text-xl font-bold text-white">
+                          {isEn
+                            ? "High-Volume Automation, Botting & Market Systems"
+                            : "Automatisation, Botting & Systèmes Distribués"}
+                        </h3>
+                        <span className="text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-[#06b6d4]/15 text-[#22d3ee] border border-[#06b6d4]/30 whitespace-nowrap">
+                          2021 — 2026
+                        </span>
+                      </div>
+                      <p className="text-xs text-[#94a3b8] mt-0.5">
+                        {isEn
+                          ? "4 years developing distributed autonomous systems, client reverse engineering, and low-latency market execution."
+                          : "4 ans d'ingénierie d'automatisation distribuée, reverse-engineering client et trading algorithmique."}
+                      </p>
+                    </div>
                   </div>
+
                   <a
                     href="https://www.eldorado.gg/users/Stygmar"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/40 text-xs font-bold text-amber-400 transition-colors"
+                    className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-500/15 to-amber-600/10 hover:from-amber-500/25 hover:to-amber-600/20 border border-amber-500/30 text-xs font-bold text-amber-400 transition-all shadow-sm shadow-amber-500/10 shrink-0 self-start md:self-auto hover:border-amber-500/50 hover:scale-[1.02] active:scale-[0.98]"
                   >
-                    <Coins className="w-3.5 h-3.5" />
+                    <Coins className="w-4 h-4 text-amber-400" />
                     <span>Eldorado : +9 400 Avis (99,99%) ↗</span>
                   </a>
                 </div>
 
-                {/* 4 Blocs Modulaires Visuels & Punchy */}
+                {/* 4 Blocs Modulaires Visuels & Équilibrés */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {/* Block 1: Tarkov */}
-                  <div className="p-4 rounded-2xl bg-black/60 border border-[#06b6d4]/30 space-y-2.5 hover:border-[#06b6d4]/60 transition-colors">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2 text-[#22d3ee] font-bold text-sm">
-                        <Gamepad2 className="w-4 h-4" />
-                        <span>Escape from Tarkov</span>
-                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#06b6d4]/15 text-[#22d3ee] border border-[#06b6d4]/30 font-semibold">
-                          2021 — 2025
-                        </span>
+                  <div className="p-5 rounded-2xl bg-[#080d19]/80 border border-[#06b6d4]/30 hover:border-[#06b6d4]/60 space-y-3.5 transition-all duration-300 shadow-lg shadow-black/40">
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-8 h-8 rounded-xl bg-[#06b6d4]/15 border border-[#06b6d4]/30 flex items-center justify-center text-[#22d3ee] shrink-0">
+                          <Gamepad2 className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-sm text-white flex items-center gap-2">
+                            Escape from Tarkov
+                          </h4>
+                          <div className="text-[11px] text-[#94a3b8]">{isEn ? "Flea Market Sniping & VM Orchestration" : "Sniping Flea Market & Orchestration VM"}</div>
+                        </div>
                       </div>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#06b6d4]/20 text-[#22d3ee] border border-[#06b6d4]/30">
-                        AutoHotkey · VMs (17x) · &lt; 15 ms
+                      <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-[#06b6d4]/15 text-[#22d3ee] border border-[#06b6d4]/30 font-bold shrink-0 whitespace-nowrap">
+                        2021 — 2025
                       </span>
                     </div>
-                    <ul className="space-y-1.5 text-xs text-[#cbd5e1]">
-                      <li className="flex items-start gap-2">
-                        <span className="text-[#06b6d4] font-bold shrink-0">⚡</span>
+
+                    {/* Tech tags */}
+                    <div className="flex flex-wrap gap-1.5">
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-[#06b6d4]/10 text-[#22d3ee] border border-[#06b6d4]/20">AutoHotkey</span>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-[#06b6d4]/10 text-[#22d3ee] border border-[#06b6d4]/20">17 VMs Parallèles</span>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-[#06b6d4]/10 text-[#22d3ee] border border-[#06b6d4]/20">&lt; 15 ms Latence</span>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-[#06b6d4]/10 text-[#22d3ee] border border-[#06b6d4]/20">Computer Vision</span>
+                    </div>
+
+                    <ul className="space-y-2 text-xs text-[#cbd5e1] pt-1">
+                      <li className="flex items-start gap-2.5">
+                        <div className="w-5 h-5 rounded-md bg-[#06b6d4]/10 border border-[#06b6d4]/20 flex items-center justify-center shrink-0 mt-0.5">
+                          <Zap className="w-3 h-3 text-[#22d3ee]" />
+                        </div>
                         <span>
                           {isEn ? (
                             <>
@@ -1137,8 +1131,10 @@ export default function HomePage() {
                           )}
                         </span>
                       </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-[#06b6d4] font-bold shrink-0">🎒</span>
+                      <li className="flex items-start gap-2.5">
+                        <div className="w-5 h-5 rounded-md bg-[#06b6d4]/10 border border-[#06b6d4]/20 flex items-center justify-center shrink-0 mt-0.5">
+                          <Boxes className="w-3 h-3 text-[#22d3ee]" />
+                        </div>
                         <span>
                           {isEn ? (
                             <>
@@ -1151,26 +1147,30 @@ export default function HomePage() {
                           )}
                         </span>
                       </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-[#06b6d4] font-bold shrink-0">🖥️</span>
+                      <li className="flex items-start gap-2.5">
+                        <div className="w-5 h-5 rounded-md bg-[#06b6d4]/10 border border-[#06b6d4]/20 flex items-center justify-center shrink-0 mt-0.5">
+                          <Cpu className="w-3 h-3 text-[#22d3ee]" />
+                        </div>
                         <span>
                           {isEn ? (
                             <>
-                              <strong>VM Optimization (17 Accounts)</strong> : heavy virtual machine tuning and resource management to run and orchestrate up to 17 accounts in parallel.
+                              <strong>VM Optimization (17 Accounts)</strong> : heavy virtual machine tuning and resource management running up to 17 concurrent sessions in parallel.
                             </>
                           ) : (
                             <>
-                              <strong>Optimisation sur machines virtuelles</strong> : gestion et orchestration de jusqu&apos;à 17 comptes en parallèle sur des VMs optimisées sans perte de performance.
+                              <strong>Optimisation VM (17 comptes)</strong> : orchestration de machines virtuelles optimisées pour faire tourner jusqu&apos;à 17 instances en parallèle sans perte de performance.
                             </>
                           )}
                         </span>
                       </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-[#06b6d4] font-bold shrink-0">🧩</span>
+                      <li className="flex items-start gap-2.5">
+                        <div className="w-5 h-5 rounded-md bg-[#06b6d4]/10 border border-[#06b6d4]/20 flex items-center justify-center shrink-0 mt-0.5">
+                          <ShieldCheck className="w-3 h-3 text-[#22d3ee]" />
+                        </div>
                         <span>
                           {isEn ? (
                             <>
-                              <strong>In-Game Captcha Bypass</strong> : computer vision detection and automated solving of in-game captchas for uninterrupted execution.
+                              <strong>In-Game Captcha Bypass</strong> : visual detection and automated solving of in-game captchas for uninterrupted execution.
                             </>
                           ) : (
                             <>
@@ -1179,8 +1179,10 @@ export default function HomePage() {
                           )}
                         </span>
                       </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-[#06b6d4] font-bold shrink-0">🌐</span>
+                      <li className="flex items-start gap-2.5">
+                        <div className="w-5 h-5 rounded-md bg-[#06b6d4]/10 border border-[#06b6d4]/20 flex items-center justify-center shrink-0 mt-0.5">
+                          <Gauge className="w-3 h-3 text-[#22d3ee]" />
+                        </div>
                         <span>
                           {isEn ? (
                             <>
@@ -1197,22 +1199,37 @@ export default function HomePage() {
                   </div>
 
                   {/* Block 2: OSRS */}
-                  <div className="p-4 rounded-2xl bg-black/60 border border-[#8b5cf6]/30 space-y-2.5 hover:border-[#8b5cf6]/60 transition-colors">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2 text-[#c084fc] font-bold text-sm">
-                        <Terminal className="w-4 h-4" />
-                        <span>Old School RuneScape</span>
-                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#8b5cf6]/15 text-[#c084fc] border border-[#8b5cf6]/30 font-semibold">
-                          2024 — 2026
-                        </span>
+                  <div className="p-5 rounded-2xl bg-[#080d19]/80 border border-[#8b5cf6]/30 hover:border-[#8b5cf6]/60 space-y-3.5 transition-all duration-300 shadow-lg shadow-black/40">
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-8 h-8 rounded-xl bg-[#8b5cf6]/15 border border-[#8b5cf6]/30 flex items-center justify-center text-[#c084fc] shrink-0">
+                          <Terminal className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-sm text-white flex items-center gap-2">
+                            Old School RuneScape
+                          </h4>
+                          <div className="text-[11px] text-[#94a3b8]">{isEn ? "DreamBot Client API & Distributed Farm" : "DreamBot Client API & Ferme Distribuée"}</div>
+                        </div>
                       </div>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#8b5cf6]/20 text-[#c084fc] border border-[#8b5cf6]/30">
-                        Java · dreambot.org · 24/7
+                      <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-[#8b5cf6]/15 text-[#c084fc] border border-[#8b5cf6]/30 font-bold shrink-0 whitespace-nowrap">
+                        2024 — 2026
                       </span>
                     </div>
-                    <ul className="space-y-1.5 text-xs text-[#cbd5e1]">
-                      <li className="flex items-start gap-2">
-                        <span className="text-[#a855f7] font-bold shrink-0">🤖</span>
+
+                    {/* Tech tags */}
+                    <div className="flex flex-wrap gap-1.5">
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-[#8b5cf6]/10 text-[#c084fc] border border-[#8b5cf6]/20">Java Client API</span>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-[#8b5cf6]/10 text-[#c084fc] border border-[#8b5cf6]/20">dreambot.org</span>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-[#8b5cf6]/10 text-[#c084fc] border border-[#8b5cf6]/20">EternalFarm</span>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-[#8b5cf6]/10 text-[#c084fc] border border-[#8b5cf6]/20">Architecture Mules</span>
+                    </div>
+
+                    <ul className="space-y-2 text-xs text-[#cbd5e1] pt-1">
+                      <li className="flex items-start gap-2.5">
+                        <div className="w-5 h-5 rounded-md bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 flex items-center justify-center shrink-0 mt-0.5">
+                          <Bot className="w-3 h-3 text-[#c084fc]" />
+                        </div>
                         <span>
                           {isEn ? (
                             <>
@@ -1225,8 +1242,10 @@ export default function HomePage() {
                           )}
                         </span>
                       </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-[#a855f7] font-bold shrink-0">📈</span>
+                      <li className="flex items-start gap-2.5">
+                        <div className="w-5 h-5 rounded-md bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 flex items-center justify-center shrink-0 mt-0.5">
+                          <TrendingUp className="w-3 h-3 text-[#c084fc]" />
+                        </div>
                         <span>
                           {isEn ? (
                             <>
@@ -1239,8 +1258,10 @@ export default function HomePage() {
                           )}
                         </span>
                       </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-[#a855f7] font-bold shrink-0">💰</span>
+                      <li className="flex items-start gap-2.5">
+                        <div className="w-5 h-5 rounded-md bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 flex items-center justify-center shrink-0 mt-0.5">
+                          <Coins className="w-3 h-3 text-[#c084fc]" />
+                        </div>
                         <span>
                           {isEn ? (
                             <>
@@ -1253,8 +1274,10 @@ export default function HomePage() {
                           )}
                         </span>
                       </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-[#a855f7] font-bold shrink-0">✉️</span>
+                      <li className="flex items-start gap-2.5">
+                        <div className="w-5 h-5 rounded-md bg-[#8b5cf6]/10 border border-[#8b5cf6]/20 flex items-center justify-center shrink-0 mt-0.5">
+                          <Mail className="w-3 h-3 text-[#c084fc]" />
+                        </div>
                         <span>
                           {isEn ? (
                             <>
@@ -1271,58 +1294,181 @@ export default function HomePage() {
                   </div>
 
                   {/* Block 3: Infrastructure VPS */}
-                  <div className="p-4 rounded-2xl bg-black/60 border border-white/10 space-y-2.5 hover:border-white/20 transition-colors">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2 text-white font-bold text-sm">
-                        <Server className="w-4 h-4 text-[#34d399]" />
-                        <span>{isEn ? "VPS Infrastructure & Concurrency" : "Infrastructure VPS & Systèmes"}</span>
+                  <div className="p-5 rounded-2xl bg-[#080d19]/80 border border-emerald-500/25 hover:border-emerald-500/50 space-y-3.5 transition-all duration-300 shadow-lg shadow-black/40">
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-8 h-8 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
+                          <Server className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-sm text-white flex items-center gap-2">
+                            {isEn ? "VPS Infrastructure & Systems" : "Infrastructure VPS & Systèmes"}
+                          </h4>
+                          <div className="text-[11px] text-[#94a3b8]">{isEn ? "Linux Dedicated Clusters & Concurrency" : "Clusters Dédiés Linux & DevOps"}</div>
+                        </div>
                       </div>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/10 text-[#cbd5e1]">
-                        Linux · Multi-Sessions
+                      <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-bold shrink-0 whitespace-nowrap">
+                        Linux · 24/7
                       </span>
                     </div>
-                    <ul className="space-y-1.5 text-xs text-[#94a3b8]">
-                      <li className="flex items-start gap-2">
-                        <span className="text-[#34d399] font-bold shrink-0">🖥️</span>
-                        <span>Orchestration de clusters VPS dédiés Linux avec proxy routing et rotation d&apos;IPs.</span>
+
+                    {/* Tech tags */}
+                    <div className="flex flex-wrap gap-1.5">
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">Linux Debian</span>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">Proxy Pools</span>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">Health Monitoring</span>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">Zero Memory Leak</span>
+                    </div>
+
+                    <ul className="space-y-2 text-xs text-[#cbd5e1] pt-1">
+                      <li className="flex items-start gap-2.5">
+                        <div className="w-5 h-5 rounded-md bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                          <Network className="w-3 h-3 text-emerald-400" />
+                        </div>
+                        <span>
+                          {isEn ? (
+                            <>
+                              <strong>Clusters &amp; Proxy Routing</strong> : Linux dedicated servers orchestration with dynamic IP rotation and proxy pools.
+                            </>
+                          ) : (
+                            <>
+                              <strong>Clusters &amp; Proxy Routing</strong> : orchestration de machines dédiées Linux avec rotation dynamique d&apos;adresses IP et proxy pools.
+                            </>
+                          )}
+                        </span>
                       </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-[#34d399] font-bold shrink-0">📊</span>
-                        <span>Télémétrie centralisée, monitoring de santé des nœuds et zero memory leak.</span>
+                      <li className="flex items-start gap-2.5">
+                        <div className="w-5 h-5 rounded-md bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                          <Activity className="w-3 h-3 text-emerald-400" />
+                        </div>
+                        <span>
+                          {isEn ? (
+                            <>
+                              <strong>Telemetry &amp; Health Monitoring</strong> : centralized real-time metrics, node health alerts and zero memory leaks.
+                            </>
+                          ) : (
+                            <>
+                              <strong>Télémétrie &amp; Monitoring</strong> : centralisation des métriques en temps réel, alertes de santé des nœuds et optimisation mémoire continue.
+                            </>
+                          )}
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <div className="w-5 h-5 rounded-md bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                          <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+                        </div>
+                        <span>
+                          {isEn ? (
+                            <>
+                              <strong>Self-Healing Watchdogs</strong> : automated watchdog processes detecting state freezes and restarting sessions without human intervention.
+                            </>
+                          ) : (
+                            <>
+                              <strong>Résilience &amp; Auto-Guérison</strong> : surveillance par watchdogs automatiques relançant les processus gelés sans intervention humaine.
+                            </>
+                          )}
+                        </span>
                       </li>
                     </ul>
                   </div>
 
                   {/* Block 4: Eldorado Merchant Trust */}
-                  <div className="p-4 rounded-2xl bg-black/60 border border-amber-500/25 space-y-2.5 hover:border-amber-500/50 transition-colors">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2 text-amber-400 font-bold text-sm">
-                        <Coins className="w-4 h-4" />
-                        <span>{isEn ? "Eldorado Merchant Operations" : "Activité Marchande Eldorado"}</span>
+                  <div className="p-5 rounded-2xl bg-[#080d19]/80 border border-amber-500/25 hover:border-amber-500/50 space-y-3.5 transition-all duration-300 shadow-lg shadow-black/40">
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-8 h-8 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0">
+                          <Coins className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-sm text-white flex items-center gap-2">
+                            {isEn ? "Eldorado Merchant Operations" : "Activité Marchande Eldorado"}
+                          </h4>
+                          <div className="text-[11px] text-[#94a3b8]">{isEn ? "Algorithmic Trading & Trust" : "Trading Algorithmique & Confiance"}</div>
+                        </div>
                       </div>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-400/20 text-amber-300 border border-amber-400/40">
-                        +9 400 Avis · 99,99%
+                      <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30 font-bold shrink-0 whitespace-nowrap">
+                        Top Seller · 99,99%
                       </span>
                     </div>
-                    <ul className="space-y-1.5 text-xs text-[#94a3b8]">
-                      <li className="flex items-start gap-2">
-                        <span className="text-amber-400 font-bold shrink-0">🌍</span>
-                        <span>Service client réactif 24/7 multilingue auprès de milliers d&apos;acheteurs internationaux.</span>
+
+                    {/* Tech tags */}
+                    <div className="flex flex-wrap gap-1.5">
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-300 border border-amber-500/20">+9 400 Avis</span>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-300 border border-amber-500/20">99,99% Satisfaction</span>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-300 border border-amber-500/20">Support 24/7</span>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-300 border border-amber-500/20">Zéro Litige</span>
+                    </div>
+
+                    <ul className="space-y-2 text-xs text-[#cbd5e1] pt-1">
+                      <li className="flex items-start gap-2.5">
+                        <div className="w-5 h-5 rounded-md bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                          <Users className="w-3 h-3 text-amber-400" />
+                        </div>
+                        <span>
+                          {isEn ? (
+                            <>
+                              <strong>Massive Volume &amp; Trust</strong> : over 9,400 certified customer reviews with 99.99% satisfaction rate across thousands of international buyers.
+                            </>
+                          ) : (
+                            <>
+                              <strong>Volume Massif &amp; Confiance</strong> : plus de 9 400 avis clients certifiés (99,99 % positifs) auprès de milliers d&apos;acheteurs internationaux.
+                            </>
+                          )}
+                        </span>
                       </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-amber-400 font-bold shrink-0">🛡️</span>
-                        <span>Scripts de livraison instantanée, traçabilité de chaque échange et zéro litige.</span>
+                      <li className="flex items-start gap-2.5">
+                        <div className="w-5 h-5 rounded-md bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                          <Zap className="w-3 h-3 text-amber-400" />
+                        </div>
+                        <span>
+                          {isEn ? (
+                            <>
+                              <strong>Instant Delivery &amp; Traceability</strong> : automated trading scripts, real-time transaction timestamps and zero unresolved disputes.
+                            </>
+                          ) : (
+                            <>
+                              <strong>Livraison Instantanée &amp; Traçabilité</strong> : scripts d&apos;échange automatisés, enregistrement transactionnel horodaté et zéro litige non résolu.
+                            </>
+                          )}
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-2.5">
+                        <div className="w-5 h-5 rounded-md bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                          <Globe className="w-3 h-3 text-amber-400" />
+                        </div>
+                        <span>
+                          {isEn ? (
+                            <>
+                              <strong>Real-Time Pricing &amp; Liquidity</strong> : dynamic price adjustment algorithms matching order book liquidity and market movements.
+                            </>
+                          ) : (
+                            <>
+                              <strong>Pricing Dynamique &amp; Liquidité</strong> : algorithmes d&apos;ajustement automatique des prix calqués sur la liquidité et les flux du marché.
+                            </>
+                          )}
+                        </span>
                       </li>
                     </ul>
                   </div>
                 </div>
 
-                {/* The EXACT requested quote replacing "code infaillible" */}
-                <div className="p-4 rounded-xl bg-cyan-500/10 border border-cyan-500/25 text-xs text-cyan-200/90 leading-relaxed">
-                  <strong className="text-white block text-sm mb-1">{isEn ? "The real engineering lesson:" : "L'apprentissage fondamental :"}</strong>
-                  {isEn
-                    ? "« When a software bug or desynchronization costs real money in real time, you learn to build robust, observable systems capable of graceful automatic failure recovery. »"
-                    : "« Cette expérience m'a appris à construire des systèmes robustes, observables et capables de récupérer automatiquement après une erreur. »"}
+                {/* Engineering Principle Callout Card */}
+                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#06b6d4]/10 via-[#06b6d4]/5 to-transparent border-l-4 border-l-[#06b6d4] border-y border-r border-white/10 p-5 shadow-lg">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-xl bg-[#06b6d4]/20 border border-[#06b6d4]/30 flex items-center justify-center text-[#22d3ee] shrink-0 mt-0.5">
+                      <Sparkles className="w-4 h-4" />
+                    </div>
+                    <div className="space-y-1">
+                      <div className="text-xs font-mono font-bold uppercase tracking-wider text-[#22d3ee]">
+                        {isEn ? "Core Engineering Principle" : "L'apprentissage d'ingénierie fondamental"}
+                      </div>
+                      <p className="text-xs sm:text-sm text-[#cbd5e1] italic leading-relaxed">
+                        {isEn
+                          ? "« When a software desynchronization or edge-case bug costs real money in real time, you learn to design systems that are strictly observable, idempotent, and capable of automatic graceful failure recovery. »"
+                          : "« Quand un bug ou une désynchronisation coûte de l'argent réel en temps réel, on apprend à concevoir des systèmes ultra-observables, résilients et capables de récupérer automatiquement après une erreur sans intervention humaine. »"}
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
                 {/* Step navigation */}
@@ -1330,17 +1476,18 @@ export default function HomePage() {
                   <button
                     type="button"
                     onClick={() => setTimelineTab("blois")}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 font-semibold text-[#cbd5e1] transition-all cursor-pointer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 font-semibold text-[#cbd5e1] hover:text-white transition-all cursor-pointer"
                   >
                     <ArrowLeft className="w-3.5 h-3.5 text-[#c084fc]" />
-                    <span>{isEn ? "Step 01 (Licence Blois)" : "Étape précédente : 01 / Licence Blois"}</span>
+                    <span>{isEn ? "Previous: Step 01 (Licence Blois)" : "Étape précédente : 01 / Licence Blois"}</span>
                   </button>
                   <button
                     type="button"
                     onClick={() => setTimelineTab("web")}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#10b981]/15 hover:bg-[#10b981]/25 border border-[#10b981]/30 font-bold text-[#34d399] transition-all cursor-pointer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#10b981]/15 hover:bg-[#10b981]/25 border border-[#10b981]/30 font-bold text-[#34d399] transition-all shadow-sm shadow-[#10b981]/10 cursor-pointer"
                   >
                     <span>{isEn ? "Next: Step 03 (Web Studio 2026) →" : "Étape suivante : 03 / Studio Web (2026) →"}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>
