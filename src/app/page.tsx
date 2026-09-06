@@ -863,7 +863,7 @@ export default function HomePage() {
                   2
                 </div>
                 <span className="text-[11px] font-bold text-white mt-1.5">{isEn ? "Automation & Scale" : "Automatisation & Botting"}</span>
-                <span className="text-[10px] font-mono text-[#94a3b8]">2021 — 2025</span>
+                <span className="text-[10px] font-mono text-[#94a3b8]">2021 — 2026</span>
               </button>
 
               <button
@@ -941,7 +941,7 @@ export default function HomePage() {
                 <span className="text-[10px] font-mono font-extrabold px-2 py-0.5 rounded bg-[#06b6d4]/20 text-[#22d3ee] border border-[#06b6d4]/30">
                   {isEn ? "STEP 02" : "ÉTAPE 02"}
                 </span>
-                <span className="text-xs font-mono font-bold text-[#22d3ee]">2021 — 2025</span>
+                <span className="text-xs font-mono font-bold text-[#22d3ee]">2021 — 2026</span>
               </div>
               <div className="flex items-start gap-3">
                 <div
@@ -1091,8 +1091,8 @@ export default function HomePage() {
                     <span className="w-2.5 h-2.5 rounded-full bg-[#06b6d4] animate-ping" />
                     <h3 className="text-xl font-bold text-white">
                       {isEn
-                        ? "High-Volume Automation, Botting & Marketplace Merchant (2021 — 2025)"
-                        : "Automatisation à Grande Échelle, Botting & Activité Marchande (2021 — 2025)"}
+                        ? "High-Volume Automation, Botting & Marketplace Merchant (2021 — 2026)"
+                        : "Automatisation à Grande Échelle, Botting & Activité Marchande (2021 — 2026)"}
                     </h3>
                   </div>
                   <a
@@ -1114,6 +1114,9 @@ export default function HomePage() {
                       <div className="flex items-center gap-2 text-[#22d3ee] font-bold text-sm">
                         <Gamepad2 className="w-4 h-4" />
                         <span>Escape from Tarkov</span>
+                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#06b6d4]/15 text-[#22d3ee] border border-[#06b6d4]/30 font-semibold">
+                          2021 — 2025
+                        </span>
                       </div>
                       <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#06b6d4]/20 text-[#22d3ee] border border-[#06b6d4]/30">
                         AutoHotkey · VMs (17x) · &lt; 15 ms
@@ -1199,6 +1202,9 @@ export default function HomePage() {
                       <div className="flex items-center gap-2 text-[#c084fc] font-bold text-sm">
                         <Terminal className="w-4 h-4" />
                         <span>Old School RuneScape</span>
+                        <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#8b5cf6]/15 text-[#c084fc] border border-[#8b5cf6]/30 font-semibold">
+                          2024 — 2026
+                        </span>
                       </div>
                       <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#8b5cf6]/20 text-[#c084fc] border border-[#8b5cf6]/30">
                         Java · dreambot.org · 24/7
@@ -1572,8 +1578,8 @@ export default function HomePage() {
                 <div className="space-y-1">
                   <div className="text-[#64748b]">
                     {isEn
-                      ? "// 2021-2025: DreamBot API, EternalFarm Orchestration & Worker/Mule Gold Automation"
-                      : "// 2021-2025: API DreamBot, orchestration EternalFarm & architecture Workers/Mules (Gold)"}
+                      ? "// 2024-2026: DreamBot API, EternalFarm Orchestration & Worker/Mule Gold Automation"
+                      : "// 2024-2026: API DreamBot, orchestration EternalFarm & architecture Workers/Mules (Gold)"}
                   </div>
                   <div>
                     <span className="text-[#a855f7]">public class</span> <span className="text-[#22d3ee]">GoldWorkerScript</span> <span className="text-[#a855f7]">extends</span> AbstractScript &#123;
