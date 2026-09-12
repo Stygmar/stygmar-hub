@@ -327,20 +327,20 @@ export default function HomePage() {
                   {isEn ? "Exterior Materials Suite" : "Suite d'Outils Aménagement & BTP"}
                 </span>
                 <span className="px-3 py-1 rounded-full text-xs font-mono bg-white/5 text-[#94a3b8] border border-white/10">
-                  50 {isEn ? "Pre-rendered Pages" : "Pages Statiques SSG"}
+                  78 {isEn ? "Pre-rendered Pages" : "Pages Statiques SSG"}
                 </span>
               </div>
 
               {/* 4 Metric Badges */}
               <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs font-mono">
                 <div className="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-white">
-                  <strong className="text-[#34d399]">7</strong> {isEn ? "calculators" : "calculateurs"}
+                  <strong className="text-[#34d399]">12</strong> {isEn ? "calculators" : "calculateurs"}
                 </div>
                 <div className="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-white">
-                  <strong className="text-[#34d399]">35</strong> {isEn ? "guides" : "guides"}
+                  <strong className="text-[#34d399]">48</strong> {isEn ? "guides" : "guides"}
                 </div>
                 <div className="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-white">
-                  <strong className="text-[#34d399]">65</strong> {isEn ? "tests" : "tests unitaires"}
+                  <strong className="text-[#34d399]">65+</strong> {isEn ? "tests" : "tests unitaires"}
                 </div>
                 <div className="px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-[#94a3b8]">
                   Next.js 16 · React 19 · TS
@@ -357,8 +357,8 @@ export default function HomePage() {
                   </h3>
                   <p className="text-sm text-[#cbd5e1] leading-relaxed">
                     {isEn
-                      ? "A complete suite of tools empowering homeowners and DIYers to estimate their exterior materials, budget, and generated purchase lists with zero friction. All physical calculations execute client-side in under 50ms."
-                      : "Une suite d'outils permettant aux particuliers d'estimer leurs matériaux, leur budget et leur liste d'achat pour des travaux extérieurs. Tous les calculs physiques tournent 100% côté client en moins de 50ms sans délai serveur."}
+                      ? "A complete suite of 12 tools empowering homeowners and DIYers to estimate their exterior materials, budget, and generated purchase lists with zero friction. All physical calculations execute client-side in under 15ms."
+                      : "Une suite de 12 calculateurs permettant aux particuliers d'estimer leurs matériaux, leur budget et leur liste d'achat chiffrée pour des travaux extérieurs sans gaspillage. Tous les calculs physiques tournent 100% côté client en moins de 15ms sans compte ni collecte."}
                   </p>
                 </div>
 
@@ -366,9 +366,11 @@ export default function HomePage() {
                   <div className="flex items-start gap-2.5 p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
                     <CheckCircle2 className="w-4 h-4 text-[#34d399] shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-white block font-semibold">{isEn ? "7 Specialized Calculators:" : "7 Calculateurs Métier :"}</strong>
+                      <strong className="text-white block font-semibold">{isEn ? "12 Specialized Calculators:" : "12 Calculateurs Métier par Catégorie :"}</strong>
                       <span className="text-[#94a3b8] text-xs">
-                        {isEn ? "Pedestal tiles, gravel, concrete, lawn, soil, fences, mulch." : "Terrasse sur plots, gravier, béton, terreau, gazon, paillage, clôture rigide."}
+                        {isEn
+                          ? "Gravel, mulch, soil, concrete, lawn, fences, pedestal tiles, wood decking, rainwater, borders, pavers, pond liner."
+                          : "Gravier, paillage, terreau, béton, gazon, clôtures, dalles sur plots, terrasse bois, récupérateur d'eau, bordures, pavés, bassin."}
                       </span>
                     </div>
                   </div>
@@ -386,7 +388,7 @@ export default function HomePage() {
                   <div className="flex items-start gap-2.5 p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
                     <CheckCircle2 className="w-4 h-4 text-[#34d399] shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-white block font-semibold">{isEn ? "Smart Budget & Shopping Lists:" : "Budget & Liste d'Achats :"}</strong>
+                      <strong className="text-white block font-semibold">{isEn ? "Smart Budget & Shopping Lists:" : "Budget & Liste d'Achats Chiffrée :"}</strong>
                       <span className="text-[#94a3b8] text-xs">
                         {isEn ? "Smart bag vs bulk cost arbitrage with real French retail price estimates." : "Arbitrage économique sacs vs vrac et fourchette de prix magasin réaliste."}
                       </span>
@@ -396,9 +398,9 @@ export default function HomePage() {
                   <div className="flex items-start gap-2.5 p-3 rounded-xl bg-white/[0.02] border border-white/[0.06]">
                     <CheckCircle2 className="w-4 h-4 text-[#34d399] shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-white block font-semibold">{isEn ? "35 Technical Guides & DTU Standards:" : "35 Guides Pratiques & Normes DTU :"}</strong>
+                      <strong className="text-white block font-semibold">{isEn ? "48 Technical Guides & Direct Answers:" : "48 Guides Pratiques & Fiches Repères :"}</strong>
                       <span className="text-[#94a3b8] text-xs">
-                        {isEn ? "DTU building standards, bucket/shovel conversion recipes, zero ads." : "Normes DTU 43.1 / 52.1, dosages au seau/pelle, aucune pub intrusive."}
+                        {isEn ? "Standard area answers (10m², 20m², 50m²), DTU norms, bucket/shovel dosages, zero ads." : "Réponses directes pour surfaces standard (10 m², 20 m², 50 m²), normes DTU, dosages pelle/brouette, 100% privé."}
                       </span>
                     </div>
                   </div>
@@ -449,7 +451,7 @@ export default function HomePage() {
                           <Sprout className="w-4 h-4" />
                         </div>
                         <span className="font-extrabold text-sm text-white">JardinCalcul</span>
-                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/10 text-[#94a3b8]">v2.4</span>
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/10 text-[#34d399]">12 Outils · v3.0</span>
                       </div>
 
                       {/* Interactive Mini-Demo Buttons */}
@@ -1539,21 +1541,26 @@ export default function HomePage() {
 
                   <p className="text-xs sm:text-sm text-[#cbd5e1] leading-relaxed">
                     {isEn
-                      ? "7 specialized physics calculators (pedestal tiles, gravel, concrete, lawn, soil, fences, mulch), 35 technical guides, and 50 pre-rendered static pages. 100% client-side computation in < 50ms, validated with 65 unit tests."
-                      : "7 calculateurs physiques spécialisés (dalles sur plots, gravier, béton, gazon, terreau, clôtures, paillage), 35 guides chantiers et 50 pages statiques pré-générées. Exécution 100% client-side en moins de 50ms validée par 65 tests unitaires."}
+                      ? "12 specialized physics calculators (gravel, mulch, soil, concrete, lawn, fences, pedestal tiles, wood decking, rainwater, borders, pavers, pond liner), 48 technical guides, and 78 pre-rendered static pages. 100% client-side computation in < 15ms, validated with 65+ unit tests."
+                      : "12 calculateurs physiques spécialisés (gravier, paillage, terreau, béton, gazon, clôtures, dalles plots, terrasse bois, récupérateur d'eau, bordures, pavés, bassin), 48 guides chantiers et 78 pages statiques pré-générées. Exécution 100% client-side en moins de 15ms validée par 65+ tests unitaires."}
                   </p>
 
-                  {/* 7 Calculator Chips */}
+                  {/* 12 Calculator Chips */}
                   <div className="pt-2 border-t border-white/10">
-                    <div className="text-[11px] font-mono text-[#94a3b8] mb-2">{isEn ? "7 Active calculators:" : "7 calculateurs en production :"}</div>
+                    <div className="text-[11px] font-mono text-[#94a3b8] mb-2">{isEn ? "12 Active calculators (4 categories):" : "12 calculateurs en production (4 catégories) :"}</div>
                     <div className="flex flex-wrap gap-1.5 text-[11px]">
-                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Terrasse Dalles Plots</span>
-                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Gravier Allées &amp; Cours</span>
-                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Dalle Béton &amp; Fondations</span>
-                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Gazon &amp; Semis</span>
-                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Terreau &amp; Bacs</span>
+                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Gravier &amp; Allée</span>
+                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Paillage &amp; Massifs</span>
+                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Terreau &amp; Potager</span>
+                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Béton &amp; Mortier</span>
+                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Graines &amp; Pelouse</span>
                       <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Clôture Rigide</span>
-                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Paillage Minéral</span>
+                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Dalles sur Plots</span>
+                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Terrasse Bois</span>
+                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Récupérateur d&apos;Eau</span>
+                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Bordures de Jardin</span>
+                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Pavés Autobloquants</span>
+                      <span className="px-2.5 py-1 rounded-lg bg-black/50 border border-white/10 text-white font-medium">Bassin &amp; EPDM</span>
                     </div>
                   </div>
                 </div>
