@@ -41,11 +41,13 @@ import {
   Gauge,
   Users,
   Network,
+  Compass,
 } from "lucide-react";
+import SpecOrbitSection from "./components/SpecOrbitSection";
 
 type Language = "fr" | "en";
 type TimelineTab = "blois" | "botting" | "web";
-type ProjectTab = "jardin" | "hardware";
+type ProjectTab = "jardin" | "specorbit";
 type CodeSnippetTab = "jardin" | "tarkov" | "osrs";
 type DemoCalc = "dalles" | "gravier" | "beton";
 
@@ -59,6 +61,9 @@ export default function HomePage() {
 
   useEffect(() => {
     try {
+      if (typeof window !== "undefined" && window.location.hash === "#specorbit") {
+        setProjectTab("specorbit");
+      }
       const savedLang = localStorage.getItem("stygmar_lang");
       if (savedLang === "en" || savedLang === "fr") {
         queueMicrotask(() => {
@@ -302,13 +307,15 @@ export default function HomePage() {
             </button>
             <button
               type="button"
-              onClick={() => setProjectTab("hardware")}
+              onClick={() => setProjectTab("specorbit")}
               className={`px-4 py-2 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-2 ${
-                projectTab === "hardware" ? "bg-[#06b6d4] text-black shadow-md font-extrabold" : "text-[#94a3b8] hover:text-white"
+                projectTab === "specorbit"
+                  ? "bg-gradient-to-r from-[#06b6d4] to-[#6366f1] text-white shadow-md shadow-[#06b6d4]/25 font-extrabold"
+                  : "text-[#94a3b8] hover:text-white"
               }`}
             >
-              <Cpu className="w-3.5 h-3.5" />
-              <span>Hardware Lab (R&amp;D)</span>
+              <Compass className="w-3.5 h-3.5 text-[#22d3ee]" />
+              <span>SpecOrbit ({isEn ? "Next Project · R&D" : "Futur Projet · R&D"})</span>
             </button>
           </div>
         </div>
@@ -719,99 +726,8 @@ export default function HomePage() {
           </div>
         )}
 
-        {/* Project 2: Hardware Lab (R&D Explorer) */}
-        {projectTab === "hardware" && (
-          <div className="relative group rounded-3xl bg-gradient-to-br from-[#06b6d4]/15 via-white/[0.02] to-[#8b5cf6]/10 border border-[#06b6d4]/40 p-8 sm:p-12 overflow-hidden shadow-2xl animate-in fade-in duration-300">
-            <div className="space-y-6">
-              <div className="flex flex-wrap items-center justify-between gap-4">
-                <div className="flex items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#06b6d4]/20 text-[#22d3ee] border border-[#06b6d4]/40">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#22d3ee] animate-pulse" />
-                    {isEn ? "R&D EXPLORATION & TECH LAB" : "PROJET EN CONCEPTION (R&D)"}
-                  </span>
-                  <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-white/80 border border-white/10">
-                    Hardware &amp; PC Architecture
-                  </span>
-                </div>
-                <span className="text-xs font-mono text-[#22d3ee]">{isEn ? "In active conception" : "En cours de conception"}</span>
-              </div>
-
-              <div className="max-w-3xl space-y-3">
-                <h3 className="text-2xl sm:text-3xl font-black text-white">
-                  {isEn
-                    ? "The Unbiased Hardware & Tech Comparator: Zero Bullshit, Real Ratios"
-                    : "Le Comparateur & Agrégateur Hardware neutre, sans faux bons plans"}
-                </h3>
-                <p className="text-sm sm:text-base text-[#94a3b8] leading-relaxed">
-                  {isEn
-                    ? "The PC hardware space is filled with generic AI scrapers, misleading benchmarks, and fake promo strikes. Hardware Lab leverages automated web scraping and instant analytics background to deliver genuine objectivity."
-                    : "Le marché des composants PC est pollué par des comparateurs automatisés génériques, des benchmarks trompeurs et de fausses promos barrées. Hardware Lab utilise notre expertise en scraping et calculs instantanés pour proposer un outil 100 % objectif."}
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="p-5 rounded-2xl bg-black/40 border border-white/10 space-y-2">
-                  <div className="flex items-center gap-2 text-[#22d3ee] font-bold text-sm">
-                    <Scale className="w-4 h-4" />
-                    <span>{isEn ? "Real GPU & CPU Comparator (FPS / $ / Watt)" : "Comparateur GPU & CPU (FPS / € / Watt)"}</span>
-                  </div>
-                  <p className="text-xs text-[#94a3b8] leading-relaxed">
-                    {isEn
-                      ? "Direct gaming and creative benchmarks indexed against street price and power draw."
-                      : "Comparaison directe des performances réelles en jeu par rapport au prix payé et à la consommation énergétique."}
-                  </p>
-                </div>
-
-                <div className="p-5 rounded-2xl bg-black/40 border border-white/10 space-y-2">
-                  <div className="flex items-center gap-2 text-[#34d399] font-bold text-sm">
-                    <TrendingDown className="w-4 h-4" />
-                    <span>{isEn ? "True Deal Aggregator & Price Tracking" : "Agrégateur de Deals & Historique de Cours"}</span>
-                  </div>
-                  <p className="text-xs text-[#94a3b8] leading-relaxed">
-                    {isEn
-                      ? "Transparent price tracking across European e-tailers detecting mathematically genuine discounts."
-                      : "Suivi transparent des cours des composants chez les cybermarchands européens avec détection des vraies baisses de prix."}
-                  </p>
-                </div>
-
-                <div className="p-5 rounded-2xl bg-black/40 border border-white/10 space-y-2">
-                  <div className="flex items-center gap-2 text-[#a855f7] font-bold text-sm">
-                    <Sliders className="w-4 h-4" />
-                    <span>{isEn ? "Physical Clearance & PSU Checker" : "Vérificateur de Compatibilités Physiques"}</span>
-                  </div>
-                  <p className="text-xs text-[#94a3b8] leading-relaxed">
-                    {isEn
-                      ? "Smart clearance checks: cooler height, GPU case clearance, and PSU curve."
-                      : "Vérification intelligente des compatibilités physiques : dégagement ventirad, longueur GPU dans le boîtier et dimensionnement d'alimentation."}
-                  </p>
-                </div>
-
-                <div className="p-5 rounded-2xl bg-black/40 border border-white/10 space-y-2">
-                  <div className="flex items-center gap-2 text-amber-400 font-bold text-sm">
-                    <Monitor className="w-4 h-4" />
-                    <span>{isEn ? "Balanced Builds by Budget" : "Paniers Types par Budget Réel"}</span>
-                  </div>
-                  <p className="text-xs text-[#94a3b8] leading-relaxed">
-                    {isEn
-                      ? "Optimized balanced components tailored to real market availability."
-                      : "Configurations optimisées au centime près mises à jour selon les fluctuations réelles des stocks."}
-                  </p>
-                </div>
-              </div>
-
-              <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-[#94a3b8]">
-                <span>
-                  {isEn
-                    ? "Phase: Component database modeling & ratio metrics"
-                    : "Phase : Modélisation de la base de données de composants"}
-                </span>
-                <a href="#contact" className="font-bold text-[#22d3ee] hover:underline">
-                  {isEn ? "Have an idea or feedback? Let's discuss →" : "Une idée ou suggestion ? Écrivez-moi →"}
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
+        {/* Project 2: SpecOrbit (PC Hardware Discovery & Buying Platform) */}
+        {projectTab === "specorbit" && <SpecOrbitSection isEn={isEn} />}
       </section>
 
       {/* 03 — PARCOURS CHRONOLOGIQUE & SAVOIR-FAIRE */}
@@ -957,7 +873,7 @@ export default function HomePage() {
                 </div>
                 <div>
                   <div className="font-bold text-sm text-white">{isEn ? "Web Products & Studio" : "Studio Web & Outils"}</div>
-                  <div className="text-xs text-[#94a3b8] mt-0.5">JardinCalcul.fr &amp; Hardware Lab</div>
+                  <div className="text-xs text-[#94a3b8] mt-0.5">JardinCalcul.fr &amp; SpecOrbit</div>
                 </div>
               </div>
             </button>
@@ -1565,29 +1481,29 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* Companion Card: Hardware Lab R&D */}
+                {/* Companion Card: SpecOrbit R&D */}
                 <div className="p-5 rounded-2xl bg-black/60 border border-[#06b6d4]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="space-y-1">
                     <div className="flex items-center gap-2 text-[#22d3ee] font-bold text-sm">
-                      <Cpu className="w-4 h-4" />
-                      <span>Hardware Lab — {isEn ? "Comparator in R&D" : "Comparateur en Conception"}</span>
+                      <Compass className="w-4 h-4 text-[#22d3ee]" />
+                      <span>SpecOrbit — {isEn ? "Intelligent PC Builder & Hardware Platform" : "Builder PC Intelligent & Écosystème Hardware"}</span>
                     </div>
                     <p className="text-xs text-[#94a3b8]">
                       {isEn
-                        ? "Unbiased GPU/CPU comparator (FPS/$/Watt), price tracker, and physical clearance checker."
-                        : "Comparateur neutre GPU/CPU (FPS/€/Watt), agrégateur de cours et vérificateur physique de compatibilité de boîtier."}
+                        ? "Your guide to smarter PC hardware choices: intelligent PC builder with component rationales, multi-metric comparator, and transparent deals."
+                        : "Le guide pour des choix hardware PC plus intelligents : builder PC avec justification composant par composant, comparateur neutre et suivi des cours."}
                     </p>
                   </div>
                   <button
                     type="button"
                     onClick={() => {
-                      setProjectTab("hardware");
+                      setProjectTab("specorbit");
                       const el = document.getElementById("projets");
                       el?.scrollIntoView({ behavior: "smooth" });
                     }}
                     className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#06b6d4]/15 hover:bg-[#06b6d4]/25 border border-[#06b6d4]/30 text-xs font-bold text-[#22d3ee] transition-all shrink-0 cursor-pointer"
                   >
-                    <span>{isEn ? "View R&D concept ↑" : "Voir le concept R&D ↑"}</span>
+                    <span>{isEn ? "View SpecOrbit showcase ↑" : "Découvrir SpecOrbit ↑"}</span>
                   </button>
                 </div>
 
@@ -1937,8 +1853,8 @@ export default function HomePage() {
 
           <p className="text-sm text-[#94a3b8] mb-8 leading-relaxed">
             {isEn
-              ? "Have feedback on JardinCalcul.fr, thoughts on Hardware Lab, or want to discuss automation, code, and systems? Let's connect!"
-              : "Une suggestion sur JardinCalcul.fr, une idée pour Hardware Lab, ou envie d'échanger sur du code et de l'automatisation ? Parlons-en !"}
+              ? "Have feedback on JardinCalcul.fr, thoughts or ideas for SpecOrbit, or want to discuss automation, code, and systems? Let's connect!"
+              : "Une suggestion sur JardinCalcul.fr, une idée ou des retours pour SpecOrbit, ou envie d'échanger sur du code et de l'automatisation ? Parlons-en !"}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">

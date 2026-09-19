@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Stygmar — Studio d'Outils Web Utiles & Indépendants",
-  description: "Créateur d'applications et outils web pratiques, rapides et sans friction. Découvrez JardinCalcul.fr (aménagement extérieur) et notre prochain projet comparateur hardware & tech.",
+  description: "Créateur d'applications et outils web pratiques, rapides et sans friction. Découvrez JardinCalcul.fr (aménagement extérieur) et SpecOrbit, notre future plateforme intelligente d'achat et de recommandation hardware PC.",
   metadataBase: new URL("https://stygmar.com"),
   alternates: {
     canonical: "https://stygmar.com",
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Stygmar — Studio d'Outils Web Utiles & Indépendants",
-    description: "Créateur d'applications web gratuites, rapides et sans friction. JardinCalcul.fr & futur comparateur tech/hardware.",
+    description: "Créateur d'applications web gratuites, rapides et sans friction. JardinCalcul.fr & SpecOrbit, guide pour des choix hardware PC plus intelligents.",
     url: "https://stygmar.com",
     siteName: "Stygmar",
     locale: "fr_FR",
